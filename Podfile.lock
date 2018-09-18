@@ -1,16 +1,20 @@
 PODS:
+  - BatteryView (1.2.2)
   - CTSlidingUpPanel (1.0.4)
 
 DEPENDENCIES:
+  - BatteryView
   - CTSlidingUpPanel
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - BatteryView
     - CTSlidingUpPanel
 
 SPEC CHECKSUMS:
+  BatteryView: 4d1728db8274605eb1f96ab95e04b21a97986cf6
   CTSlidingUpPanel: d1b6829abd462e075930e82153eafcf8d6d4a9e5
 
-PODFILE CHECKSUM: e5ac1809fa9ecc5cd6825fc82cc27f4b5ce27e93
+PODFILE CHECKSUM: a9af66cfdb513c72461ee958530035bbaa0915dd
 
 COCOAPODS: 1.5.3
