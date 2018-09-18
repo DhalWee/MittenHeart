@@ -1,0 +1,6 @@
+framework module Pods_CareMeUITests {
+  umbrella header "Pods-CareMeUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

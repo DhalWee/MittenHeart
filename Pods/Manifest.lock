@@ -1,0 +1,16 @@
+PODS:
+  - CTSlidingUpPanel (1.0.3)
+
+DEPENDENCIES:
+  - CTSlidingUpPanel
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - CTSlidingUpPanel
+
+SPEC CHECKSUMS:
+  CTSlidingUpPanel: f63ebeda542ee874923c6b059330b1a41d15c187
+
+PODFILE CHECKSUM: e5ac1809fa9ecc5cd6825fc82cc27f4b5ce27e93
+
+COCOAPODS: 1.5.3
