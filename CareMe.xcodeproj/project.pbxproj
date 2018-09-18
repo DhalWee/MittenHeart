@@ -371,13 +371,16 @@
 				TargetAttributes = {
 					50DF58F22147B03500B76BE6 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 					};
 					50DF59092147B03700B76BE6 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 						TestTargetID = 50DF58F22147B03500B76BE6;
 					};
 					50DF59142147B03700B76BE6 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 						TestTargetID = 50DF58F22147B03500B76BE6;
 					};
 				};
@@ -720,7 +723,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.unicorn.CareMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -740,7 +743,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.unicorn.CareMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -761,7 +764,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.unicorn.CareMeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CareMe.app/CareMe";
 			};
@@ -783,7 +786,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.unicorn.CareMeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CareMe.app/CareMe";
 			};
@@ -804,7 +807,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.unicorn.CareMeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = CareMe;
 			};
@@ -825,7 +828,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.unicorn.CareMeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = CareMe;
 			};

@@ -12,36 +12,27 @@ import CTSlidingUpPanel
 class HomeVC: UIViewController, CTBottomSlideDelegate {
 
     @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var tableView: UITableView!
     
     var bottomController:CTBottomSlideController?;
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         bottomController?.delegate = self;
+        bottomController?.delegate = self;
         //You can provide nil to tabController and navigationController
         bottomController = CTBottomSlideController(parent: view, bottomView: bottomView,
                                                    tabController: nil,
-                                                   navController: nil, visibleHeight: 100)
-        //0 is bottom and 1 is top. 0.5 would be center
-        bottomController?.setAnchorPoint(anchor: 0.9)
+                                                   navController: nil, visibleHeight: 64)
+        bottomController?.setExpandedTopMargin(pixels: 64)
+        bottomController?.setAnchorPoint(anchor: 0.3)
+        bottomController?.set(table: tableView)
         
     }
     
-    func didPanelCollapse() {
-        //
-    }
-    
-    func didPanelExpand() {
-        //
-    }
-    
-    func didPanelAnchor() {
-        //
-    }
-    
-    func didPanelMove(panelOffset: CGFloat) {
-        //
-    }
-    
+    func didPanelCollapse() {}
+    func didPanelExpand() {}
+    func didPanelAnchor() {}
+    func didPanelMove(panelOffset: CGFloat) {}
 
 }

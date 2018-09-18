@@ -1,5 +1,5 @@
 PODS:
-  - CTSlidingUpPanel (1.0.3)
+  - CTSlidingUpPanel (1.0.4)
 
 DEPENDENCIES:
   - CTSlidingUpPanel
@@ -9,7 +9,7 @@ SPEC REPOS:
     - CTSlidingUpPanel
 
 SPEC CHECKSUMS:
-  CTSlidingUpPanel: f63ebeda542ee874923c6b059330b1a41d15c187
+  CTSlidingUpPanel: d1b6829abd462e075930e82153eafcf8d6d4a9e5
 
 PODFILE CHECKSUM: e5ac1809fa9ecc5cd6825fc82cc27f4b5ce27e93
 

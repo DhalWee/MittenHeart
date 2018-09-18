@@ -21,12 +21,14 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         emailTF.becomeFirstResponder()
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         emailTF.text = ""
         passwordTF.text = ""
-        super.viewWillDisappear(animated)
+        UIApplication.shared.statusBarStyle = .default
     }
     
     func uiStuffs() {

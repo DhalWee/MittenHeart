@@ -19,16 +19,22 @@ class ChildVC: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        firstTF.addTarget(self, action: #selector(self.textFieldDidChange(_ :)), for: UIControlEvents.editingChanged)
-        secondTF.addTarget(self, action: #selector(self.textFieldDidChange(_ :)), for: UIControlEvents.editingChanged)
-        thirdTF.addTarget(self, action: #selector(self.textFieldDidChange(_ :)), for: UIControlEvents.editingChanged)
-        fourthTF.addTarget(self, action: #selector(self.textFieldDidChange(_ :)), for: UIControlEvents.editingChanged)
+        firstTF.addTarget(self, action: #selector(self.textFieldDidChange(_ :)), for: UIControl.Event.editingChanged)
+        secondTF.addTarget(self, action: #selector(self.textFieldDidChange(_ :)), for: UIControl.Event.editingChanged)
+        thirdTF.addTarget(self, action: #selector(self.textFieldDidChange(_ :)), for: UIControl.Event.editingChanged)
+        fourthTF.addTarget(self, action: #selector(self.textFieldDidChange(_ :)), for: UIControl.Event.editingChanged)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        UIApplication.shared.statusBarStyle = .lightContent
         firstTF.becomeFirstResponder()
         highlighTextField(firstTF, true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.shared.statusBarStyle = .default
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
