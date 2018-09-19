@@ -18,10 +18,7 @@ class childCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-    }
-
-    func setLineTop(_ bool: Bool) {
-        addLineToView(view: lineView, position: (bool ? .LINE_POSITION_TOP : .LINE_POSITION_BOTTOM), color: UIColor.init(hex: lightGray), width: 0.5)
+        addLineToView(view: lineView, position: .LINE_POSITION_BOTTOM, color: UIColor.init(hex: lightGray), width: 0.5)
     }
     
     func setChild(_ nameAndSurname: String,_ desc: String,_ imgName: String) {
@@ -32,7 +29,6 @@ class childCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     

@@ -41,8 +41,5 @@ class LoginOrRegisterVC: UIViewController {
         endEditing()
         performSegue(withIdentifier: "LoginVCSegue", sender: self)
     }
-    
-    
-
 }
 

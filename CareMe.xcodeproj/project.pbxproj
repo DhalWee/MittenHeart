@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		14E66E95DD8CE17171ED5E65 /* Pods_CareMeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBA04FB1C133F23CFACEEFE /* Pods_CareMeUITests.framework */; };
 		19A9985991C4FE84A5DC3446 /* Pods_CareMeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 237ABC90F0906D11303C358B /* Pods_CareMeTests.framework */; };
+		5000CCB92152081D00D11825 /* TabBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5000CCB82152081D00D11825 /* TabBarModel.swift */; };
 		501E67A72151A16C00E879D6 /* Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501E67A62151A16C00E879D6 /* Child.swift */; };
 		504C5AE8214C2F2200831F95 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C5AE7214C2F2200831F95 /* LoginVC.swift */; };
 		504C5AEC214C5B9D00831F95 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C5AEB214C5B9D00831F95 /* HomeVC.swift */; };
@@ -72,6 +73,7 @@
 		1836E84E0B4A0F31D10AD5D9 /* Pods-CareMeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CareMeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CareMeTests/Pods-CareMeTests.release.xcconfig"; sourceTree = "<group>"; };
 		237ABC90F0906D11303C358B /* Pods_CareMeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CareMeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		36B665079D7D6EE8B14255DE /* Pods-CareMeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CareMeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CareMeUITests/Pods-CareMeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		5000CCB82152081D00D11825 /* TabBarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModel.swift; sourceTree = "<group>"; };
 		501E67A62151A16C00E879D6 /* Child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Child.swift; sourceTree = "<group>"; };
 		50357F442147C14C00710306 /* Montserrat-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.otf"; sourceTree = "<group>"; };
 		50357F452147C14C00710306 /* Montserrat-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-BlackItalic.otf"; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				501E67A62151A16C00E879D6 /* Child.swift */,
+				5000CCB82152081D00D11825 /* TabBarModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -553,6 +556,7 @@
 				50CB0FC821481690003771C4 /* ChildOrParentVC.swift in Sources */,
 				5055E866214B37E5001138AD /* ParentVC.swift in Sources */,
 				504C5AE8214C2F2200831F95 /* LoginVC.swift in Sources */,
+				5000CCB92152081D00D11825 /* TabBarModel.swift in Sources */,
 				501E67A72151A16C00E879D6 /* Child.swift in Sources */,
 				50DF58FF2147B03500B76BE6 /* CareMe.xcdatamodeld in Sources */,
 				50DF58F92147B03500B76BE6 /* LoginOrRegisterVC.swift in Sources */,
