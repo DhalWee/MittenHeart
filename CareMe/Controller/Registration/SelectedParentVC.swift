@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ParentVC: UIViewController {
+class SelectedParentVC: UIViewController {
 
     @IBOutlet weak var firstLbl: UILabel!
     @IBOutlet weak var secondLbl: UILabel!
@@ -28,7 +28,6 @@ class ParentVC: UIViewController {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarStyle = .lightContent
     }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         UIApplication.shared.statusBarStyle = .default

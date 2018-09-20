@@ -1,6 +1,0 @@
-framework module BatteryView {
-  umbrella header "BatteryView-umbrella.h"
-
-  export *
-  module * { export * }
-}

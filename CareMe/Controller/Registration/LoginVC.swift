@@ -23,7 +23,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         emailTF.becomeFirstResponder()
         UIApplication.shared.statusBarStyle = .lightContent
     }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         emailTF.text = ""

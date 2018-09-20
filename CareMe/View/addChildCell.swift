@@ -16,6 +16,7 @@ class addChildCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        addImg.layer.cornerRadius = addImg.bounds.height/2
         addLineToView(view: self.contentView, position: .LINE_POSITION_BOTTOM, color: UIColor.init(hex: lightGray), width: 0.5)
     }
 

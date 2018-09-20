@@ -20,23 +20,17 @@ class headerCell: UITableViewCell {
                            ["Чат"],
                            ["Еще"],
                            ["Настройки"]]
-    
-    var light: [UIImage] = [UIImage(named: "HomeLight")!,
-                            UIImage(named: "SubscribeLight")!,
-                            //HTC delete chat image
-                            UIImage(named: "SettingsLight")!,
-                            UIImage(named: "FunctionsLight")!,
-                            UIImage(named: "SettingsLight")!]
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        lightImg.layer.cornerRadius = lightImg.bounds.height/2
         addLineToView(view: self.contentView, position: .LINE_POSITION_BOTTOM, color: UIColor.init(hex: lightGray), width: 0.5)
     }
     
     func setHeader(_ index: Int) {
         titlelLbl.text = title[index][0]
-        lightImg.image = light[index]
+        lightImg.image = UIImage(named: "\(index)Light")
     }
     
     @IBAction func actionBtnPressed(_ sender: UIButton) {
@@ -45,7 +39,6 @@ class headerCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     

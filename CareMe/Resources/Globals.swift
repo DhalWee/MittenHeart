@@ -17,6 +17,7 @@ let mapBlue = 0x2A8ECC
 let yellow = 0xFFC000
 let actionBlue = 0x007AFF
 let lightGray = 0xD8D8D8
+let darkGray = 0x979797
 
 enum LINE_POSITION {
     case LINE_POSITION_TOP

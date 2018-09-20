@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChildVC: UIViewController, UITextFieldDelegate {
+class SelectedChildVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var firstTF: UITextField!
     @IBOutlet weak var secondTF: UITextField!
@@ -31,7 +31,6 @@ class ChildVC: UIViewController, UITextFieldDelegate {
         firstTF.becomeFirstResponder()
         highlighTextField(firstTF, true)
     }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         UIApplication.shared.statusBarStyle = .default

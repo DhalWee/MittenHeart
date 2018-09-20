@@ -7,7 +7,6 @@ target 'CareMe' do
 
   # Pods for CareMe
   pod "CTSlidingUpPanel"
-  pod 'BatteryView'
 
   target 'CareMeTests' do
     inherit! :search_paths

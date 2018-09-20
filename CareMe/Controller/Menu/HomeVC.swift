@@ -45,6 +45,15 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
         tableView.dataSource = self
         bottomController?.delegate = self
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+    }
 
 }
 
@@ -72,27 +81,16 @@ extension HomeVC {
     
     @IBAction func tabBarBtnPressed(_ sender: UIButton) {
         tabBarIndex = sender.tag
-        
-        let img1 = homeBtn.imageView?.image
-        homeBtn.imageView?.image = img1?.maskWithColor(UIColor(hex: navy))
-        
-        let img2 = subscribeBtn.imageView?.image
-        subscribeBtn.imageView?.image = img2?.maskWithColor(UIColor(hex: navy))
-        
-        let img3 = chatBtn.imageView?.image
-        chatBtn.imageView?.image = img3?.maskWithColor(UIColor(hex: navy))
-        
-        let img4 = moreBtn.imageView?.image
-        moreBtn.imageView?.image = img4?.maskWithColor(UIColor(hex: navy))
-        
-        let img5 = settingsBtn.imageView?.image
-        settingsBtn.imageView?.image = img5?.maskWithColor(UIColor(hex: navy))
-        
-        let imgSelected = sender.imageView?.image
-        sender.imageView?.image = imgSelected?.maskWithColor(UIColor(hex: green))
+        homeBtn.imageView?.image = UIImage(named: "\(homeBtn.tag)Inactive")
+        subscribeBtn.imageView?.image = UIImage(named: "\(subscribeBtn.tag)Inactive")
+        chatBtn.imageView?.image = UIImage(named: "\(chatBtn.tag)Inactive")
+        moreBtn.imageView?.image = UIImage(named: "\(moreBtn.tag)Inactive")
+        settingsBtn.imageView?.image = UIImage(named: "\(settingsBtn.tag)Inactive")
+        sender.imageView?.image = UIImage(named: "\(sender.tag)Active")
         
         tableView.reloadData()
     }
+    
 }
 
 //Delegates and DataSources
@@ -101,6 +99,7 @@ extension HomeVC {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tabBarIndex == 0 {
             return kids.count+2
+        //HTC Else if tabBarIndex others must be here
         } else {
             return 1
         }
@@ -124,6 +123,7 @@ extension HomeVC {
                 cell.setChild(child.nameAndSurname, child.desc, child.imgName)
                 return cell
             }
+        //HTC Else if tabBarIndex others must be here
         } else {
             return UITableViewCell()
         }
@@ -133,13 +133,19 @@ extension HomeVC {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
             return 50
+        //HTC Else if tabBarIndex others must be here
         } else {
             return 70
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "ChildVCSegue", sender: self)
     }
     
     func didPanelCollapse() {}
     func didPanelExpand() {}
     func didPanelAnchor() {}
     func didPanelMove(panelOffset: CGFloat) {}
+    
 }
