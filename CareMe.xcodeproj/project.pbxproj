@@ -16,6 +16,12 @@
 		506194CD2151819700A1702D /* headerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506194CB2151819700A1702D /* headerCell.swift */; };
 		506194D1215182CD00A1702D /* childCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506194CF215182CD00A1702D /* childCell.swift */; };
 		506194D42151915300A1702D /* addChildCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506194D32151915300A1702D /* addChildCell.swift */; };
+		50A185A82159231B00000DD1 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A185A72159231B00000DD1 /* RegisterVC.swift */; };
+		50A185AC2159266A00000DD1 /* moreFunctionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A185AB2159266A00000DD1 /* moreFunctionsCell.swift */; };
+		50A185AE2159331300000DD1 /* MovementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A185AD2159331300000DD1 /* MovementVC.swift */; };
+		50A185B02159333B00000DD1 /* SoundAroundVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A185AF2159333B00000DD1 /* SoundAroundVC.swift */; };
+		50A185B22159335700000DD1 /* SendSignalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A185B12159335700000DD1 /* SendSignalVC.swift */; };
+		50A185B42159337C00000DD1 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A185B32159337C00000DD1 /* ChatVC.swift */; };
 		50CB0FC821481690003771C4 /* ChildOrParentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CB0FC721481690003771C4 /* ChildOrParentVC.swift */; };
 		50CB0FCA21481B30003771C4 /* SelectedChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CB0FC921481B30003771C4 /* SelectedChildVC.swift */; };
 		50DF58F72147B03500B76BE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DF58F62147B03500B76BE6 /* AppDelegate.swift */; };
@@ -98,6 +104,12 @@
 		506194CB2151819700A1702D /* headerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = headerCell.swift; sourceTree = "<group>"; };
 		506194CF215182CD00A1702D /* childCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childCell.swift; sourceTree = "<group>"; };
 		506194D32151915300A1702D /* addChildCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addChildCell.swift; sourceTree = "<group>"; };
+		50A185A72159231B00000DD1 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
+		50A185AB2159266A00000DD1 /* moreFunctionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = moreFunctionsCell.swift; sourceTree = "<group>"; };
+		50A185AD2159331300000DD1 /* MovementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementVC.swift; sourceTree = "<group>"; };
+		50A185AF2159333B00000DD1 /* SoundAroundVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundAroundVC.swift; sourceTree = "<group>"; };
+		50A185B12159335700000DD1 /* SendSignalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendSignalVC.swift; sourceTree = "<group>"; };
+		50A185B32159337C00000DD1 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		50CB0FC721481690003771C4 /* ChildOrParentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildOrParentVC.swift; sourceTree = "<group>"; };
 		50CB0FC921481B30003771C4 /* SelectedChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedChildVC.swift; sourceTree = "<group>"; };
 		50DF58F32147B03500B76BE6 /* CareMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CareMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -194,6 +206,7 @@
 			children = (
 				50DF58F82147B03500B76BE6 /* LoginOrRegisterVC.swift */,
 				504C5AE7214C2F2200831F95 /* LoginVC.swift */,
+				50A185A72159231B00000DD1 /* RegisterVC.swift */,
 				50CB0FC721481690003771C4 /* ChildOrParentVC.swift */,
 				50CB0FC921481B30003771C4 /* SelectedChildVC.swift */,
 				5055E865214B37E5001138AD /* SelectedParentVC.swift */,
@@ -206,6 +219,10 @@
 			children = (
 				504C5AEB214C5B9D00831F95 /* HomeVC.swift */,
 				50E06E4C2153BEA9000A2AAE /* ChildVC.swift */,
+				50A185AD2159331300000DD1 /* MovementVC.swift */,
+				50A185B32159337C00000DD1 /* ChatVC.swift */,
+				50A185AF2159333B00000DD1 /* SoundAroundVC.swift */,
+				50A185B12159335700000DD1 /* SendSignalVC.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -290,6 +307,7 @@
 				506194CB2151819700A1702D /* headerCell.swift */,
 				506194CF215182CD00A1702D /* childCell.swift */,
 				506194D32151915300A1702D /* addChildCell.swift */,
+				50A185AB2159266A00000DD1 /* moreFunctionsCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -326,6 +344,7 @@
 				50DF58F02147B03500B76BE6 /* Frameworks */,
 				50DF58F12147B03500B76BE6 /* Resources */,
 				25A4A41D7193DE8844A6F5D6 /* [CP] Embed Pods Frameworks */,
+				9728D540B0000BF1EA498DB5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -538,6 +557,26 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9728D540B0000BF1EA498DB5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CareMe/Pods-CareMe-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CareMe/Pods-CareMe-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -551,15 +590,21 @@
 				506194D42151915300A1702D /* addChildCell.swift in Sources */,
 				50DF592C2147B40E00B76BE6 /* Globals.swift in Sources */,
 				506194CD2151819700A1702D /* headerCell.swift in Sources */,
+				50A185B02159333B00000DD1 /* SoundAroundVC.swift in Sources */,
 				50CB0FCA21481B30003771C4 /* SelectedChildVC.swift in Sources */,
 				50CB0FC821481690003771C4 /* ChildOrParentVC.swift in Sources */,
 				5055E866214B37E5001138AD /* SelectedParentVC.swift in Sources */,
+				50A185A82159231B00000DD1 /* RegisterVC.swift in Sources */,
 				504C5AE8214C2F2200831F95 /* LoginVC.swift in Sources */,
 				501E67A72151A16C00E879D6 /* Child.swift in Sources */,
 				50DF58FF2147B03500B76BE6 /* CareMe.xcdatamodeld in Sources */,
 				50DF58F92147B03500B76BE6 /* LoginOrRegisterVC.swift in Sources */,
+				50A185B42159337C00000DD1 /* ChatVC.swift in Sources */,
 				506194D1215182CD00A1702D /* childCell.swift in Sources */,
+				50A185AE2159331300000DD1 /* MovementVC.swift in Sources */,
 				50DF58F72147B03500B76BE6 /* AppDelegate.swift in Sources */,
+				50A185B22159335700000DD1 /* SendSignalVC.swift in Sources */,
+				50A185AC2159266A00000DD1 /* moreFunctionsCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

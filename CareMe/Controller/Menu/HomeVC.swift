@@ -8,9 +8,13 @@
 
 import UIKit
 import CTSlidingUpPanel
+import MapKit
+import GoogleMaps
 
 //Initializing and variables
 class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var mapView: MKMapView!
     
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var tableView: UITableView!
@@ -63,14 +67,6 @@ extension HomeVC {
         bottomController = CTBottomSlideController(parent: view, bottomView: bottomView, tabController: nil,
                                                    navController: nil, visibleHeight: 99)
         bottomController?.setExpandedTopMargin(pixels: 64)
-        var anchor: Int {
-            if kids.count > 0 {
-                return 99 + kids.count * 70
-            } else {
-                return 99 + 70
-            }
-        }
-        bottomController?.setAnchorPoint(anchor: CGFloat(anchor)/self.view.bounds.height)
         bottomController?.set(table: tableView)
         
         bottomView.roundCorners([.topLeft, .topRight], radius: 20)
@@ -81,6 +77,33 @@ extension HomeVC {
     
     @IBAction func tabBarBtnPressed(_ sender: UIButton) {
         tabBarIndex = sender.tag
+        
+        //Setting height of contentView
+        if tabBarIndex == 0 {
+            var anchor: Int {
+                if kids.count > 0 {
+                    return 99 + kids.count * 70
+                } else {
+                    return 99 + 70
+                }
+            }
+            bottomController?.setAnchorPoint(anchor: CGFloat(anchor)/self.view.bounds.height)
+            bottomController?.closePanel()
+            bottomController?.anchorPanel()
+        } else if tabBarIndex == 1 {
+            bottomController?.setAnchorPoint(anchor: CGFloat(self.view.bounds.height-64)/self.view.bounds.height)
+            bottomController?.closePanel()
+            bottomController?.expandPanel()
+        } else if tabBarIndex == 3 {
+            bottomController?.setAnchorPoint(anchor: CGFloat(99+140)/self.view.bounds.height)
+            bottomController?.closePanel()
+            bottomController?.anchorPanel()
+        } else {
+            bottomController?.setAnchorPoint(anchor: CGFloat(99+70)/self.view.bounds.height)
+            bottomController?.closePanel()
+            bottomController?.anchorPanel()
+        }
+        
         homeBtn.imageView?.image = UIImage(named: "\(homeBtn.tag)Inactive")
         subscribeBtn.imageView?.image = UIImage(named: "\(subscribeBtn.tag)Inactive")
         chatBtn.imageView?.image = UIImage(named: "\(chatBtn.tag)Inactive")
@@ -100,6 +123,8 @@ extension HomeVC {
         if tabBarIndex == 0 {
             return kids.count+2
         //HTC Else if tabBarIndex others must be here
+        } else if tabBarIndex == 3 {
+            return 2
         } else {
             return 1
         }
@@ -123,6 +148,9 @@ extension HomeVC {
                 cell.setChild(child.nameAndSurname, child.desc, child.imgName)
                 return cell
             }
+        } else if tabBarIndex == 3 && indexPath.row == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "moreFunctionsCell", for: indexPath) as! moreFunctionsCell
+            return cell
         //HTC Else if tabBarIndex others must be here
         } else {
             return UITableViewCell()
@@ -134,13 +162,19 @@ extension HomeVC {
         if indexPath.row == 0 {
             return 50
         //HTC Else if tabBarIndex others must be here
+        } else if tabBarIndex == 3 && indexPath.row == 1 {
+            return 140
         } else {
             return 70
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "ChildVCSegue", sender: self)
+        if tabBarIndex == 0 {
+            performSegue(withIdentifier: "ChildVCSegue", sender: self)
+        } else if tabBarIndex == 3 {
+            
+        }
     }
     
     func didPanelCollapse() {}

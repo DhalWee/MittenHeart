@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         UIApplication.shared.statusBarStyle = .default
+        GMSServices.provideAPIKey("AIzaSyCu4RCpzzHDawrXV_5olnpInFWuJXXKMqM")
+//        GMSPlacesClient.provideAPIKey("AIzaSyCu4RCpzzHDawrXV_5olnpInFWuJXXKMqM")
+
         return true
     }
 

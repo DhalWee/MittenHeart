@@ -9,19 +9,19 @@
 /* Begin PBXBuildFile section */
 		026ED3623D99C72F29F39BD59BB83A03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 908E902E026C5C22904CF9014A5604AD /* Foundation.framework */; };
 		05DD0C77548E775B6E102875CFF8090D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 908E902E026C5C22904CF9014A5604AD /* Foundation.framework */; };
-		14D1124C697E1A6AC0F4D0E0340EF83A /* CTBottomSlideTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC16CE4E4E8619D18BFB306EA8D95DC /* CTBottomSlideTableDelegate.swift */; };
-		254BC84CEC7060BFD46B5B499D5C7124 /* CTSlidingUpPanel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E3F89BA7E2D79EC6746863B89DD1CDFD /* CTSlidingUpPanel-dummy.m */; };
+		14D1124C697E1A6AC0F4D0E0340EF83A /* CTBottomSlideTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFEB4775ACD4A974EB5D83C87194842 /* CTBottomSlideTableDelegate.swift */; };
+		254BC84CEC7060BFD46B5B499D5C7124 /* CTSlidingUpPanel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7307B5B651D374BBCB315D591203360C /* CTSlidingUpPanel-dummy.m */; };
 		2B1527DA006C0C3E8A07B3646EDB9753 /* Pods-CareMe-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 58408CC5C04389ABC6AF8B3F3F176D7A /* Pods-CareMe-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3D3E5EAEC68157648A91295390291C46 /* CTSlidingUpPanel-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEB8584661537E2F15A4871E901E011 /* CTSlidingUpPanel-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3D3E5EAEC68157648A91295390291C46 /* CTSlidingUpPanel-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0088B893E825ED40B0478ACFD41FFD15 /* CTSlidingUpPanel-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5DCAD9612173A744B42DF31C142C607F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2C02191C153C1554B35DEE8B2D09D4 /* UIKit.framework */; };
 		6DA236F10F4CDFC017777A4E14E97CE0 /* Pods-CareMeUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EEE6C5193E42C15F842B7675020EC68 /* Pods-CareMeUITests-dummy.m */; };
 		7D3FBF28326AE29579970BCB7DEB5202 /* Pods-CareMeUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E94522D34340493EA9C7BEE7011376CC /* Pods-CareMeUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		88B837389E24002C2D1EA2EAC8468155 /* Pods-CareMeTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8F5DD7CD4F7D2F1E114FF4F6769500CE /* Pods-CareMeTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9CF71877A6DBC2DDFD875D6D7ACA3020 /* CTBottomSlideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B98D4930C1E33C3BA2ECD0D6F42F6E /* CTBottomSlideController.swift */; };
+		9CF71877A6DBC2DDFD875D6D7ACA3020 /* CTBottomSlideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54687E47A4B769F6B39B5DF427747E75 /* CTBottomSlideController.swift */; };
 		CF3953771356753620DD912213B3453F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 908E902E026C5C22904CF9014A5604AD /* Foundation.framework */; };
 		D450AC292F7022EC543122E3DB0CF0ED /* Pods-CareMe-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E634CF92105D6AC7D1132FDAE390DF7 /* Pods-CareMe-dummy.m */; };
 		D4E1F1FCB21E7985BABB74345E7EEF11 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 908E902E026C5C22904CF9014A5604AD /* Foundation.framework */; };
-		EB2C8803340C70B574349561BCA85325 /* CTPanGestureRecognizerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E94CCCC05DE308B475AD74AB98FB4D /* CTPanGestureRecognizerExtension.swift */; };
+		EB2C8803340C70B574349561BCA85325 /* CTPanGestureRecognizerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B0C9E864D409987D2A6C7F2D9EEAC0 /* CTPanGestureRecognizerExtension.swift */; };
 		F870B56700BB727BE7277B369BBB0DB1 /* Pods-CareMeTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD631F23CDF8029DA0FE696E680530 /* Pods-CareMeTests-dummy.m */; };
 /* End PBXBuildFile section */
 
@@ -50,52 +50,58 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		03B98D4930C1E33C3BA2ECD0D6F42F6E /* CTBottomSlideController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CTBottomSlideController.swift; path = CTSlidingUpPanel/Classes/CTBottomSlideController.swift; sourceTree = "<group>"; };
+		0088B893E825ED40B0478ACFD41FFD15 /* CTSlidingUpPanel-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CTSlidingUpPanel-umbrella.h"; sourceTree = "<group>"; };
+		057CF4912B8888614B1845B8F3CB1A8E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06D5735CE1F6683D35A343104A339A00 /* Pods-CareMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CareMe.debug.xcconfig"; sourceTree = "<group>"; };
-		090CFCDA96875470E6AD658350F8D671 /* CTSlidingUpPanel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = CTSlidingUpPanel.modulemap; sourceTree = "<group>"; };
 		0E634CF92105D6AC7D1132FDAE390DF7 /* Pods-CareMe-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CareMe-dummy.m"; sourceTree = "<group>"; };
-		123B550E1259B3C0BEC1ECDCA8218CAA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F40B2C3E796EED8A2B23437142EAB08 /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsCore.framework; path = Maps/Frameworks/GoogleMapsCore.framework; sourceTree = "<group>"; };
 		1435235EFFBF7A89560212279AE92CA0 /* Pods-CareMeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CareMeTests.release.xcconfig"; sourceTree = "<group>"; };
 		1B3282599FB8C55CAB7D970DD15DECA7 /* Pods-CareMe-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CareMe-acknowledgements.markdown"; sourceTree = "<group>"; };
 		247D58FE151DC7B221AD952F6B50E6A4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		392B53DF5665C9CF0352071670776A87 /* GooglePlaces.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlaces.framework; path = Frameworks/GooglePlaces.framework; sourceTree = "<group>"; };
 		3E0B57CB250FD3D1CF9384D7B507EAC0 /* Pods-CareMeTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-CareMeTests.modulemap"; sourceTree = "<group>"; };
 		40537ABA88BC78059DD56E116D6DCA3C /* Pods-CareMe-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CareMe-acknowledgements.plist"; sourceTree = "<group>"; };
 		47636A7678FC359C99A18AA6103F76B0 /* Pods-CareMeUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CareMeUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		5162C582BDCC685E94EF7A8FD8D3B8F2 /* Pods-CareMe-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CareMe-resources.sh"; sourceTree = "<group>"; };
+		54687E47A4B769F6B39B5DF427747E75 /* CTBottomSlideController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CTBottomSlideController.swift; path = CTSlidingUpPanel/Classes/CTBottomSlideController.swift; sourceTree = "<group>"; };
 		5478E714CC081152AB6A89DBAC407970 /* Pods-CareMeTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CareMeTests-frameworks.sh"; sourceTree = "<group>"; };
 		56E4908A980752A6A7C90056D6BC9375 /* Pods-CareMe-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CareMe-frameworks.sh"; sourceTree = "<group>"; };
 		58408CC5C04389ABC6AF8B3F3F176D7A /* Pods-CareMe-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CareMe-umbrella.h"; sourceTree = "<group>"; };
 		58F566A23D27396F5D0EEB5507BF2599 /* Pods-CareMeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CareMeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		59AA425C663BD58D6CE988C96DA9D274 /* Pods_CareMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_CareMe.framework; path = "Pods-CareMe.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		63E94CCCC05DE308B475AD74AB98FB4D /* CTPanGestureRecognizerExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CTPanGestureRecognizerExtension.swift; path = CTSlidingUpPanel/Classes/CTPanGestureRecognizerExtension.swift; sourceTree = "<group>"; };
+		5CFEB4775ACD4A974EB5D83C87194842 /* CTBottomSlideTableDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CTBottomSlideTableDelegate.swift; path = CTSlidingUpPanel/Classes/CTBottomSlideTableDelegate.swift; sourceTree = "<group>"; };
 		6F37D4241E48F2B7352D8DB882722A4F /* Pods-CareMeUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-CareMeUITests.modulemap"; sourceTree = "<group>"; };
+		7307B5B651D374BBCB315D591203360C /* CTSlidingUpPanel-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CTSlidingUpPanel-dummy.m"; sourceTree = "<group>"; };
 		74FA72BE96E3EF0680F5CED99151300C /* Pods_CareMeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_CareMeUITests.framework; path = "Pods-CareMeUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F6F34F548562F982C66DC22EBCEBC8A /* Pods_CareMeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_CareMeTests.framework; path = "Pods-CareMeTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8230336A64130B8D33117EF796DBE0EB /* Pods-CareMeUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CareMeUITests-frameworks.sh"; sourceTree = "<group>"; };
-		8309B40F01A359F7889F40F70CECB092 /* CTSlidingUpPanel.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CTSlidingUpPanel.xcconfig; sourceTree = "<group>"; };
 		8F5DD7CD4F7D2F1E114FF4F6769500CE /* Pods-CareMeTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CareMeTests-umbrella.h"; sourceTree = "<group>"; };
 		8F62D543BD9AB8F604BCEDB5C8140311 /* Pods-CareMeUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CareMeUITests-acknowledgements.plist"; sourceTree = "<group>"; };
 		908E902E026C5C22904CF9014A5604AD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9AEB8584661537E2F15A4871E901E011 /* CTSlidingUpPanel-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CTSlidingUpPanel-umbrella.h"; sourceTree = "<group>"; };
 		9B9CCEA138E52B0C4958AD696F1AA4E3 /* CTSlidingUpPanel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CTSlidingUpPanel.framework; path = CTSlidingUpPanel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D510FA75363C4B7A3EEB8F613467C34 /* CTSlidingUpPanel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = CTSlidingUpPanel.modulemap; sourceTree = "<group>"; };
 		9DB2A24249A324469C9A006E5AE165CD /* Pods-CareMeUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CareMeUITests-resources.sh"; sourceTree = "<group>"; };
 		9EE368AAA41F4238104706E28901E1CA /* Pods-CareMeTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CareMeTests-resources.sh"; sourceTree = "<group>"; };
 		9EEE6C5193E42C15F842B7675020EC68 /* Pods-CareMeUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CareMeUITests-dummy.m"; sourceTree = "<group>"; };
-		A3B697ED0B0B8FCC013BFC61F09FABCA /* CTSlidingUpPanel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CTSlidingUpPanel-prefix.pch"; sourceTree = "<group>"; };
-		ADC16CE4E4E8619D18BFB306EA8D95DC /* CTBottomSlideTableDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CTBottomSlideTableDelegate.swift; path = CTSlidingUpPanel/Classes/CTBottomSlideTableDelegate.swift; sourceTree = "<group>"; };
+		ADD676445F759A646C519D580E85A4EF /* CTSlidingUpPanel.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CTSlidingUpPanel.xcconfig; sourceTree = "<group>"; };
+		B3F180C25FF9311F888E37D7C07F9C43 /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsBase.framework; path = Base/Frameworks/GoogleMapsBase.framework; sourceTree = "<group>"; };
 		BC2C02191C153C1554B35DEE8B2D09D4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		BDB35EDD12537D4EF4B0B9C1613B90A5 /* Pods-CareMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CareMe.release.xcconfig"; sourceTree = "<group>"; };
+		BF0B1307F329BB7DCAE54DE57B719782 /* CTSlidingUpPanel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CTSlidingUpPanel-prefix.pch"; sourceTree = "<group>"; };
 		C09E6B386E5F2BB5FF8B5A5DE2801B9C /* Pods-CareMe.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-CareMe.modulemap"; sourceTree = "<group>"; };
+		CE3C6B82430536E78C5829146EFBC6DD /* GoogleMaps.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		CEA46F331FD959C91B7B7DF106F1A7D6 /* Pods-CareMeTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CareMeTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		CFD53F593AF33D756999D8DD723BF277 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E3F89BA7E2D79EC6746863B89DD1CDFD /* CTSlidingUpPanel-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CTSlidingUpPanel-dummy.m"; sourceTree = "<group>"; };
+		DDC0466D8206B0B1EA2F9987CC08F052 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Maps/Frameworks/GoogleMaps.framework; sourceTree = "<group>"; };
 		E5CC28D741D2BDE20039B0137E9D1936 /* Pods-CareMeTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CareMeTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		E7136B9C373DB81CEA63D39309977915 /* Pods-CareMeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CareMeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E94522D34340493EA9C7BEE7011376CC /* Pods-CareMeUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CareMeUITests-umbrella.h"; sourceTree = "<group>"; };
+		EA9033CC357FE09B1C77A7D15F69846C /* GooglePlaces.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GooglePlaces.bundle; path = Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle; sourceTree = "<group>"; };
 		ECFD631F23CDF8029DA0FE696E680530 /* Pods-CareMeTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CareMeTests-dummy.m"; sourceTree = "<group>"; };
 		EDBDA3A8DAAA86527AA6768553E94E39 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3E4F6CE4A74E41B4F65491B5E97B0FF /* Pods-CareMeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CareMeUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		F5B0C9E864D409987D2A6C7F2D9EEAC0 /* CTPanGestureRecognizerExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CTPanGestureRecognizerExtension.swift; path = CTSlidingUpPanel/Classes/CTPanGestureRecognizerExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +141,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0885433F90AD1AC7EBB6C8DE69A8A112 /* GooglePlaces */ = {
+			isa = PBXGroup;
+			children = (
+				688B551A1A460E0CB4C1BA96EF6F73ED /* Frameworks */,
+				C7D7B117F1F3697863702CEC8CD06793 /* Resources */,
+			);
+			name = GooglePlaces;
+			path = GooglePlaces;
+			sourceTree = "<group>";
+		};
 		10DEDCB394BAA0C7FEDEBE330207B074 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,14 +158,6 @@
 				BC2C02191C153C1554B35DEE8B2D09D4 /* UIKit.framework */,
 			);
 			name = iOS;
-			sourceTree = "<group>";
-		};
-		21FF1915F3FE60075182645006682B37 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				99BD63C4ED79557639D8AD456AEFEEBE /* CTSlidingUpPanel */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		3847F872D4AA93C236B5F85A94F1AAAB /* Products */ = {
@@ -163,10 +171,28 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		3C16DE0F3B84C78B3166CC036F256F11 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AC2C3395BB3C9C0D1088F822CDB66AE8 /* CTSlidingUpPanel */,
+				F8CBEF89D18D2B1E66BD77DFC1DBF522 /* GoogleMaps */,
+				0885433F90AD1AC7EBB6C8DE69A8A112 /* GooglePlaces */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				10DEDCB394BAA0C7FEDEBE330207B074 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		524D6FA6A3AA116C8E90480CF3DE8BD5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B3F180C25FF9311F888E37D7C07F9C43 /* GoogleMapsBase.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -189,27 +215,31 @@
 			path = "Target Support Files/Pods-CareMe";
 			sourceTree = "<group>";
 		};
+		688B551A1A460E0CB4C1BA96EF6F73ED /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				392B53DF5665C9CF0352071670776A87 /* GooglePlaces.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
-				21FF1915F3FE60075182645006682B37 /* Pods */,
+				3C16DE0F3B84C78B3166CC036F256F11 /* Pods */,
 				3847F872D4AA93C236B5F85A94F1AAAB /* Products */,
 				F14B50AF41559C8E0F5A1C807F66CB3C /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		99BD63C4ED79557639D8AD456AEFEEBE /* CTSlidingUpPanel */ = {
+		9F06526F6EBB6E9C81A6B6332D489BC4 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				03B98D4930C1E33C3BA2ECD0D6F42F6E /* CTBottomSlideController.swift */,
-				ADC16CE4E4E8619D18BFB306EA8D95DC /* CTBottomSlideTableDelegate.swift */,
-				63E94CCCC05DE308B475AD74AB98FB4D /* CTPanGestureRecognizerExtension.swift */,
-				C5B3D69842D08D22E875E779086C321D /* Support Files */,
+				524D6FA6A3AA116C8E90480CF3DE8BD5 /* Frameworks */,
 			);
-			name = CTSlidingUpPanel;
-			path = CTSlidingUpPanel;
+			name = Base;
 			sourceTree = "<group>";
 		};
 		A77CB956AFEA4105D80FBE2B47455468 /* Pods-CareMeUITests */ = {
@@ -230,18 +260,41 @@
 			path = "Target Support Files/Pods-CareMeUITests";
 			sourceTree = "<group>";
 		};
-		C5B3D69842D08D22E875E779086C321D /* Support Files */ = {
+		AC2C3395BB3C9C0D1088F822CDB66AE8 /* CTSlidingUpPanel */ = {
 			isa = PBXGroup;
 			children = (
-				090CFCDA96875470E6AD658350F8D671 /* CTSlidingUpPanel.modulemap */,
-				8309B40F01A359F7889F40F70CECB092 /* CTSlidingUpPanel.xcconfig */,
-				E3F89BA7E2D79EC6746863B89DD1CDFD /* CTSlidingUpPanel-dummy.m */,
-				A3B697ED0B0B8FCC013BFC61F09FABCA /* CTSlidingUpPanel-prefix.pch */,
-				9AEB8584661537E2F15A4871E901E011 /* CTSlidingUpPanel-umbrella.h */,
-				123B550E1259B3C0BEC1ECDCA8218CAA /* Info.plist */,
+				54687E47A4B769F6B39B5DF427747E75 /* CTBottomSlideController.swift */,
+				5CFEB4775ACD4A974EB5D83C87194842 /* CTBottomSlideTableDelegate.swift */,
+				F5B0C9E864D409987D2A6C7F2D9EEAC0 /* CTPanGestureRecognizerExtension.swift */,
+				CE69789BD8FD82AC678E43022E1CF1F9 /* Support Files */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/CTSlidingUpPanel";
+			name = CTSlidingUpPanel;
+			path = CTSlidingUpPanel;
+			sourceTree = "<group>";
+		};
+		BB4DB93DB5BE1FC486172969D202A8E4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CE3C6B82430536E78C5829146EFBC6DD /* GoogleMaps.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		C7D7B117F1F3697863702CEC8CD06793 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EA9033CC357FE09B1C77A7D15F69846C /* GooglePlaces.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		C86A0850D22D5824D1DEE4AD3F18F6FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DDC0466D8206B0B1EA2F9987CC08F052 /* GoogleMaps.framework */,
+				0F40B2C3E796EED8A2B23437142EAB08 /* GoogleMapsCore.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		CBCB94F5BBCB8DD88D5DCE093241F880 /* Pods-CareMeTests */ = {
@@ -262,6 +315,29 @@
 			path = "Target Support Files/Pods-CareMeTests";
 			sourceTree = "<group>";
 		};
+		CE69789BD8FD82AC678E43022E1CF1F9 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				9D510FA75363C4B7A3EEB8F613467C34 /* CTSlidingUpPanel.modulemap */,
+				ADD676445F759A646C519D580E85A4EF /* CTSlidingUpPanel.xcconfig */,
+				7307B5B651D374BBCB315D591203360C /* CTSlidingUpPanel-dummy.m */,
+				BF0B1307F329BB7DCAE54DE57B719782 /* CTSlidingUpPanel-prefix.pch */,
+				0088B893E825ED40B0478ACFD41FFD15 /* CTSlidingUpPanel-umbrella.h */,
+				057CF4912B8888614B1845B8F3CB1A8E /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/CTSlidingUpPanel";
+			sourceTree = "<group>";
+		};
+		E4BB6889256FD77251E9C988DD2F43F5 /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				C86A0850D22D5824D1DEE4AD3F18F6FC /* Frameworks */,
+				BB4DB93DB5BE1FC486172969D202A8E4 /* Resources */,
+			);
+			name = Maps;
+			sourceTree = "<group>";
+		};
 		F14B50AF41559C8E0F5A1C807F66CB3C /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,6 +346,16 @@
 				A77CB956AFEA4105D80FBE2B47455468 /* Pods-CareMeUITests */,
 			);
 			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		F8CBEF89D18D2B1E66BD77DFC1DBF522 /* GoogleMaps */ = {
+			isa = PBXGroup;
+			children = (
+				9F06526F6EBB6E9C81A6B6332D489BC4 /* Base */,
+				E4BB6889256FD77251E9C988DD2F43F5 /* Maps */,
+			);
+			name = GoogleMaps;
+			path = GoogleMaps;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -633,7 +719,7 @@
 		};
 		70C3496C3A4BAECCD8D4AEE37B2E96DE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8309B40F01A359F7889F40F70CECB092 /* CTSlidingUpPanel.xcconfig */;
+			baseConfigurationReference = ADD676445F759A646C519D580E85A4EF /* CTSlidingUpPanel.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -823,7 +909,7 @@
 		};
 		C37C22B182E8AB1670B8268D73613BFB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8309B40F01A359F7889F40F70CECB092 /* CTSlidingUpPanel.xcconfig */;
+			baseConfigurationReference = ADD676445F759A646C519D580E85A4EF /* CTSlidingUpPanel.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
