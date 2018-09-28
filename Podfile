@@ -9,6 +9,8 @@ target 'CareMe' do
   pod "CTSlidingUpPanel"
   pod 'GoogleMaps'
   pod 'GooglePlaces'
+  pod 'Starscream', '~> 3.0.2'
+  pod 'PureLayout'
 
   target 'CareMeTests' do
     inherit! :search_paths

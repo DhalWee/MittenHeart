@@ -29,6 +29,11 @@ class headerCell: UITableViewCell {
     }
     
     func setHeader(_ index: Int) {
+        if index == 0 {
+            actionBtn.isHidden = false
+        } else {
+            actionBtn.isHidden = true
+        }
         titlelLbl.text = title[index][0]
         lightImg.image = UIImage(named: "\(index)Light")
     }

@@ -7,23 +7,31 @@ PODS:
     - GoogleMaps/Base
   - GooglePlaces (2.7.0):
     - GoogleMaps/Base (= 2.7.0)
+  - PureLayout (3.1.2)
+  - Starscream (3.0.5)
 
 DEPENDENCIES:
   - CTSlidingUpPanel
   - GoogleMaps
   - GooglePlaces
+  - PureLayout
+  - Starscream (~> 3.0.2)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - CTSlidingUpPanel
     - GoogleMaps
     - GooglePlaces
+    - PureLayout
+    - Starscream
 
 SPEC CHECKSUMS:
   CTSlidingUpPanel: d1b6829abd462e075930e82153eafcf8d6d4a9e5
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
   GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
+  PureLayout: 4634d0b61e3b5021166e8ec7c18e9e0ca0720c8b
+  Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
 
-PODFILE CHECKSUM: c1535d32b4699fc8eb2e3241651b2afef29d0767
+PODFILE CHECKSUM: 95c93b54272e05e695e8270f675125306e902626
 
 COCOAPODS: 1.5.3

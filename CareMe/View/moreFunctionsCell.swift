@@ -27,19 +27,19 @@ class moreFunctionsCell: UITableViewCell {
     }
     
     @IBAction func movementBtnPressed(_ sender: Any) {
-        print("MSG: movement")
+//        print("MSG: movement")
     }
     
     @IBAction func chatBtnPressed(_ sender: Any) {
-        print("MSG: chat")
+//        print("MSG: chat")
     }
     
     @IBAction func soundAroundBtnPressed(_ sender: Any) {
-        print("MSG: sound")
+//        print("MSG: sound")
     }
     
     @IBAction func sendSignalBtnPressed(_ sender: Any) {
-        print("MSG: signal")
+//        print("MSG: signal")
     }
 
 }

@@ -19,6 +19,8 @@ let actionBlue = 0x007AFF
 let lightGray = 0xD8D8D8
 let darkGray = 0x979797
 
+let mapApi = "AIzaSyBlrYJ3j9_BsUDRv4yp25PeazJx9I0Q3g0"
+
 enum LINE_POSITION {
     case LINE_POSITION_TOP
     case LINE_POSITION_BOTTOM

@@ -7,24 +7,47 @@
 //
 
 import UIKit
+import Starscream
 
-class ChatVC: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+class ChatVC: UIViewController, WebSocketDelegate {
+    func websocketDidConnect(socket: WebSocketClient) {
+        print("connected")
+    }
+    
+    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        
+    }
+    
+    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        
+    }
+    
+    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+        
     }
     
 
-    /*
-    // MARK: - Navigation
+    var socket: WebSocket! = nil
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        let url = URL(string: "ws://195.93.152.96:11210")!
+        
+        socket = WebSocket(url: url)
+        socket.delegate = self
+        socket.connect()
+
+        socket.onConnect = {
+            print("connected")
+        }
+        
     }
-    */
-
+    
+    
+    @IBAction func isB () {
+        print(socket.isConnected)
+    }
+    
+    
 }

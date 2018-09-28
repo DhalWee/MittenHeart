@@ -8,13 +8,12 @@
 
 import UIKit
 import CTSlidingUpPanel
-import MapKit
 import GoogleMaps
 
 //Initializing and variables
 class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var mapView: UIView!
     
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var tableView: UITableView!
@@ -42,9 +41,7 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
         super.viewDidLoad()
         
         uiSettings()
-        
         tabBarBtnPressed(homeBtn)
-        
         tableView.delegate = self
         tableView.dataSource = self
         bottomController?.delegate = self
@@ -52,10 +49,13 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        UIApplication.shared.statusBarStyle = .default
+        chatBtn.imageView?.image = UIImage(named: "\(chatBtn.tag)Inactive")
         self.navigationController?.isNavigationBarHidden = true
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        UIApplication.shared.statusBarStyle = .lightContent
         self.navigationController?.isNavigationBarHidden = false
     }
 
@@ -68,6 +68,7 @@ extension HomeVC {
                                                    navController: nil, visibleHeight: 99)
         bottomController?.setExpandedTopMargin(pixels: 64)
         bottomController?.set(table: tableView)
+        bottomController?.setAnchorPoint(anchor: CGFloat(0))
         
         bottomView.roundCorners([.topLeft, .topRight], radius: 20)
         tableView.roundCorners([.topLeft, .topRight], radius: 20)
@@ -75,8 +76,18 @@ extension HomeVC {
         addLineToView(view: tabBarView, position: .LINE_POSITION_TOP, color: UIColor(hex: lightGray), width: 0.5)
     }
     
+    func tabBarColor(_ btn: UIButton) {
+        homeBtn.imageView?.image = UIImage(named: "\(homeBtn.tag)Inactive")
+        subscribeBtn.imageView?.image = UIImage(named: "\(subscribeBtn.tag)Inactive")
+        chatBtn.imageView?.image = UIImage(named: "\(chatBtn.tag)Inactive")
+        moreBtn.imageView?.image = UIImage(named: "\(moreBtn.tag)Inactive")
+        settingsBtn.imageView?.image = UIImage(named: "\(settingsBtn.tag)Inactive")
+        btn.imageView?.image = UIImage(named: "\(btn.tag)Active")
+    }
+    
     @IBAction func tabBarBtnPressed(_ sender: UIButton) {
         tabBarIndex = sender.tag
+        tabBarColor(sender)
         
         //Setting height of contentView
         if tabBarIndex == 0 {
@@ -88,35 +99,51 @@ extension HomeVC {
                 }
             }
             bottomController?.setAnchorPoint(anchor: CGFloat(anchor)/self.view.bounds.height)
-            bottomController?.closePanel()
             bottomController?.anchorPanel()
+            
         } else if tabBarIndex == 1 {
             bottomController?.setAnchorPoint(anchor: CGFloat(self.view.bounds.height-64)/self.view.bounds.height)
             bottomController?.closePanel()
             bottomController?.expandPanel()
+            
+        } else if tabBarIndex == 2 {
+            tabBarBtnPressed(homeBtn)
+            chatBtnPressed(sender)
+            
         } else if tabBarIndex == 3 {
             bottomController?.setAnchorPoint(anchor: CGFloat(99+140)/self.view.bounds.height)
             bottomController?.closePanel()
             bottomController?.anchorPanel()
-        } else {
-            bottomController?.setAnchorPoint(anchor: CGFloat(99+70)/self.view.bounds.height)
+            
+        } else if tabBarIndex == 4 {
+            bottomController?.setAnchorPoint(anchor: CGFloat(99)/self.view.bounds.height)
             bottomController?.closePanel()
             bottomController?.anchorPanel()
         }
         
-        homeBtn.imageView?.image = UIImage(named: "\(homeBtn.tag)Inactive")
-        subscribeBtn.imageView?.image = UIImage(named: "\(subscribeBtn.tag)Inactive")
-        chatBtn.imageView?.image = UIImage(named: "\(chatBtn.tag)Inactive")
-        moreBtn.imageView?.image = UIImage(named: "\(moreBtn.tag)Inactive")
-        settingsBtn.imageView?.image = UIImage(named: "\(settingsBtn.tag)Inactive")
-        sender.imageView?.image = UIImage(named: "\(sender.tag)Active")
-        
         tableView.reloadData()
     }
     
+    @IBAction func chatBtnPressed(_ sender: Any) {
+        performSegue(withIdentifier: "ChatVCSegue", sender: self)
+    }
+    
+    @IBAction func movementBtnPressed(_ sender: Any) {
+        performSegue(withIdentifier: "MovementVCSegue", sender: self)
+    }
+    
+    @IBAction func soundAroundBtnPressed (_ sender: Any) {
+        performSegue(withIdentifier: "SoundAroundVCSegue", sender: self)
+    }
+    
+    @IBAction func sendSignalBtnPressed (_ sender: Any) {
+        performSegue(withIdentifier: "SendSignalVCSegue", sender: self)
+    }
+
+    
 }
 
-//Delegates and DataSources
+//Table View Delegates and DataSources
 extension HomeVC {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -124,7 +151,11 @@ extension HomeVC {
             return kids.count+2
         //HTC Else if tabBarIndex others must be here
         } else if tabBarIndex == 3 {
+            //More functions
             return 2
+        } else if tabBarIndex == 4 {
+            //Settings
+            return 1
         } else {
             return 1
         }
