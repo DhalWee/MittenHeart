@@ -10,23 +10,7 @@ import UIKit
 import Starscream
 
 class ChatVC: UIViewController, WebSocketDelegate {
-    func websocketDidConnect(socket: WebSocketClient) {
-        print("connected")
-    }
     
-    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        
-    }
-    
-    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        
-    }
-    
-    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-        
-    }
-    
-
     var socket: WebSocket! = nil
     
     override func viewDidLoad() {
@@ -40,7 +24,10 @@ class ChatVC: UIViewController, WebSocketDelegate {
 
         socket.onConnect = {
             print("connected")
+            self.socket.write(string: "Text sended")
         }
+        
+        
         
     }
     
@@ -50,4 +37,23 @@ class ChatVC: UIViewController, WebSocketDelegate {
     }
     
     
+}
+
+// Delegations
+extension ChatVC {
+    func websocketDidConnect(socket: WebSocketClient) {
+        
+    }
+    
+    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        
+    }
+    
+    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        
+    }
+    
+    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+        
+    }
 }

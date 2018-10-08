@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		14E66E95DD8CE17171ED5E65 /* Pods_CareMeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBA04FB1C133F23CFACEEFE /* Pods_CareMeUITests.framework */; };
 		19A9985991C4FE84A5DC3446 /* Pods_CareMeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 237ABC90F0906D11303C358B /* Pods_CareMeTests.framework */; };
+		50134DEA215E2D05004A3946 /* repairCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50134DE9215E2D05004A3946 /* repairCell.swift */; };
 		501E67A72151A16C00E879D6 /* Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501E67A62151A16C00E879D6 /* Child.swift */; };
 		504C5AE8214C2F2200831F95 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C5AE7214C2F2200831F95 /* LoginVC.swift */; };
 		504C5AEC214C5B9D00831F95 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C5AEB214C5B9D00831F95 /* HomeVC.swift */; };
@@ -79,6 +80,7 @@
 		1836E84E0B4A0F31D10AD5D9 /* Pods-CareMeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CareMeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CareMeTests/Pods-CareMeTests.release.xcconfig"; sourceTree = "<group>"; };
 		237ABC90F0906D11303C358B /* Pods_CareMeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CareMeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		36B665079D7D6EE8B14255DE /* Pods-CareMeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CareMeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CareMeUITests/Pods-CareMeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		50134DE9215E2D05004A3946 /* repairCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = repairCell.swift; sourceTree = "<group>"; };
 		501E67A62151A16C00E879D6 /* Child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Child.swift; sourceTree = "<group>"; };
 		50357F442147C14C00710306 /* Montserrat-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.otf"; sourceTree = "<group>"; };
 		50357F452147C14C00710306 /* Montserrat-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-BlackItalic.otf"; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				506194CF215182CD00A1702D /* childCell.swift */,
 				506194D32151915300A1702D /* addChildCell.swift */,
 				50A185AB2159266A00000DD1 /* moreFunctionsCell.swift */,
+				50134DE9215E2D05004A3946 /* repairCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -596,6 +599,7 @@
 				506194CD2151819700A1702D /* headerCell.swift in Sources */,
 				50A185B02159333B00000DD1 /* SoundAroundVC.swift in Sources */,
 				50CB0FCA21481B30003771C4 /* SelectedChildVC.swift in Sources */,
+				50134DEA215E2D05004A3946 /* repairCell.swift in Sources */,
 				50CB0FC821481690003771C4 /* ChildOrParentVC.swift in Sources */,
 				5055E866214B37E5001138AD /* SelectedParentVC.swift in Sources */,
 				50A185A82159231B00000DD1 /* RegisterVC.swift in Sources */,

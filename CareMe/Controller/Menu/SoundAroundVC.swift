@@ -9,10 +9,14 @@
 import UIKit
 
 class SoundAroundVC: UIViewController {
+    
+    @IBOutlet weak var btn: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        btn.layer.cornerRadius = 5
+        
         // Do any additional setup after loading the view.
     }
     
