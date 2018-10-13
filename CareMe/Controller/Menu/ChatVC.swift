@@ -13,6 +13,10 @@ class ChatVC: UIViewController, WebSocketDelegate {
     
     var socket: WebSocket! = nil
     
+    let jsonObject: Any  = [
+        "action": "test"
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,20 +28,44 @@ class ChatVC: UIViewController, WebSocketDelegate {
 
         socket.onConnect = {
             print("connected")
-            self.socket.write(string: "Text sended")
         }
         
-        
-        
+    }
+    
+    
+    
+   
+    
+    
+}
+
+// Functions
+extension ChatVC {
+    func sendJson(_ value: Any, onSuccess: @escaping ()-> Void) {
+        guard JSONSerialization.isValidJSONObject(value) else {
+            print("[WEBSOCKET] Value is not a valid JSON object.\n \(value)")
+            return
+        }
+        do {
+            let data = try JSONSerialization.data(withJSONObject: value, options: [])
+            socket.write(data: data) {
+                onSuccess()
+            }
+        } catch let error {
+            print("[WEBSOCKET] Error serializing JSON:\n\(error)")
+        }
     }
     
     
     @IBAction func isB () {
-        print(socket.isConnected)
+        self.sendJson(self.jsonObject, onSuccess: {
+            print("Succesfully sended")
+        })
     }
     
     
 }
+
 
 // Delegations
 extension ChatVC {
@@ -50,10 +78,11 @@ extension ChatVC {
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        
+        print("MSG: \(text)")
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         
     }
 }
+

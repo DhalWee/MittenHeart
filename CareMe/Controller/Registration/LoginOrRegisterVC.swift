@@ -40,5 +40,10 @@ class LoginOrRegisterVC: UIViewController {
         endEditing()
         performSegue(withIdentifier: "LoginVCSegue", sender: self)
     }
+    
+    @IBAction func regBtnPressed(_ sender: Any) {
+        endEditing()
+        performSegue(withIdentifier: "RegisterVCSegue", sender: self)
+    }
 }
 

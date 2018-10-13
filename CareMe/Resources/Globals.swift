@@ -10,6 +10,11 @@ import Foundation
 import UIKit
 import SystemConfiguration
 
+let defaults = UserDefaults.standard
+
+//defaults.set("sidtexnumber421887" forKey: "sid")
+//let sid = defaults.string(forKey: "sid")
+
 let preWhite = 0xFAFAFA
 let navy = 0x35485D
 let green = 0x22C1C3
@@ -20,6 +25,8 @@ let lightGray = 0xD8D8D8
 let darkGray = 0x979797
 
 let mapApi = "AIzaSyBlrYJ3j9_BsUDRv4yp25PeazJx9I0Q3g0"
+
+let sidGlobal: String = ""
 
 enum LINE_POSITION {
     case LINE_POSITION_TOP

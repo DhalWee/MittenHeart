@@ -21,8 +21,8 @@ public class CTBottomSlideController : NSObject, UIGestureRecognizerDelegate
         case hidden
     }
     
-    weak var topConstraint:NSLayoutConstraint!;
-    weak var heightConstraint:NSLayoutConstraint!;
+    var topConstraint:NSLayoutConstraint!;
+    var heightConstraint:NSLayoutConstraint!;
     weak var view:UIView!;
     weak var bottomView:UIView!;
     weak var scrollView:UIScrollView?;

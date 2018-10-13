@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -92,10 +92,10 @@
 		16F25AEEBE54ADF669C04CC1E750F8C4 /* GoogleMaps.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		1B3282599FB8C55CAB7D970DD15DECA7 /* Pods-CareMe-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CareMe-acknowledgements.markdown"; sourceTree = "<group>"; };
 		1B4CE0E1C063F4C6CA950470037735C8 /* PureLayout-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PureLayout-umbrella.h"; sourceTree = "<group>"; };
-		1E34A41CF810C5049AD49D0B8F319748 /* Starscream.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Starscream.framework; path = Starscream.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E34A41CF810C5049AD49D0B8F319748 /* Starscream.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Starscream.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		235D0F43635F6C139AB73CBA4DD39522 /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsCore.framework; path = Maps/Frameworks/GoogleMapsCore.framework; sourceTree = "<group>"; };
 		247D58FE151DC7B221AD952F6B50E6A4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		24B5287804FDB094E10ECA6CF657E665 /* Pods_CareMeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_CareMeUITests.framework; path = "Pods-CareMeUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		24B5287804FDB094E10ECA6CF657E665 /* Pods_CareMeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CareMeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2934CDD56B211D5F04C56393F532515E /* CTSlidingUpPanel.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CTSlidingUpPanel.xcconfig; sourceTree = "<group>"; };
 		3E0B57CB250FD3D1CF9384D7B507EAC0 /* Pods-CareMeTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-CareMeTests.modulemap"; sourceTree = "<group>"; };
 		40537ABA88BC78059DD56E116D6DCA3C /* Pods-CareMe-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CareMe-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -107,7 +107,7 @@
 		56E4908A980752A6A7C90056D6BC9375 /* Pods-CareMe-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CareMe-frameworks.sh"; sourceTree = "<group>"; };
 		58408CC5C04389ABC6AF8B3F3F176D7A /* Pods-CareMe-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CareMe-umbrella.h"; sourceTree = "<group>"; };
 		58F566A23D27396F5D0EEB5507BF2599 /* Pods-CareMeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CareMeUITests.release.xcconfig"; sourceTree = "<group>"; };
-		5B6F3F71E0B9D246A38C8CEB24BE74D0 /* Pods_CareMeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_CareMeTests.framework; path = "Pods-CareMeTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B6F3F71E0B9D246A38C8CEB24BE74D0 /* Pods_CareMeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CareMeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C0220DC547253D160990E6519C5D5CD /* Starscream.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Starscream.xcconfig; sourceTree = "<group>"; };
 		61416106F588419B380DCBCEE7EEAEEB /* ALView+PureLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "ALView+PureLayout.m"; path = "PureLayout/PureLayout/ALView+PureLayout.m"; sourceTree = "<group>"; };
 		667832A2ACD1E3FEDEAD851BD3E35283 /* Starscream-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Starscream-dummy.m"; sourceTree = "<group>"; };
@@ -126,16 +126,16 @@
 		8F5DD7CD4F7D2F1E114FF4F6769500CE /* Pods-CareMeTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CareMeTests-umbrella.h"; sourceTree = "<group>"; };
 		8F62D543BD9AB8F604BCEDB5C8140311 /* Pods-CareMeUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CareMeUITests-acknowledgements.plist"; sourceTree = "<group>"; };
 		908E902E026C5C22904CF9014A5604AD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9AF67D0F6E6E176AC40BB1F80F24D299 /* CTSlidingUpPanel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CTSlidingUpPanel.framework; path = CTSlidingUpPanel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9AF67D0F6E6E176AC40BB1F80F24D299 /* CTSlidingUpPanel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CTSlidingUpPanel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DB2A24249A324469C9A006E5AE165CD /* Pods-CareMeUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CareMeUITests-resources.sh"; sourceTree = "<group>"; };
 		9EE368AAA41F4238104706E28901E1CA /* Pods-CareMeTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CareMeTests-resources.sh"; sourceTree = "<group>"; };
 		9EEE6C5193E42C15F842B7675020EC68 /* Pods-CareMeUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CareMeUITests-dummy.m"; sourceTree = "<group>"; };
 		A0477B2DF851EA0526919C9EAF107CA8 /* CTBottomSlideController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CTBottomSlideController.swift; path = CTSlidingUpPanel/Classes/CTBottomSlideController.swift; sourceTree = "<group>"; };
 		A2D891F0D6F864CA4EF37BC9CB774985 /* PureLayout.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PureLayout.xcconfig; sourceTree = "<group>"; };
 		AD2AB55F9145BA395E9CF56FB491F7AD /* NSLayoutConstraint+PureLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSLayoutConstraint+PureLayout.h"; path = "PureLayout/PureLayout/NSLayoutConstraint+PureLayout.h"; sourceTree = "<group>"; };
-		B47BADCAF409EEB8A172374143EB2F6D /* Pods_CareMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_CareMe.framework; path = "Pods-CareMe.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BBB2C8E5CFA0515B4B1AD245D1483434 /* PureLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PureLayout.framework; path = PureLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B47BADCAF409EEB8A172374143EB2F6D /* Pods_CareMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CareMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBB2C8E5CFA0515B4B1AD245D1483434 /* PureLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PureLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC2C02191C153C1554B35DEE8B2D09D4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		BC6E73B80097D8F03E73098F5DC69793 /* PureLayoutDefines.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PureLayoutDefines.h; path = PureLayout/PureLayout/PureLayoutDefines.h; sourceTree = "<group>"; };
 		BDB35EDD12537D4EF4B0B9C1613B90A5 /* Pods-CareMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CareMe.release.xcconfig"; sourceTree = "<group>"; };
@@ -252,7 +252,6 @@
 				68156F9F30584C879685DEE3099D097C /* WebSocket.swift */,
 				50231E55BCAC7C9C34F920E1183D002B /* Support Files */,
 			);
-			name = Starscream;
 			path = Starscream;
 			sourceTree = "<group>";
 		};
@@ -319,7 +318,6 @@
 				7B2920982D0DFFBB6CC7CA3D2F185C61 /* Frameworks */,
 				360484FF3C9BF73BE4F1F047A78B1115 /* Resources */,
 			);
-			name = GooglePlaces;
 			path = GooglePlaces;
 			sourceTree = "<group>";
 		};
@@ -329,7 +327,6 @@
 				6F7FD479BA4BA118EBF00E010FB9F8DB /* Base */,
 				A9882D0D134D133CA934A9EBE68822AC /* Maps */,
 			);
-			name = GoogleMaps;
 			path = GoogleMaps;
 			sourceTree = "<group>";
 		};
@@ -376,7 +373,6 @@
 				6D00845342668DA66D747B01CE960A39 /* CTPanGestureRecognizerExtension.swift */,
 				F8205E9575E92376A7C8A5550045E332 /* Support Files */,
 			);
-			name = CTSlidingUpPanel;
 			path = CTSlidingUpPanel;
 			sourceTree = "<group>";
 		};
@@ -435,7 +431,6 @@
 				BC6E73B80097D8F03E73098F5DC69793 /* PureLayoutDefines.h */,
 				8695D11AF15E76259DDE279343AE5821 /* Support Files */,
 			);
-			name = PureLayout;
 			path = PureLayout;
 			sourceTree = "<group>";
 		};
@@ -668,7 +663,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1000;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -804,11 +799,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-CareMe/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-CareMe/Pods-CareMe.modulemap";
 				OTHER_LDFLAGS = "";
@@ -843,11 +834,7 @@
 				INFOPLIST_FILE = "Target Support Files/Starscream/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Starscream/Starscream.modulemap";
 				PRODUCT_MODULE_NAME = Starscream;
 				PRODUCT_NAME = Starscream;
@@ -980,6 +967,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
@@ -1001,11 +989,7 @@
 				INFOPLIST_FILE = "Target Support Files/CTSlidingUpPanel/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/CTSlidingUpPanel/CTSlidingUpPanel.modulemap";
 				PRODUCT_MODULE_NAME = CTSlidingUpPanel;
 				PRODUCT_NAME = CTSlidingUpPanel;
@@ -1038,11 +1022,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-CareMeUITests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-CareMeUITests/Pods-CareMeUITests.modulemap";
 				OTHER_LDFLAGS = "";
@@ -1076,11 +1056,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-CareMeTests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-CareMeTests/Pods-CareMeTests.modulemap";
 				OTHER_LDFLAGS = "";
@@ -1114,11 +1090,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-CareMe/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-CareMe/Pods-CareMe.modulemap";
 				OTHER_LDFLAGS = "";
@@ -1154,11 +1126,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-CareMeUITests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-CareMeUITests/Pods-CareMeUITests.modulemap";
 				OTHER_LDFLAGS = "";
@@ -1193,11 +1161,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-CareMeTests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-CareMeTests/Pods-CareMeTests.modulemap";
 				OTHER_LDFLAGS = "";
@@ -1231,11 +1195,7 @@
 				INFOPLIST_FILE = "Target Support Files/CTSlidingUpPanel/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/CTSlidingUpPanel/CTSlidingUpPanel.modulemap";
 				PRODUCT_MODULE_NAME = CTSlidingUpPanel;
 				PRODUCT_NAME = CTSlidingUpPanel;
@@ -1268,11 +1228,7 @@
 				INFOPLIST_FILE = "Target Support Files/Starscream/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Starscream/Starscream.modulemap";
 				PRODUCT_MODULE_NAME = Starscream;
 				PRODUCT_NAME = Starscream;
@@ -1304,11 +1260,7 @@
 				INFOPLIST_FILE = "Target Support Files/PureLayout/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/PureLayout/PureLayout.modulemap";
 				PRODUCT_MODULE_NAME = PureLayout;
 				PRODUCT_NAME = PureLayout;
@@ -1339,11 +1291,7 @@
 				INFOPLIST_FILE = "Target Support Files/PureLayout/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/PureLayout/PureLayout.modulemap";
 				PRODUCT_MODULE_NAME = PureLayout;
 				PRODUCT_NAME = PureLayout;

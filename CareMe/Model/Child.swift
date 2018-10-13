@@ -9,13 +9,17 @@
 import Foundation
 
 struct Child {
-    var nameAndSurname: String
+    var name: String
+    var surname: String
     var desc: String
     var imgName: String
+    var nameAndSurname: String
     
-    init(_ nameAndSurname: String,_ desc: String,_ imgName: String) {
-        self.nameAndSurname = nameAndSurname
+    init(_ name: String,_ surname: String,_ desc: String,_ imgName: String) {
+        self.name = name
+        self.surname = surname
         self.desc = desc
         self.imgName = imgName
+        self.nameAndSurname = "\(name) \(surname)"
     }
 }

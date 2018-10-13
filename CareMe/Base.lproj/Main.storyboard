@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BHU-jk-ZpT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="REB-vt-sYC">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -76,6 +76,9 @@
                                         <state key="normal" title="РЕГИСТРАЦИЯ">
                                             <color key="titleColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="regBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5kK-IZ-UjV"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -289,7 +292,7 @@
                         <outlet property="secondTF" destination="bgi-2K-4tz" id="r35-7n-lht"/>
                         <outlet property="thirdTF" destination="yXl-lZ-nXo" id="Z2G-kU-bCl"/>
                         <segue destination="BHU-jk-ZpT" kind="presentation" identifier="MainVCSegue" id="8wR-MC-KSv"/>
-                        <segue destination="kJX-UH-uZS" kind="presentation" id="qED-Q8-ubF"/>
+                        <segue destination="kJX-UH-uZS" kind="show" identifier="CareMeIdentifier" id="qED-Q8-ubF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DZt-Oi-1JC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -414,7 +417,7 @@
             </objects>
             <point key="canvasLocation" x="3089" y="-377"/>
         </scene>
-        <!--  -->
+        <!--HomeVC-->
         <scene sceneID="DRl-hp-Xes">
             <objects>
                 <viewController id="HhV-yf-9Eo" customClass="HomeVC" customModule="CareMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -860,7 +863,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3aQ-O9-jyE"/>
                     </view>
-                    <navigationItem key="navigationItem" title="  " id="0x3-I2-KGN"/>
+                    <navigationItem key="navigationItem" id="0x3-I2-KGN">
+                        <barButtonItem key="backBarButtonItem" title=" " id="qgJ-Tc-t6k"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="bottomView" destination="yzF-35-J0N" id="t6N-JG-oOb"/>
                         <outlet property="chatBtn" destination="3xJ-eu-ObL" id="SMh-e0-3PA"/>
@@ -883,22 +888,68 @@
             </objects>
             <point key="canvasLocation" x="5368.8000000000002" y="-377.36131934032989"/>
         </scene>
-        <!--View Controller-->
+        <!-- -->
         <scene sceneID="c8n-Sc-kUV">
             <objects>
-                <viewController id="kJX-UH-uZS" sceneMemberID="viewController">
+                <viewController id="kJX-UH-uZS" customClass="ChildMenuVC" customModule="CareMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HZ7-qg-xPU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abN-2D-LZT">
+                                <rect key="frame" x="87.5" y="101.5" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="5Xy-HQ-fII"/>
+                                    <constraint firstAttribute="height" constant="200" id="t16-Wo-Icv"/>
+                                </constraints>
+                                <state key="normal" image="alarm"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Подать сигнал тревоги" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Dg-fG-cYP">
+                                <rect key="frame" x="96" y="321.5" width="183.5" height="18.5"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="15"/>
+                                <color key="textColor" red="0.20784313730000001" green="0.28235294119999998" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="нажми эту кнопку, если ты в опасности" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NPD-DZ-VQl">
+                                <rect key="frame" x="65" y="345" width="245" height="15"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
+                                <color key="textColor" red="0.20784313730000001" green="0.28235294119999998" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YUo-yW-lN8">
+                                <rect key="frame" x="295" y="523" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Dhd-Gh-PUp"/>
+                                    <constraint firstAttribute="width" constant="60" id="thL-pC-bqc"/>
+                                </constraints>
+                                <state key="normal" image="ChatRound"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="5Dg-fG-cYP" firstAttribute="top" secondItem="abN-2D-LZT" secondAttribute="bottom" constant="20" id="CQY-V0-4SY"/>
+                            <constraint firstItem="SPj-A0-DFl" firstAttribute="bottom" secondItem="YUo-yW-lN8" secondAttribute="bottom" constant="20" id="JFL-jF-vnc"/>
+                            <constraint firstItem="SPj-A0-DFl" firstAttribute="trailing" secondItem="YUo-yW-lN8" secondAttribute="trailing" constant="20" id="ReK-Qu-muv"/>
+                            <constraint firstItem="abN-2D-LZT" firstAttribute="centerY" secondItem="HZ7-qg-xPU" secondAttribute="centerY" constant="-100" id="emt-d2-aja"/>
+                            <constraint firstItem="5Dg-fG-cYP" firstAttribute="centerX" secondItem="HZ7-qg-xPU" secondAttribute="centerX" id="f4U-LG-A9T"/>
+                            <constraint firstItem="NPD-DZ-VQl" firstAttribute="centerX" secondItem="HZ7-qg-xPU" secondAttribute="centerX" id="hSw-X0-cyS"/>
+                            <constraint firstItem="NPD-DZ-VQl" firstAttribute="top" secondItem="5Dg-fG-cYP" secondAttribute="bottom" constant="5" id="mD4-sq-t5u"/>
+                            <constraint firstItem="abN-2D-LZT" firstAttribute="centerX" secondItem="HZ7-qg-xPU" secondAttribute="centerX" id="y6v-Yu-grh"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="SPj-A0-DFl"/>
                     </view>
+                    <navigationItem key="navigationItem" title=" " id="miJ-i3-AFf">
+                        <barButtonItem key="backBarButtonItem" title=" " id="iJl-RP-6gj"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="3Rd-RS-oll" kind="show" identifier="ChatVCSegue" id="spD-rW-Pko"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0lZ-1Q-LZQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4430" y="642"/>
+            <point key="canvasLocation" x="4429.6000000000004" y="641.82908545727139"/>
         </scene>
-        <!--ChatVC-->
+        <!--Адлет-->
         <scene sceneID="M3A-Fi-82f">
             <objects>
                 <viewController id="3Rd-RS-oll" customClass="ChatVC" customModule="CareMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -906,25 +957,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3u6-nY-LfG">
-                                <rect key="frame" x="164" y="286" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="isB" destination="3Rd-RS-oll" eventType="touchUpInside" id="che-WI-bny"/>
-                                </connections>
-                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chatView" translatesAutoresizingMaskIntoConstraints="NO" id="3dv-Wh-zUT">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="3dv-Wh-zUT" firstAttribute="leading" secondItem="l6q-FP-QhJ" secondAttribute="leading" id="FEr-GA-qVy"/>
+                            <constraint firstItem="3dv-Wh-zUT" firstAttribute="trailing" secondItem="l6q-FP-QhJ" secondAttribute="trailing" id="OeQ-Cy-lkZ"/>
+                            <constraint firstItem="3dv-Wh-zUT" firstAttribute="top" secondItem="l6q-FP-QhJ" secondAttribute="top" id="TZx-QF-0kT"/>
+                            <constraint firstItem="3dv-Wh-zUT" firstAttribute="bottom" secondItem="l6q-FP-QhJ" secondAttribute="bottom" id="jsC-je-hQh"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="l6q-FP-QhJ"/>
                     </view>
-                    <navigationItem key="navigationItem" id="VwW-lc-jgQ"/>
+                    <navigationItem key="navigationItem" title="Адлет" id="VwW-lc-jgQ">
+                        <barButtonItem key="backBarButtonItem" title=" " id="05h-zc-9W0"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RJ7-Dq-4Ec" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5807" y="642"/>
+            <point key="canvasLocation" x="5805.6000000000004" y="641.82908545727139"/>
         </scene>
-        <!--ChildVC-->
+        <!-- -->
         <scene sceneID="uRF-oo-w9c">
             <objects>
                 <viewController id="SGw-D4-Jaj" customClass="ChildVC" customModule="CareMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -1049,7 +1103,7 @@
                                         <rect key="frame" x="15" y="0.0" width="360" height="45"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYt-bB-Enw">
-                                                <rect key="frame" x="0.0" y="15" width="32.5" height="15"/>
+                                                <rect key="frame" x="0.0" y="15" width="100" height="15"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
                                                 <color key="textColor" red="0.6588235294117647" green="0.6705882352941176" blue="0.68235294117647061" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1063,6 +1117,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="blo-kA-8cR" firstAttribute="leading" secondItem="hYt-bB-Enw" secondAttribute="trailing" id="04D-uw-SMk"/>
                                             <constraint firstAttribute="trailing" secondItem="blo-kA-8cR" secondAttribute="trailing" id="2UO-fe-X66"/>
                                             <constraint firstItem="blo-kA-8cR" firstAttribute="centerY" secondItem="qcm-o8-qe6" secondAttribute="centerY" id="CUs-xd-qz9"/>
                                             <constraint firstItem="hYt-bB-Enw" firstAttribute="leading" secondItem="qcm-o8-qe6" secondAttribute="leading" id="RTV-Bc-TP3"/>
@@ -1087,7 +1142,7 @@
                                         <rect key="frame" x="15" y="0.0" width="360" height="45"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Фамилия:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHG-Ug-Krx">
-                                                <rect key="frame" x="0.0" y="15" width="61.5" height="15"/>
+                                                <rect key="frame" x="0.0" y="15" width="100" height="15"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
                                                 <color key="textColor" red="0.6588235294" green="0.6705882353" blue="0.68235294120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1102,6 +1157,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="Efn-qQ-7Ye" firstAttribute="leading" secondItem="Amn-vZ-0LZ" secondAttribute="leading" constant="100" id="0aE-61-eky"/>
+                                            <constraint firstItem="Efn-qQ-7Ye" firstAttribute="leading" secondItem="PHG-Ug-Krx" secondAttribute="trailing" id="8bA-mQ-W6x"/>
                                             <constraint firstAttribute="trailing" secondItem="Efn-qQ-7Ye" secondAttribute="trailing" id="QIK-QZ-wzv"/>
                                             <constraint firstItem="PHG-Ug-Krx" firstAttribute="leading" secondItem="Amn-vZ-0LZ" secondAttribute="leading" id="RiN-6H-mBd"/>
                                             <constraint firstItem="Efn-qQ-7Ye" firstAttribute="centerY" secondItem="Amn-vZ-0LZ" secondAttribute="centerY" id="ed6-Gi-itd"/>
@@ -1134,7 +1190,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8NS-yX-QXW"/>
                     </view>
-                    <navigationItem key="navigationItem" id="zfc-OB-MjF">
+                    <navigationItem key="navigationItem" title=" " id="zfc-OB-MjF">
+                        <barButtonItem key="backBarButtonItem" title=" " id="uYx-fe-5FX"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="IYQ-Qk-VPf"/>
                     </navigationItem>
                     <connections>
@@ -1170,7 +1227,7 @@
                                                 <color key="textColor" red="0.20784313730000001" green="0.28235294119999998" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="12" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="p5x-oH-ORa">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="hello@gmail.com" minimumFontSize="12" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="p5x-oH-ORa">
                                                 <rect key="frame" x="0.0" y="12.5" width="315" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="yWl-cl-Tzq"/>
@@ -1190,7 +1247,7 @@
                                                 <color key="textColor" red="0.20784313730000001" green="0.28235294119999998" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="12" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="9gM-35-sKo">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="qwerty" minimumFontSize="12" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="9gM-35-sKo">
                                                 <rect key="frame" x="0.0" y="12.5" width="315" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="Mbd-Nk-l6P"/>
@@ -1233,7 +1290,7 @@
             </objects>
             <point key="canvasLocation" x="1172" y="-377"/>
         </scene>
-        <!--Sound AroundVC-->
+        <!-- -->
         <scene sceneID="hcM-Mq-8eV">
             <objects>
                 <viewController id="khQ-Ab-8NU" customClass="SoundAroundVC" customModule="CareMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -1264,7 +1321,7 @@
                                 <rect key="frame" x="37.5" y="441.5" width="300" height="45"/>
                                 <color key="backgroundColor" red="0.19215686269999999" green="0.75686274509999996" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="Xpt-sO-XgR"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="Xpt-sO-XgR"/>
                                     <constraint firstAttribute="height" constant="45" id="nL3-GE-utE"/>
                                 </constraints>
                                 <state key="normal" title="Отправить сигнал">
@@ -1285,7 +1342,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8aB-7d-iah"/>
                     </view>
-                    <navigationItem key="navigationItem" id="FLJ-vA-OHW"/>
+                    <navigationItem key="navigationItem" title=" " id="FLJ-vA-OHW">
+                        <barButtonItem key="backBarButtonItem" title=" " id="nih-EX-wdV"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="btn" destination="65d-Tp-kbn" id="w97-xf-kr3"/>
                     </connections>
@@ -1294,7 +1353,7 @@
             </objects>
             <point key="canvasLocation" x="7154" y="-1496"/>
         </scene>
-        <!--Send SignalVC-->
+        <!-- -->
         <scene sceneID="PMN-B3-8Gy">
             <objects>
                 <viewController id="BvP-26-oU6" customClass="SendSignalVC" customModule="CareMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -1319,15 +1378,15 @@
                                 <rect key="frame" x="37.5" y="441.5" width="300" height="45"/>
                                 <color key="backgroundColor" red="0.19215686269999999" green="0.75686274509999996" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="dFb-i6-HGc"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="dFb-i6-HGc"/>
                                     <constraint firstAttribute="height" constant="45" id="pkf-Gu-c7j"/>
                                 </constraints>
                                 <state key="normal" title="Записать звук">
                                     <color key="titleColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Если ваш ребенок не слышить ваш звонок" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9K-QH-CY9">
-                                <rect key="frame" x="51" y="106.5" width="273" height="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Контролируйте окружение вашего ребенка" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9K-QH-CY9">
+                                <rect key="frame" x="48" y="106.5" width="279.5" height="15"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="12"/>
                                 <color key="textColor" red="0.20784313730000001" green="0.28235294119999998" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1346,7 +1405,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LJd-Nd-RMj"/>
                     </view>
-                    <navigationItem key="navigationItem" id="g5j-V1-tBa"/>
+                    <navigationItem key="navigationItem" title=" " id="g5j-V1-tBa">
+                        <barButtonItem key="backBarButtonItem" title=" " id="TQo-Zy-sv8"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="btn" destination="ixv-za-Dj0" id="NzX-HJ-7kg"/>
                     </connections>
@@ -1355,7 +1416,7 @@
             </objects>
             <point key="canvasLocation" x="8412" y="-1496"/>
         </scene>
-        <!--MovementVC-->
+        <!-- -->
         <scene sceneID="Ubl-ny-jX4">
             <objects>
                 <viewController id="20y-3O-yMt" customClass="MovementVC" customModule="CareMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -1396,7 +1457,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Tzx-e2-huF"/>
                     </view>
-                    <navigationItem key="navigationItem" id="rNc-sI-PGV"/>
+                    <navigationItem key="navigationItem" title=" " id="rNc-sI-PGV">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Pe8-8H-cYF"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapMarker" destination="fEE-LT-kWS" id="Ron-rE-O2F"/>
                     </connections>
@@ -1425,7 +1488,7 @@
                                                 <color key="textColor" red="0.20784313730000001" green="0.28235294119999998" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="12" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="AOd-ae-NHL">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="hello@gmail.com" minimumFontSize="12" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="AOd-ae-NHL">
                                                 <rect key="frame" x="0.0" y="12.5" width="315" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="kVq-2a-yfd"/>
@@ -1445,14 +1508,14 @@
                                                 <color key="textColor" red="0.20784313730000001" green="0.28235294119999998" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="12" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="YpJ-OY-W6P">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="qwerty" minimumFontSize="12" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="YpJ-OY-W6P">
                                                 <rect key="frame" x="0.0" y="12.5" width="315" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="Du0-hu-73n"/>
                                                 </constraints>
                                                 <color key="textColor" red="0.20784313730000001" green="0.28235294119999998" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES" textContentType="password"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES" textContentType="new-password"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -1465,14 +1528,14 @@
                                                 <color key="textColor" red="0.20784313730000001" green="0.28235294119999998" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="12" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dCf-fq-qxs">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="qwerty" minimumFontSize="12" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dCf-fq-qxs">
                                                 <rect key="frame" x="0.0" y="12.5" width="315" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="r9u-iG-On6"/>
                                                 </constraints>
                                                 <color key="textColor" red="0.20784313730000001" green="0.28235294119999998" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES" textContentType="password"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES" textContentType="new-password"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -1519,6 +1582,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.19215686269999999" green="0.75686274509999996" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
                             <color key="textColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>
@@ -1552,7 +1618,9 @@
         <image name="SendSignalRound" width="60" height="60"/>
         <image name="SliderImg" width="29" height="3"/>
         <image name="addBtnRound" width="40" height="40"/>
+        <image name="alarm" width="236" height="236"/>
         <image name="centeredMap" width="41" height="41"/>
+        <image name="chatView" width="375" height="602"/>
         <image name="mapMarker" width="36" height="45"/>
         <image name="minusMap" width="41" height="41"/>
         <image name="plusMap" width="50" height="50"/>

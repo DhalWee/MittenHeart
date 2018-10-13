@@ -39,8 +39,8 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
     var moreBtnSelected: Bool = false
     var settingsBtnSelected: Bool = false
     
-    let kids: [Child] = [Child.init("Адлет Касымхан", "Данные получены 3 мин назад ", "Oval1"),
-                         Child.init("Саяна Касымхан", "Данные получены 5 мин назад ", "Oval2")]
+    let kids: [Child] = [Child.init("Адлет", "Касымхан", "Данные получены 3 мин назад ", "Oval1"),
+                         Child.init("Саяна", "Касымхан", "Данные получены 5 мин назад ", "Oval2")]
     var tabBarIndex = 0
     
     //Map stuffs
@@ -93,6 +93,9 @@ extension HomeVC {
         bottomController?.setExpandedTopMargin(pixels: 64)
         bottomController?.set(table: tableView)
         bottomController?.setAnchorPoint(anchor: CGFloat(0))
+        
+        bottomView.bounds.size.width = self.view.frame.width
+        tableView.bounds.size.width = self.view.frame.width
         
         bottomView.roundCorners([.topLeft, .topRight], radius: 20)
         tableView.roundCorners([.topLeft, .topRight], radius: 20)

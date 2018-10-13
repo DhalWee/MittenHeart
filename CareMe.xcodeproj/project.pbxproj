@@ -17,6 +17,7 @@
 		506194CD2151819700A1702D /* headerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506194CB2151819700A1702D /* headerCell.swift */; };
 		506194D1215182CD00A1702D /* childCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506194CF215182CD00A1702D /* childCell.swift */; };
 		506194D42151915300A1702D /* addChildCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506194D32151915300A1702D /* addChildCell.swift */; };
+		5087288A216E15B100A2C04F /* ChildMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50872889216E15B100A2C04F /* ChildMenuVC.swift */; };
 		50A185A82159231B00000DD1 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A185A72159231B00000DD1 /* RegisterVC.swift */; };
 		50A185AC2159266A00000DD1 /* moreFunctionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A185AB2159266A00000DD1 /* moreFunctionsCell.swift */; };
 		50A185AE2159331300000DD1 /* MovementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A185AD2159331300000DD1 /* MovementVC.swift */; };
@@ -106,6 +107,7 @@
 		506194CB2151819700A1702D /* headerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = headerCell.swift; sourceTree = "<group>"; };
 		506194CF215182CD00A1702D /* childCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = childCell.swift; sourceTree = "<group>"; };
 		506194D32151915300A1702D /* addChildCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addChildCell.swift; sourceTree = "<group>"; };
+		50872889216E15B100A2C04F /* ChildMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildMenuVC.swift; sourceTree = "<group>"; };
 		50A185A72159231B00000DD1 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		50A185AB2159266A00000DD1 /* moreFunctionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = moreFunctionsCell.swift; sourceTree = "<group>"; };
 		50A185AD2159331300000DD1 /* MovementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementVC.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				50A185B32159337C00000DD1 /* ChatVC.swift */,
 				50A185AF2159333B00000DD1 /* SoundAroundVC.swift */,
 				50A185B12159335700000DD1 /* SendSignalVC.swift */,
+				50872889216E15B100A2C04F /* ChildMenuVC.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -597,6 +600,7 @@
 				506194D42151915300A1702D /* addChildCell.swift in Sources */,
 				50DF592C2147B40E00B76BE6 /* Globals.swift in Sources */,
 				506194CD2151819700A1702D /* headerCell.swift in Sources */,
+				5087288A216E15B100A2C04F /* ChildMenuVC.swift in Sources */,
 				50A185B02159333B00000DD1 /* SoundAroundVC.swift in Sources */,
 				50CB0FCA21481B30003771C4 /* SelectedChildVC.swift in Sources */,
 				50134DEA215E2D05004A3946 /* repairCell.swift in Sources */,
@@ -786,18 +790,21 @@
 			baseConfigurationReference = 60FC3C615B836B3A82887053 /* Pods-CareMe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 649M8TPCDZ;
 				INFOPLIST_FILE = CareMe/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.unicorn.CareMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CareMe/Controller/Menu/CareMe-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -806,18 +813,20 @@
 			baseConfigurationReference = 61DBE166153C23CF6EC4E67D /* Pods-CareMe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 649M8TPCDZ;
 				INFOPLIST_FILE = CareMe/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.unicorn.CareMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CareMe/Controller/Menu/CareMe-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
