@@ -101,6 +101,12 @@ extension HomeVC {
         tableView.roundCorners([.topLeft, .topRight], radius: 20)
         
         addLineToView(view: tabBarView, position: .LINE_POSITION_TOP, color: UIColor(hex: lightGray), width: 0.5)
+        
+        tableView.autoPinEdge(.leading, to: .leading, of: bottomView)
+        tableView.autoPinEdge(.trailing, to: .trailing, of: bottomView)
+        tableView.autoPinEdge(.top, to: .top, of: bottomView)
+        tableView.autoPinEdge(.bottom, to: .bottom, of: bottomView)
+        
     }
     
     func tabBarColor(_ btn: UIButton) {

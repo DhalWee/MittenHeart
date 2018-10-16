@@ -13,6 +13,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, WebSocketDelegate {
     
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
+    @IBOutlet weak var errorLbl: UILabel!
     
     var socket: WebSocket! = nil
     
@@ -23,30 +24,24 @@ class LoginVC: UIViewController, UITextFieldDelegate, WebSocketDelegate {
         uiStuffs()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let url = URL(string: "ws://195.93.152.96:11210")!
+        socket = WebSocket(url: url)
+        socket.delegate = self
+        socket.connect()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        errorLbl.isHidden = true
         emailTF.becomeFirstResponder()
-        UIApplication.shared.statusBarStyle = .lightContent
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         emailTF.text = ""
         passwordTF.text = ""
-//        UIApplication.shared.statusBarStyle = .default
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        let url = URL(string: "ws://195.93.152.96:11210")!
-        
-        socket = WebSocket(url: url)
-        socket.delegate = self
-        socket.connect()
-        
-        socket.onConnect = {
-            print("connected")
-        }
     }
     
     
@@ -76,22 +71,23 @@ extension LoginVC {
             print("[WEBSOCKET] Error serializing JSON:\n\(error)")
         }
     }
-    
+    //Sending log in information to web socket
     @IBAction func loginBtnPressed (_ sender: Any) {
         if getData() {
             sendJson(jsonObject) {
-                print("MSG: This json was sended: \(self.jsonObject)")
-                print("MSG: Succesfully sended")
-                self.doneBtnPressed()
+                print("MSG: Succesfully sended to websocket")
+            }
+            if !socket.isConnected {
+                socket.connect()
             }
         }
     }
     
-    func doneBtnPressed() {
+    func nextPage() {
         // cod for checking correctness of email and password
         performSegue(withIdentifier: "ChildOrParentVCSegue", sender: self)
     }
-    
+    //Setting all info from tf to JSON format
     func getData() -> Bool {
         if isEmptyTF() {
             jsonObject = [
@@ -103,7 +99,7 @@ extension LoginVC {
         }
         return false
     }
-    
+    //Checking if all textfield are filled
     func isEmptyTF() -> Bool {
         if emailTF.text == nil {
             return false
@@ -113,20 +109,42 @@ extension LoginVC {
         }
         return true
     }
+    
+    func errorWithText(_ err: String) {
+        errorLbl.text = err
+        errorLbl.isHidden = false
+    }
 }
 
 //Delegations
 extension LoginVC {
     func websocketDidConnect(socket: WebSocketClient) {
-        
+        print("connected")
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        
+        print("disconnected")
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        print("MSG from webSocket: \(text)")
+        print("MSG:\(text)")
+        do {
+            let data = text.data(using: .utf8)!
+            let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? NSDictionary
+            
+            if let sid = jsonObject?["sid"] as? String {
+                defaults.set(sid, forKey: "sid")
+                self.nextPage()
+            }
+            
+            if let err = jsonObject?["error"] as? String {
+                self.errorWithText(err)
+            }
+            
+        } catch let error as NSError {
+            print("MSG: json error \(error)")
+        }
+
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
@@ -140,7 +158,7 @@ extension LoginVC {
             break
         case passwordTF:
             passwordTF.resignFirstResponder()
-            doneBtnPressed()
+            loginBtnPressed(self)
             break
         default:
             emailTF.resignFirstResponder()

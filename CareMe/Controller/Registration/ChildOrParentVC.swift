@@ -10,7 +10,6 @@ import UIKit
 
 class ChildOrParentVC: UIViewController {
     
-    
     @IBOutlet weak var parentBtn: UIButton!
     @IBOutlet weak var childBtn: UIButton!
 
@@ -21,10 +20,12 @@ class ChildOrParentVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        UIApplication.shared.statusBarStyle = .default
         self.navigationController?.isNavigationBarHidden = true
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        UIApplication.shared.statusBarStyle = .lightContent
         self.navigationController?.isNavigationBarHidden = false
     }
     
@@ -40,5 +41,4 @@ class ChildOrParentVC: UIViewController {
     @IBAction func parentBtnPressed(_ sender: Any) {
         performSegue(withIdentifier: "ParentVCSegue", sender: self)
     }
-    
 }

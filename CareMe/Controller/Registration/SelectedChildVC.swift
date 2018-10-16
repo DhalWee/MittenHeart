@@ -7,14 +7,18 @@
 //
 
 import UIKit
+import Starscream
 
-class SelectedChildVC: UIViewController, UITextFieldDelegate {
+class SelectedChildVC: UIViewController, UITextFieldDelegate, WebSocketDelegate {
     
     @IBOutlet weak var firstTF: UITextField!
     @IBOutlet weak var secondTF: UITextField!
     @IBOutlet weak var thirdTF: UITextField!
     @IBOutlet weak var fourthTF: UITextField!
     
+    var socket: WebSocket! = nil
+    
+    var jsonObject: Any  = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,19 +29,82 @@ class SelectedChildVC: UIViewController, UITextFieldDelegate {
         fourthTF.addTarget(self, action: #selector(self.textFieldDidChange(_ :)), for: UIControl.Event.editingChanged)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let url = URL(string: "ws://195.93.152.96:11210")!
+        socket = WebSocket(url: url)
+        socket.delegate = self
+        socket.connect()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.statusBarStyle = .lightContent
         firstTF.becomeFirstResponder()
         highlighTextField(firstTF, true)
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        UIApplication.shared.statusBarStyle = .default
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         addLineToView(view: textField, position: LINE_POSITION.LINE_POSITION_BOTTOM, color: UIColor.init(hex: green), width: 2)
+    }
+    
+    func highlighTextField(_ textField: UITextField, _ highlight: Bool) {
+        addLineToView(view: firstTF, position: LINE_POSITION.LINE_POSITION_BOTTOM, color: UIColor.init(hex: navy), width: 2)
+        addLineToView(view: secondTF, position: LINE_POSITION.LINE_POSITION_BOTTOM, color: UIColor.init(hex: navy), width: 2)
+        addLineToView(view: thirdTF, position: LINE_POSITION.LINE_POSITION_BOTTOM, color: UIColor.init(hex: navy), width: 2)
+        addLineToView(view: fourthTF, position: LINE_POSITION.LINE_POSITION_BOTTOM, color: UIColor.init(hex: navy), width: 2)
+        if highlight {
+            addLineToView(view: textField, position: LINE_POSITION.LINE_POSITION_BOTTOM, color: UIColor.init(hex: green), width: 2)
+        }
+    }
+
+    func sendJson(_ value: Any, onSuccess: @escaping ()-> Void) {
+        guard JSONSerialization.isValidJSONObject(value) else {
+            print("[WEBSOCKET] Value is not a valid JSON object.\n \(value)")
+            return
+        }
+        do {
+            let data = try JSONSerialization.data(withJSONObject: value, options: [])
+            socket.write(data: data) {
+                onSuccess()
+            }
+        } catch let error {
+            print("[WEBSOCKET] Error serializing JSON:\n\(error)")
+        }
+    }
+    
+    func sendCode() {
+        let code = "\(String(describing: firstTF.text))\(String(describing: secondTF.text))\(String(describing: thirdTF.text))\(String(describing: fourthTF.text))"
+        jsonObject = [
+            "child_code": code
+        ]
+        sendJson(jsonObject) {
+            //go next page
+        }
+        
+    }
+    
+}
+
+//Delegations
+extension SelectedChildVC {
+    func websocketDidConnect(socket: WebSocketClient) {
+        print("connected")
+    }
+    
+    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        print("disconnected")
+    }
+    
+    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        
+    }
+    
+    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+        
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
@@ -60,6 +127,7 @@ class SelectedChildVC: UIViewController, UITextFieldDelegate {
                 fourthTF.resignFirstResponder()
                 performSegue(withIdentifier: "MainVCSegue", sender: self)
                 highlighTextField(fourthTF, false)
+                sendCode()
                 break
             default:
                 break
@@ -87,16 +155,5 @@ class SelectedChildVC: UIViewController, UITextFieldDelegate {
             textField.deleteBackward()
         }
     }
-    
-    func highlighTextField(_ textField: UITextField, _ highlight: Bool) {
-        addLineToView(view: firstTF, position: LINE_POSITION.LINE_POSITION_BOTTOM, color: UIColor.init(hex: navy), width: 2)
-        addLineToView(view: secondTF, position: LINE_POSITION.LINE_POSITION_BOTTOM, color: UIColor.init(hex: navy), width: 2)
-        addLineToView(view: thirdTF, position: LINE_POSITION.LINE_POSITION_BOTTOM, color: UIColor.init(hex: navy), width: 2)
-        addLineToView(view: fourthTF, position: LINE_POSITION.LINE_POSITION_BOTTOM, color: UIColor.init(hex: navy), width: 2)
-        if highlight {
-            addLineToView(view: textField, position: LINE_POSITION.LINE_POSITION_BOTTOM, color: UIColor.init(hex: green), width: 2)
-        }
-    }
-
 
 }

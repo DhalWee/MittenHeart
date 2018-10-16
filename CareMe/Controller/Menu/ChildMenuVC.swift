@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MapKit
 
-class ChildMenuVC: UIViewController {
+class ChildMenuVC: UIViewController, CLLocationManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,7 +17,6 @@ class ChildMenuVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarStyle = .default

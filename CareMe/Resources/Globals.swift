@@ -26,8 +26,6 @@ let darkGray = 0x979797
 
 let mapApi = "AIzaSyBlrYJ3j9_BsUDRv4yp25PeazJx9I0Q3g0"
 
-let sidGlobal: String = ""
-
 enum LINE_POSITION {
     case LINE_POSITION_TOP
     case LINE_POSITION_BOTTOM
