@@ -8,7 +8,7 @@
 
 import UIKit
 
-class addChildCell: UITableViewCell {
+class addKidCell: UITableViewCell {
     
     @IBOutlet weak var addImg: UIImageView!
     @IBOutlet weak var lbl: UILabel!

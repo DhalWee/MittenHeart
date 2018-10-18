@@ -39,8 +39,8 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
     var moreBtnSelected: Bool = false
     var settingsBtnSelected: Bool = false
     
-    let kids: [Child] = [Child.init("Адлет", "Касымхан", "Данные получены 3 мин назад ", "Oval1"),
-                         Child.init("Саяна", "Касымхан", "Данные получены 5 мин назад ", "Oval2")]
+    let kids: [Kid] = [Kid.init("Адлет", "Касымхан", "Данные получены 3 мин назад ", "Oval1"),
+                         Kid.init("Саяна", "Касымхан", "Данные получены 5 мин назад ", "Oval2")]
     var tabBarIndex = 0
     
     //Map stuffs
@@ -74,6 +74,7 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarStyle = .default
+        tabBarBtnPressed(homeBtn)
         chatBtn.imageView?.image = UIImage(named: "\(chatBtn.tag)Inactive")
         self.navigationController?.isNavigationBarHidden = true
     }
@@ -88,8 +89,9 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
 //Functions
 extension HomeVC {
     func uiSettings() {
-        bottomController = CTBottomSlideController(parent: view, bottomView: bottomView, tabController: nil,
-                                                   navController: nil, visibleHeight: 99)
+        
+        bottomController = CTBottomSlideController(parent: view, bottomView: bottomView, tabController: nil, navController: nil, visibleHeight: 99)
+        
         bottomController?.setExpandedTopMargin(pixels: 64)
         bottomController?.set(table: tableView)
         bottomController?.setAnchorPoint(anchor: CGFloat(0))
@@ -106,6 +108,7 @@ extension HomeVC {
         tableView.autoPinEdge(.trailing, to: .trailing, of: bottomView)
         tableView.autoPinEdge(.top, to: .top, of: bottomView)
         tableView.autoPinEdge(.bottom, to: .bottom, of: bottomView)
+        
         
     }
     
@@ -140,7 +143,6 @@ extension HomeVC {
             bottomController?.expandPanel()
             
         } else if tabBarIndex == 2 {
-            tabBarBtnPressed(homeBtn)
             chatBtnPressed(sender)
             
         } else if tabBarIndex == 3 {
@@ -241,6 +243,13 @@ extension HomeVC {
         print(likelyPlaces)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if tabBarIndex == 0 {
+            let destination = segue.destination as! ChildVC
+            destination.kid = kids[(tableView.indexPathForSelectedRow?.row)!-1]
+        }
+    }
+    
 }
 
 //Table View Delegates and DataSources
@@ -271,12 +280,12 @@ extension HomeVC {
         if tabBarIndex == 0 {
             //ChildTabBar Identification
             if indexPath.row == kids.count + 1 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "addChildCell", for: indexPath) as! addChildCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "addKidCell", for: indexPath) as! addKidCell
                 return cell
             } else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "childCell", for: indexPath) as! childCell
-                let child = kids[indexPath.row-1]
-                cell.setChild(child.nameAndSurname, child.desc, child.imgName)
+                let cell = tableView.dequeueReusableCell(withIdentifier: "kidCell", for: indexPath) as! kidCell
+                let kid = kids[indexPath.row-1]
+                cell.setKid(kid.nameAndSurname, kid.desc, kid.imgName)
                 return cell
             }
         } else if tabBarIndex == 3 && indexPath.row == 1 {
@@ -302,7 +311,11 @@ extension HomeVC {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tabBarIndex == 0 {
-            performSegue(withIdentifier: "ChildVCSegue", sender: self)
+            if indexPath.row > 0 && indexPath.row <= kids.count {
+                performSegue(withIdentifier: "ChildVCSegue", sender: self)
+            } else if indexPath.row == kids.count+1 {
+                print("MSG: Adding child")
+            }
         } else if tabBarIndex == 3 {
             
         }

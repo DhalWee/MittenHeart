@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BHU-jk-ZpT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HhV-yf-9Eo">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -118,7 +118,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="thu-lF-I7p" userLabel="Logo">
-                                <rect key="frame" x="102" y="88" width="171" height="127"/>
+                                <rect key="frame" x="102" y="89" width="171" height="125"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoGreen" translatesAutoresizingMaskIntoConstraints="NO" id="q3k-Yo-ehm">
                                         <rect key="frame" x="0.0" y="0.0" width="171" height="80"/>
@@ -127,7 +127,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Care me" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d5i-F6-lNF">
-                                        <rect key="frame" x="21.5" y="90" width="128" height="37"/>
+                                        <rect key="frame" x="29" y="90" width="113.5" height="35"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="30"/>
                                         <color key="textColor" red="0.19215686269999999" green="0.75686274509999996" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -291,7 +291,7 @@
                         <outlet property="secondTF" destination="bgi-2K-4tz" id="r35-7n-lht"/>
                         <outlet property="thirdTF" destination="yXl-lZ-nXo" id="Z2G-kU-bCl"/>
                         <segue destination="BHU-jk-ZpT" kind="presentation" identifier="MainVCSegue" id="8wR-MC-KSv"/>
-                        <segue destination="kJX-UH-uZS" kind="show" identifier="CareMeIdentifier" id="qED-Q8-ubF"/>
+                        <segue destination="kJX-UH-uZS" kind="show" identifier="ChildMenuVCSegue" id="qED-Q8-ubF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DZt-Oi-1JC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -410,6 +410,7 @@
                         <outlet property="fourthLbl" destination="REC-lF-5l0" id="IRf-J3-Zoz"/>
                         <outlet property="secondLbl" destination="LeZ-TL-9Cv" id="M0O-9T-60M"/>
                         <outlet property="thirdLbl" destination="QBO-RV-dDd" id="Wry-va-Su1"/>
+                        <segue destination="BHU-jk-ZpT" kind="presentation" identifier="MainVCSegue" id="TAg-dx-ynl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fQw-Tx-VdQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -472,7 +473,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Мой ребёнок" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSn-6s-XHi">
-                                                            <rect key="frame" x="49" y="15" width="276" height="24.5"/>
+                                                            <rect key="frame" x="49" y="14.5" width="276" height="25"/>
                                                             <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="20"/>
                                                             <color key="textColor" red="0.20784313730000001" green="0.28235294119999998" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -522,7 +523,7 @@
                                                     <outlet property="titlelLbl" destination="HSn-6s-XHi" id="fZ3-bg-bzi"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="childCell" rowHeight="70" id="Knc-l6-G4l" customClass="childCell" customModule="CareMe" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="kidCell" rowHeight="70" id="Knc-l6-G4l" customClass="kidCell" customModule="CareMe" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="78" width="375" height="70"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Knc-l6-G4l" id="6a0-qS-ovU">
@@ -580,7 +581,7 @@
                                                     <outlet property="nameAndSurname" destination="Cne-CF-vlO" id="Swp-tj-jXf"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addChildCell" rowHeight="70" id="SKu-D5-0OO" customClass="addChildCell" customModule="CareMe" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addKidCell" rowHeight="70" id="SKu-D5-0OO" customClass="addKidCell" customModule="CareMe" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="148" width="375" height="70"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SKu-D5-0OO" id="dcF-7h-K3a">
@@ -595,7 +596,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Добавить ребёнка" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJU-5l-ZpQ">
-                                                            <rect key="frame" x="65" y="26" width="285" height="18.5"/>
+                                                            <rect key="frame" x="65" y="25.5" width="285" height="19"/>
                                                             <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="15"/>
                                                             <color key="textColor" red="0.20784313730000001" green="0.28235294119999998" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -902,6 +903,9 @@
                                     <constraint firstAttribute="height" constant="200" id="t16-Wo-Icv"/>
                                 </constraints>
                                 <state key="normal" image="alarm"/>
+                                <connections>
+                                    <action selector="sosBtnPressed:" destination="kJX-UH-uZS" eventType="touchUpInside" id="GbK-OL-hVa"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Подать сигнал тревоги" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Dg-fG-cYP">
                                 <rect key="frame" x="96" y="321.5" width="183.5" height="18.5"/>
@@ -922,10 +926,20 @@
                                     <constraint firstAttribute="width" constant="60" id="thL-pC-bqc"/>
                                 </constraints>
                                 <state key="normal" image="ChatRound"/>
+                                <connections>
+                                    <action selector="chatBtnPressed:" destination="kJX-UH-uZS" eventType="touchUpInside" id="vYd-A0-3UQ"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EMg-LG-RqP">
+                                <rect key="frame" x="171" y="400" width="33" height="15"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
+                                <color key="textColor" red="0.20784313725490194" green="0.28235294117647058" blue="0.36470588235294116" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="EMg-LG-RqP" firstAttribute="centerX" secondItem="HZ7-qg-xPU" secondAttribute="centerX" id="9J7-51-sTI"/>
                             <constraint firstItem="5Dg-fG-cYP" firstAttribute="top" secondItem="abN-2D-LZT" secondAttribute="bottom" constant="20" id="CQY-V0-4SY"/>
                             <constraint firstItem="SPj-A0-DFl" firstAttribute="bottom" secondItem="YUo-yW-lN8" secondAttribute="bottom" constant="20" id="JFL-jF-vnc"/>
                             <constraint firstItem="SPj-A0-DFl" firstAttribute="trailing" secondItem="YUo-yW-lN8" secondAttribute="trailing" constant="20" id="ReK-Qu-muv"/>
@@ -933,6 +947,7 @@
                             <constraint firstItem="5Dg-fG-cYP" firstAttribute="centerX" secondItem="HZ7-qg-xPU" secondAttribute="centerX" id="f4U-LG-A9T"/>
                             <constraint firstItem="NPD-DZ-VQl" firstAttribute="centerX" secondItem="HZ7-qg-xPU" secondAttribute="centerX" id="hSw-X0-cyS"/>
                             <constraint firstItem="NPD-DZ-VQl" firstAttribute="top" secondItem="5Dg-fG-cYP" secondAttribute="bottom" constant="5" id="mD4-sq-t5u"/>
+                            <constraint firstItem="EMg-LG-RqP" firstAttribute="top" secondItem="NPD-DZ-VQl" secondAttribute="bottom" constant="40" id="vPD-Md-fQ9"/>
                             <constraint firstItem="abN-2D-LZT" firstAttribute="centerX" secondItem="HZ7-qg-xPU" secondAttribute="centerX" id="y6v-Yu-grh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SPj-A0-DFl"/>
@@ -941,6 +956,7 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="iJl-RP-6gj"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="lbl" destination="EMg-LG-RqP" id="dhN-nF-vjt"/>
                         <segue destination="3Rd-RS-oll" kind="show" identifier="ChatVCSegue" id="spD-rW-Pko"/>
                     </connections>
                 </viewController>
@@ -1194,6 +1210,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="IYQ-Qk-VPf"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="imgView" destination="RQA-J5-N3X" id="0gb-nM-oDM"/>
                         <outlet property="nameTF" destination="blo-kA-8cR" id="1du-uN-Vpe"/>
                         <outlet property="surnameTF" destination="Efn-qQ-7Ye" id="Xui-Ou-dQY"/>
                         <segue destination="3Rd-RS-oll" kind="show" identifier="ChatVCSegue" id="3w9-60-ix0"/>
@@ -1640,6 +1657,7 @@
         <image name="repair" width="200" height="198"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="8wR-MC-KSv"/>
         <segue reference="hGc-Au-ORX"/>
         <segue reference="COl-yJ-ogo"/>
         <segue reference="wAB-iC-deZ"/>

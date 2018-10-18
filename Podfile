@@ -11,6 +11,7 @@ target 'CareMe' do
   pod 'GooglePlaces'
   pod 'Starscream', '~> 3.0.2'
   pod 'PureLayout'
+  pod 'SwiftKeychainWrapper'
 
   target 'CareMeTests' do
     inherit! :search_paths

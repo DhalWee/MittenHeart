@@ -26,16 +26,18 @@ class ChatVC: UIViewController, WebSocketDelegate {
         socket.delegate = self
         socket.connect()
 
-        socket.onConnect = {
-            print("connected")
-        }
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
     
-    
-   
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.shared.statusBarStyle = .default
+    }
     
 }
 
@@ -55,26 +57,18 @@ extension ChatVC {
             print("[WEBSOCKET] Error serializing JSON:\n\(error)")
         }
     }
-    
-    
-    @IBAction func isB () {
-        self.sendJson(self.jsonObject, onSuccess: {
-            print("Succesfully sended")
-        })
-    }
-    
-    
+
 }
 
 
 // Delegations
 extension ChatVC {
     func websocketDidConnect(socket: WebSocketClient) {
-        
+        print("connected")
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        
+        print("disconnected")
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {

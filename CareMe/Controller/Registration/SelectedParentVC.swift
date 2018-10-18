@@ -92,6 +92,8 @@ extension SelectedParentVC {
                 secondLbl.text = code[1]
                 thirdLbl.text = code[2]
                 fourthLbl.text = code[3]
+                
+                performSegue(withIdentifier: "MainVCSegue", sender: self)
             }
             
             

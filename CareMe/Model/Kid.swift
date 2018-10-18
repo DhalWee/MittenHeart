@@ -8,11 +8,12 @@
 
 import Foundation
 
-struct Child {
+struct Kid {
     var name: String
     var surname: String
     var desc: String
     var imgName: String
+    
     var nameAndSurname: String
     
     init(_ name: String,_ surname: String,_ desc: String,_ imgName: String) {

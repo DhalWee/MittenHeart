@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "91E34E630318D26B2455B9B8891AD6AD"
-               BlueprintName = "Starscream"
+               BlueprintIdentifier = "66DDF6EA27F7929D876A91F076C2C68B"
+               BlueprintName = "SwiftKeychainWrapper"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "Starscream.framework">
+               BuildableName = "SwiftKeychainWrapper.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -1,5 +1,5 @@
 PODS:
-  - CTSlidingUpPanel (1.0.4)
+  - CTSlidingUpPanel (1.0.5)
   - GoogleMaps (2.7.0):
     - GoogleMaps/Maps (= 2.7.0)
   - GoogleMaps/Base (2.7.0)
@@ -8,7 +8,8 @@ PODS:
   - GooglePlaces (2.7.0):
     - GoogleMaps/Base (= 2.7.0)
   - PureLayout (3.1.2)
-  - Starscream (3.0.5)
+  - Starscream (3.0.6)
+  - SwiftKeychainWrapper (3.0.1)
 
 DEPENDENCIES:
   - CTSlidingUpPanel
@@ -16,6 +17,7 @@ DEPENDENCIES:
   - GooglePlaces
   - PureLayout
   - Starscream (~> 3.0.2)
+  - SwiftKeychainWrapper
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -24,14 +26,16 @@ SPEC REPOS:
     - GooglePlaces
     - PureLayout
     - Starscream
+    - SwiftKeychainWrapper
 
 SPEC CHECKSUMS:
-  CTSlidingUpPanel: d1b6829abd462e075930e82153eafcf8d6d4a9e5
+  CTSlidingUpPanel: 9340580d10a6690c1689cc933bfa7a9fdac83f4b
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
   GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
   PureLayout: 4634d0b61e3b5021166e8ec7c18e9e0ca0720c8b
-  Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
+  Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
+  SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
 
-PODFILE CHECKSUM: 95c93b54272e05e695e8270f675125306e902626
+PODFILE CHECKSUM: 63e3a80bf209fec87ff12dbd19528b2df7582cf9
 
 COCOAPODS: 1.5.3

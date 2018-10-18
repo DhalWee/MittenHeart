@@ -87,6 +87,10 @@ class SelectedChildVC: UIViewController, UITextFieldDelegate, WebSocketDelegate 
         
     }
     
+    func nextPage() {
+        performSegue(withIdentifier: "ChildMenuVCSegue", sender: self)
+    }
+    
 }
 
 //Delegations
@@ -125,7 +129,7 @@ extension SelectedChildVC {
                 break
             case fourthTF:
                 fourthTF.resignFirstResponder()
-                performSegue(withIdentifier: "MainVCSegue", sender: self)
+                self.nextPage()
                 highlighTextField(fourthTF, false)
                 sendCode()
                 break

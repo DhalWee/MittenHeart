@@ -10,11 +10,20 @@ import UIKit
 
 class ChildVC: UIViewController {
     
+    var kid: Kid? = nil
+    
     @IBOutlet weak var nameTF: UITextField!
     @IBOutlet weak var surnameTF: UITextField!
+    @IBOutlet weak var imgView: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if kid != nil {
+            nameTF.text = kid!.name
+            surnameTF.text = kid!.surname
+            imgView.image = UIImage(named: kid!.imgName)
+        }
 
         nameTF.isEnabled = false
         surnameTF.isEnabled = false
@@ -23,12 +32,12 @@ class ChildVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.statusBarStyle = .default
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        UIApplication.shared.statusBarStyle = .lightContent
+        UIApplication.shared.statusBarStyle = .default
     }
     
     

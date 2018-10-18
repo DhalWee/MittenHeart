@@ -8,7 +8,7 @@
 
 import UIKit
 
-class childCell: UITableViewCell {
+class kidCell: UITableViewCell {
     
     @IBOutlet weak var lineView: UIView!
     @IBOutlet weak var img: UIImageView!
@@ -22,7 +22,7 @@ class childCell: UITableViewCell {
         addLineToView(view: lineView, position: .LINE_POSITION_BOTTOM, color: UIColor.init(hex: lightGray), width: 0.5)
     }
     
-    func setChild(_ nameAndSurname: String,_ desc: String,_ imgName: String) {
+    func setKid(_ nameAndSurname: String,_ desc: String,_ imgName: String) {
         self.nameAndSurname.text = nameAndSurname
         self.desc.text = desc
         self.img.image = UIImage(named: imgName)
