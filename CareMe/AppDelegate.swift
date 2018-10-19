@@ -24,6 +24,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey(mapApi)
         GMSPlacesClient.provideAPIKey(mapApi)
         
+        if let _ = KeychainWrapper.standard.string(forKey: keyUID) {
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            var initialViewController = UIViewController()
+            if defaults.string(forKey: "role") == "parent" {
+                initialViewController = storyboard.instantiateViewController(withIdentifier: "HomeVC")
+            } else {
+                initialViewController = storyboard.instantiateViewController(withIdentifier: "ChildMenuVC")
+            }
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
+        }
 
         return true
     }

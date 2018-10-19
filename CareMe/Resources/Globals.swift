@@ -9,9 +9,10 @@
 import Foundation
 import UIKit
 import SystemConfiguration
+import SwiftKeychainWrapper
 
 let defaults = UserDefaults.standard
-
+let keyUID = "careme9812112"
 //defaults.set("sidtexnumber421887" forKey: "sid")
 //let sid = defaults.string(forKey: "sid")
 
@@ -67,4 +68,10 @@ func isInternetAvailable() -> Bool {
     let isReachable = flags.contains(.reachable)
     let needsConnection = flags.contains(.connectionRequired)
     return (isReachable && !needsConnection)
+}
+
+func signOut() {
+    KeychainWrapper.standard.removeObject(forKey: keyUID)
+    defaults.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+    print("MSG: Signed out")
 }

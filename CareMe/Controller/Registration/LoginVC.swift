@@ -8,6 +8,7 @@
 
 import UIKit
 import Starscream
+import SwiftKeychainWrapper
 
 class LoginVC: UIViewController, UITextFieldDelegate, WebSocketDelegate {
     
@@ -85,7 +86,12 @@ extension LoginVC {
     
     func nextPage() {
         // cod for checking correctness of email and password
-        performSegue(withIdentifier: "ChildOrParentVCSegue", sender: self)
+        if defaults.string(forKey: "role") == "parent" {
+            performSegue(withIdentifier: "MenuVCSegue", sender: self)
+        } else {
+            performSegue(withIdentifier: "ChildMenuVCSegue", sender: self)
+        }
+        
     }
     //Setting all info from tf to JSON format
     func getData() -> Bool {
@@ -134,6 +140,11 @@ extension LoginVC {
             
             if let sid = jsonObject?["sid"] as? String {
                 defaults.set(sid, forKey: "sid")
+                let saveSuccessful: Bool = KeychainWrapper.standard.set(sid, forKey: keyUID)
+                if saveSuccessful {
+                    print("MSG: Data saved to keychain")
+                }
+                defaults.set("kid", forKey: "role")
                 self.nextPage()
             }
             

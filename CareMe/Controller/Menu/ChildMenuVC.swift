@@ -119,6 +119,8 @@ extension ChildMenuVC {
         
         jsonObject = [
             "action": "sendKidData",
+            "session_id": defaults.string(forKey: "sid")!,
+            "kid_id": "1",
             "batteryLevel": batteryLevel,
             "batteryState": batteryState,
             "longitude": longitude,
