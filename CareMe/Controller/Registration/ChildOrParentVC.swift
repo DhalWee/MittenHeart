@@ -20,6 +20,7 @@ class ChildOrParentVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        defaults.removeObject(forKey: "role")
         UIApplication.shared.statusBarStyle = .default
         self.navigationController?.isNavigationBarHidden = true
     }
@@ -34,11 +35,12 @@ class ChildOrParentVC: UIViewController {
         childBtn.layer.cornerRadius = 5
     }
 
-    @IBAction func childBtnPressed(_ sender: Any) {
-        performSegue(withIdentifier: "ChildVCSegue", sender: self)
-    }
-    
-    @IBAction func parentBtnPressed(_ sender: Any) {
-        performSegue(withIdentifier: "ParentVCSegue", sender: self)
+    @IBAction func nextBtnPressed(_ sender: UIButton) {
+        if sender.tag == 0 {
+            defaults.set("parent", forKey: "role")
+        } else {
+            defaults.set("kid", forKey: "role")
+        }
+        performSegue(withIdentifier: "LoginOrRegisterVCSegue", sender: self)
     }
 }

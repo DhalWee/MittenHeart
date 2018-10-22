@@ -208,10 +208,10 @@
 		504C5AE9214C5B6300831F95 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
+				50CB0FC721481690003771C4 /* ChildOrParentVC.swift */,
 				50DF58F82147B03500B76BE6 /* LoginOrRegisterVC.swift */,
 				504C5AE7214C2F2200831F95 /* LoginVC.swift */,
 				50A185A72159231B00000DD1 /* RegisterVC.swift */,
-				50CB0FC721481690003771C4 /* ChildOrParentVC.swift */,
 				50CB0FC921481B30003771C4 /* SelectedChildVC.swift */,
 				5055E865214B37E5001138AD /* SelectedParentVC.swift */,
 			);

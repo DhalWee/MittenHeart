@@ -14,9 +14,10 @@ import MapKit
 import GoogleMaps
 import GooglePlaces
 import PureLayout
+import Starscream
 
 //Initializing and variables
-class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITableViewDataSource {
+class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITableViewDataSource, WebSocketDelegate {
     
     @IBOutlet weak var mapMarker: UIView!
     @IBOutlet weak var mapViewer: UIView!
@@ -31,6 +32,10 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
     @IBOutlet weak var moreBtn: UIButton!
     @IBOutlet weak var settingsBtn: UIButton!
     
+    @IBOutlet weak var stack1row: UIStackView!
+    @IBOutlet weak var stack2row: UIStackView!
+    @IBOutlet weak var stack3rowExit: UIStackView!
+    
     var bottomController:CTBottomSlideController?;
     
     var homeBtnSelected: Bool = true
@@ -38,6 +43,10 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
     var chatBtnSelected: Bool = false
     var moreBtnSelected: Bool = false
     var settingsBtnSelected: Bool = false
+    
+    var socket: WebSocket! = nil
+    
+    var jsonObject: Any  = []
     
     let kids: [Kid] = [Kid.init("Адлет", "Касымхан", "Данные получены 3 мин назад ", "Oval1"),
                          Kid.init("Саяна", "Касымхан", "Данные получены 5 мин назад ", "Oval2")]
@@ -49,7 +58,8 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
     var zoomLevel: Float = 15
     
     var lastLoc = CLLocation()
-    let lastCoordinate = CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(exactly: 43)!, longitude: CLLocationDegrees.init(exactly: 76)!)
+    let lastCoordinate = CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(exactly: 43.243703)!,
+                                                     longitude: CLLocationDegrees.init(exactly: 76.918052)!)
     
     // An array to hold the list of likely places.
     var likelyPlaces: [GMSPlace] = []
@@ -86,6 +96,10 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setMap()
+        let url = URL(string: "ws://195.93.152.96:11210")!
+        socket = WebSocket(url: url)
+        socket.delegate = self
+        socket.connect()
     }
 
 }
@@ -155,8 +169,8 @@ extension HomeVC {
             bottomController?.anchorPanel()
             
         } else if tabBarIndex == 4 {
-            bottomController?.setAnchorPoint(anchor: CGFloat(self.view.bounds.height-64)/self.view.bounds.height)
-//            bottomController?.setAnchorPoint(anchor: CGFloat(99)/self.view.bounds.height)
+//            bottomController?.setAnchorPoint(anchor: CGFloat(self.view.bounds.height-64)/self.view.bounds.height)
+            bottomController?.setAnchorPoint(anchor: CGFloat(99)/self.view.bounds.height)
             bottomController?.closePanel()
             bottomController?.anchorPanel()
         }
@@ -274,6 +288,24 @@ extension HomeVC {
         }
     }
     
+    func sendJson(_ value: Any, onSuccess: @escaping ()-> Void) {
+        guard JSONSerialization.isValidJSONObject(value) else {
+            print("[WEBSOCKET] Value is not a valid JSON object.\n \(value)")
+            return
+        }
+        do {
+            let data = try JSONSerialization.data(withJSONObject: value, options: [])
+            if socket.isConnected {
+                socket.write(data: data) {
+                    print("MSG: Successfully sended")
+                    onSuccess()
+                }
+            }
+        } catch let error {
+            print("[WEBSOCKET] Error serializing JSON:\n\(error)")
+        }
+    }
+    
 }
 
 //Table View Delegates and DataSources
@@ -328,6 +360,8 @@ extension HomeVC {
         //HTC Else if tabBarIndex others must be here
         } else if tabBarIndex == 3 && indexPath.row == 1 {
             return 140
+        } else if tabBarIndex == 1 || tabBarIndex == 3 || tabBarIndex == 4 {
+            return 320
         } else {
             return 70
         }
@@ -350,6 +384,32 @@ extension HomeVC {
     func didPanelAnchor() {}
     func didPanelMove(panelOffset: CGFloat) {}
     
+}
+//Websocket Delegate 
+extension HomeVC {
+    func websocketDidConnect(socket: WebSocketClient) {
+        print("connected")
+    }
+    
+    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        print("disconnected")
+    }
+    
+    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        print("MSG:\(text)")
+//        do {
+//            let data = text.data(using: .utf8)!
+//            let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? NSDictionary
+//
+//        } catch let error as NSError {
+//            print("MSG: json error \(error)")
+//        }
+        
+    }
+    
+    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+        
+    }
 }
 
 

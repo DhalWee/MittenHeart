@@ -50,8 +50,11 @@ extension ChatVC {
         }
         do {
             let data = try JSONSerialization.data(withJSONObject: value, options: [])
-            socket.write(data: data) {
-                onSuccess()
+            if socket.isConnected {
+                socket.write(data: data) {
+                    print("MSG: Successfully sended")
+                    onSuccess()
+                }
             }
         } catch let error {
             print("[WEBSOCKET] Error serializing JSON:\n\(error)")

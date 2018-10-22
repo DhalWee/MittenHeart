@@ -10,7 +10,6 @@ import UIKit
 
 class LoginOrRegisterVC: UIViewController {
 
-    
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var registerBtn: UIButton!
     
@@ -22,13 +21,9 @@ class LoginOrRegisterVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.statusBarStyle = .default
-        self.navigationController?.isNavigationBarHidden = true
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        UIApplication.shared.statusBarStyle = .lightContent
-        self.navigationController?.isNavigationBarHidden = false
     }
     
     
@@ -37,13 +32,12 @@ class LoginOrRegisterVC: UIViewController {
         registerBtn.layer.cornerRadius = 5
     }
     
-    @IBAction func loginBtnPressed(_ sender: Any) {
+    @IBAction func loginBtnPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "LoginVCSegue", sender: self)
     }
     
-    @IBAction func regBtnPressed(_ sender: Any) {
+    @IBAction func registerBtnPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "RegisterVCSegue", sender: self)
     }
 
 }
-

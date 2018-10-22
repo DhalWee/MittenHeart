@@ -20,6 +20,14 @@ class LoginVC: UIViewController, UITextFieldDelegate, WebSocketDelegate {
     
     var jsonObject: Any  = []
     
+    var action: String {
+        if defaults.string(forKey: "role") == "parent" {
+            return "auth"
+        } else {
+            return "auth_kid"
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         uiStuffs()
@@ -65,8 +73,11 @@ extension LoginVC {
         }
         do {
             let data = try JSONSerialization.data(withJSONObject: value, options: [])
-            socket.write(data: data) {
-                onSuccess()
+            if socket.isConnected {
+                socket.write(data: data) {
+                    print("MSG: Successfully sended")
+                    onSuccess()
+                }
             }
         } catch let error {
             print("[WEBSOCKET] Error serializing JSON:\n\(error)")
@@ -97,7 +108,7 @@ extension LoginVC {
     func getData() -> Bool {
         if isEmptyTF() {
             jsonObject = [
-                "action": "auth",
+                "action": action,
                 "email": "\((emailTF.text)!)",
                 "password": "\((passwordTF.text)!)"
             ]
@@ -144,7 +155,6 @@ extension LoginVC {
                 if saveSuccessful {
                     print("MSG: Data saved to keychain")
                 }
-                defaults.set("kid", forKey: "role")
                 self.nextPage()
             }
             

@@ -60,13 +60,22 @@ class SelectedParentVC: UIViewController, WebSocketDelegate {
         }
         do {
             let data = try JSONSerialization.data(withJSONObject: value, options: [])
-            socket.write(data: data) {
-                onSuccess()
+            if socket.isConnected {
+                socket.write(data: data) {
+                    print("MSG: Successfully sended")
+                    onSuccess()
+                }
             }
         } catch let error {
             print("[WEBSOCKET] Error serializing JSON:\n\(error)")
         }
     }
+    
+    func nextPage() {
+        performSegue(withIdentifier: "MainVCSegue", sender: self)
+    }
+    
+    
 
 }
 
@@ -86,15 +95,15 @@ extension SelectedParentVC {
         do {
             let data = text.data(using: .utf8)!
             let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? NSDictionary
-//
+            
             if let code = jsonObject?["code"] as? String {
                 firstLbl.text = code[0]
                 secondLbl.text = code[1]
                 thirdLbl.text = code[2]
                 fourthLbl.text = code[3]
-                
-                performSegue(withIdentifier: "MainVCSegue", sender: self)
             }
+            
+            
             
             
         } catch let error as NSError {

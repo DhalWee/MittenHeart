@@ -34,6 +34,16 @@ class ChildMenuVC: UIViewController, CLLocationManagerDelegate, WebSocketDelegat
         locationManager.distanceFilter = 50
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
+        
+        let url = URL(string: "ws://195.93.152.96:11210")!
+        socket = WebSocket(url: url)
+        socket.delegate = self
+        socket.connect()
+        
+//        sendJson(jsonKidId) {
+//            print("Got KidID")
+//        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,13 +60,10 @@ class ChildMenuVC: UIViewController, CLLocationManagerDelegate, WebSocketDelegat
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        locationAuthStatus()
-        
-        let url = URL(string: "ws://195.93.152.96:11210")!
-        socket = WebSocket(url: url)
-        socket.delegate = self
-        socket.connect()
-        
+        let _ = locationAuthStatus()
+        if !socket.isConnected {
+            socket.connect()
+        }
     }
     
 }
@@ -118,26 +125,30 @@ extension ChildMenuVC {
         }
         
         jsonObject = [
-            "action": "sendKidData",
-            "session_id": defaults.string(forKey: "sid")!,
-            "kid_id": "1",
-            "batteryLevel": batteryLevel,
-            "batteryState": batteryState,
-            "longitude": longitude,
-            "latitude": latitude,
-            "course": course,
-            "speed": speed,
-            "time": time,
-            "accuracy": accuracy
+            "action": "send_geo",
+            "session_id": "\(defaults.string(forKey: "sid")!)",
+            "batteryLevel": "\(batteryLevel)",
+            "batteryState": "\(batteryState)",
+            "longitude": "\(longitude)",
+            "latitude": "\(latitude)",
+            "course": "\(course)",
+            "speed": "\(speed)",
+            "time": "\(time)",
+            "accuracy": "\(accuracy)"
         ]
+        
+        print(self.jsonObject)
+        
+        self.sendJson(self.jsonObject, onSuccess: {})
         complition()
     }
     
-    func locationAuthStatus(){
-        if CLLocationManager.authorizationStatus() == .authorizedAlways {
-            
+    func locationAuthStatus() -> Bool {
+        if CLLocationManager.authorizationStatus() == .authorizedAlways || CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
+            return true
         } else {
             locationManager.requestAlwaysAuthorization()
+            return false
         }
     }
     
@@ -148,15 +159,23 @@ extension ChildMenuVC {
         }
         do {
             let data = try JSONSerialization.data(withJSONObject: value, options: [])
-            socket.write(data: data) {
-                onSuccess()
+            if socket.isConnected {
+                socket.write(data: data) {
+                    print("MSG: Successfully sended")
+                    onSuccess()
+                }
+                
             }
         } catch let error {
             print("[WEBSOCKET] Error serializing JSON:\n\(error)")
         }
     }
     
-    
+    @IBAction func signOutBtnPressed() {
+        signOut()
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "InitialPage")
+        self.show(vc!, sender: self)
+    }
     
 }
 
@@ -164,12 +183,7 @@ extension ChildMenuVC {
 extension ChildMenuVC {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location: CLLocation = locations.last!
-        getData(location) {
-            print(self.jsonObject)
-            self.sendJson(self.jsonObject, onSuccess: {
-                print("MSG: Succesfully sended")
-            })
-        }
+        getData(location) {}
         
     }
     
@@ -197,8 +211,8 @@ extension ChildMenuVC {
     
     func websocketDidConnect(socket: WebSocketClient) {
         print("connected")
-        getData(locationManager.location!) {
-            print(self.jsonObject)
+        if locationAuthStatus() {
+            getData(locationManager.location!) {}
         }
     }
     

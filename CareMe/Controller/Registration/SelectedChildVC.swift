@@ -68,8 +68,11 @@ class SelectedChildVC: UIViewController, UITextFieldDelegate, WebSocketDelegate 
         }
         do {
             let data = try JSONSerialization.data(withJSONObject: value, options: [])
-            socket.write(data: data) {
-                onSuccess()
+            if socket.isConnected {
+                socket.write(data: data) {
+                    print("MSG: Successfully sended")
+                    onSuccess()
+                }
             }
         } catch let error {
             print("[WEBSOCKET] Error serializing JSON:\n\(error)")
@@ -79,10 +82,11 @@ class SelectedChildVC: UIViewController, UITextFieldDelegate, WebSocketDelegate 
     func sendCode() {
         let code = "\(String(describing: firstTF.text))\(String(describing: secondTF.text))\(String(describing: thirdTF.text))\(String(describing: fourthTF.text))"
         jsonObject = [
+            "action": "activate_code",
             "child_code": code
         ]
         sendJson(jsonObject) {
-            //go next page
+            self.nextPage()
         }
         
     }

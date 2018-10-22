@@ -71,6 +71,8 @@ func isInternetAvailable() -> Bool {
 }
 
 func signOut() {
+    defaults.set("no", forKey: "role")
+    defaults.set("no", forKey: "sid")
     KeychainWrapper.standard.removeObject(forKey: keyUID)
     defaults.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
     print("MSG: Signed out")

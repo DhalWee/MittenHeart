@@ -30,8 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             var initialViewController = UIViewController()
             if defaults.string(forKey: "role") == "parent" {
                 initialViewController = storyboard.instantiateViewController(withIdentifier: "HomeVC")
-            } else {
+            } else if defaults.string(forKey: "role") == "kid" {
                 initialViewController = storyboard.instantiateViewController(withIdentifier: "ChildMenuVC")
+            } else {
+                initialViewController = storyboard.instantiateViewController(withIdentifier: "InitialPage")
             }
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()
@@ -111,3 +113,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+//1800
+//2470

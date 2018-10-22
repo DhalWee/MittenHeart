@@ -19,6 +19,14 @@ class RegisterVC: UIViewController, UITextFieldDelegate, WebSocketDelegate {
     var socket: WebSocket! = nil
     
     var jsonObject: Any  = []
+    
+    var action: String {
+        if defaults.string(forKey: "role") == "parent" {
+            return "reg"
+        } else {
+            return "reg_kid"
+        }
+    }
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,8 +77,11 @@ extension RegisterVC {
         }
         do {
             let data = try JSONSerialization.data(withJSONObject: value, options: [])
-            socket.write(data: data) {
-                onSuccess()
+            if socket.isConnected {
+                socket.write(data: data) {
+                    print("MSG: Successfully sended")
+                    onSuccess()
+                }
             }
         } catch let error {
             print("[WEBSOCKET] Error serializing JSON:\n\(error)")
@@ -96,7 +107,7 @@ extension RegisterVC {
     func getData() -> Bool {
         if pwdSame() {
             jsonObject = [
-                "action": "reg",
+                "action": action,
                 "email": "\((emailTF.text)!)",
                 "password": "\((passwordTF.text)!)"
             ]
@@ -144,6 +155,7 @@ extension RegisterVC {
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        print(text)
         do {
             let data = text.data(using: .utf8)!
             let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? NSDictionary
