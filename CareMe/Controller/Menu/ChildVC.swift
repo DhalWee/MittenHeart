@@ -22,7 +22,7 @@ class ChildVC: UIViewController {
         if kid != nil {
             nameTF.text = kid!.name
             surnameTF.text = kid!.surname
-            imgView.image = UIImage(named: kid!.imgName)
+            imgView.image = UIImage(named: kid!.imgUrlString)
         }
 
         nameTF.isEnabled = false

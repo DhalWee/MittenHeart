@@ -9,7 +9,7 @@
 import UIKit
 import Starscream
 
-class SelectedParentVC: UIViewController, WebSocketDelegate {
+class ParentGenerateCodeVC: UIViewController, WebSocketDelegate {
 
     @IBOutlet weak var firstLbl: UILabel!
     @IBOutlet weak var secondLbl: UILabel!
@@ -19,7 +19,9 @@ class SelectedParentVC: UIViewController, WebSocketDelegate {
     var socket: WebSocket! = nil
     
     var jsonObject: Any  = [
-        "action": "generate_code"
+        "action": "generate_code",
+        "session_id": defaults.string(forKey: "sid")!,
+        "kid_id": defaults.integer(forKey: "kidID")
     ]
     
     override func viewDidLoad() {
@@ -71,7 +73,7 @@ class SelectedParentVC: UIViewController, WebSocketDelegate {
         }
     }
     
-    func nextPage() {
+    @IBAction func nextPage() {
         performSegue(withIdentifier: "MainVCSegue", sender: self)
     }
     
@@ -80,7 +82,7 @@ class SelectedParentVC: UIViewController, WebSocketDelegate {
 }
 
 //Delegations
-extension SelectedParentVC {
+extension ParentGenerateCodeVC {
     func websocketDidConnect(socket: WebSocketClient) {
         print("connected")
         sendJson(jsonObject) {}
@@ -103,8 +105,9 @@ extension SelectedParentVC {
                 fourthLbl.text = code[3]
             }
             
-            
-            
+            if text.lowercased().range(of:"new") != nil {
+                self.sendJson(self.jsonObject) {}
+            }
             
         } catch let error as NSError {
             print("MSG: json error \(error)")

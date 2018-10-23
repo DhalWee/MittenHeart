@@ -20,8 +20,10 @@ class LoginVC: UIViewController, UITextFieldDelegate, WebSocketDelegate {
     
     var jsonObject: Any  = []
     
+    let role = defaults.string(forKey: "role")
+    
     var action: String {
-        if defaults.string(forKey: "role") == "parent" {
+        if role == "parent" {
             return "auth"
         } else {
             return "auth_kid"
@@ -94,16 +96,6 @@ extension LoginVC {
             }
         }
     }
-    
-    func nextPage() {
-        // cod for checking correctness of email and password
-        if defaults.string(forKey: "role") == "parent" {
-            performSegue(withIdentifier: "MenuVCSegue", sender: self)
-        } else {
-            performSegue(withIdentifier: "ChildMenuVCSegue", sender: self)
-        }
-        
-    }
     //Setting all info from tf to JSON format
     func getData() -> Bool {
         if isEmptyTF() {
@@ -155,7 +147,33 @@ extension LoginVC {
                 if saveSuccessful {
                     print("MSG: Data saved to keychain")
                 }
-                self.nextPage()
+//                self.nextPage()
+            }
+            
+            if let role = jsonObject?["role"] as? Int {
+                print(role)
+                if role == 0 {
+                    let jsonKidsList = [
+                        "action": "kids_list",
+                        "session_id": defaults.string(forKey: "sid")!
+                    ]
+                    sendJson(jsonKidsList) {
+                    }
+                }
+            }
+            
+            let jsonObjectKidList = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? [NSDictionary]
+            
+            if role == "parent" {
+                if let count = jsonObjectKidList?[0].count {
+                    print("MSG: Count of kids_list\(count)")
+                    performSegue(withIdentifier: "MenuVCSegue", sender: self)
+                } else {
+                    performSegue(withIdentifier: "NewChildVCSegue", sender: self)
+                }
+            } else {
+                //TODO : Check if kid is active
+                performSegue(withIdentifier: "ChildActivateVCSegue", sender: self)
             }
             
             if let err = jsonObject?["error"] as? String {

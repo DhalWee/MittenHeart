@@ -9,7 +9,7 @@
 import UIKit
 import Starscream
 
-class SelectedChildVC: UIViewController, UITextFieldDelegate, WebSocketDelegate {
+class ChildActivateVC: UIViewController, UITextFieldDelegate, WebSocketDelegate {
     
     @IBOutlet weak var firstTF: UITextField!
     @IBOutlet weak var secondTF: UITextField!
@@ -80,25 +80,23 @@ class SelectedChildVC: UIViewController, UITextFieldDelegate, WebSocketDelegate 
     }
     
     func sendCode() {
-        let code = "\(String(describing: firstTF.text))\(String(describing: secondTF.text))\(String(describing: thirdTF.text))\(String(describing: fourthTF.text))"
+        let one = firstTF.text!
+        let two = secondTF.text!
+        let three = thirdTF.text!
+        let four = fourthTF.text!
+        let code = "\(one)\(two)\(three)\(four)"
         jsonObject = [
             "action": "activate_code",
-            "child_code": code
+            "code": code
         ]
-        sendJson(jsonObject) {
-            self.nextPage()
-        }
+        sendJson(jsonObject) {}
         
-    }
-    
-    func nextPage() {
-        performSegue(withIdentifier: "ChildMenuVCSegue", sender: self)
     }
     
 }
 
 //Delegations
-extension SelectedChildVC {
+extension ChildActivateVC {
     func websocketDidConnect(socket: WebSocketClient) {
         print("connected")
     }
@@ -108,7 +106,28 @@ extension SelectedChildVC {
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        
+        print(text)
+        guard text != "\"Code not found\"" else {
+            print("MSG: error")
+            return
+        }
+        do {
+            let data = text.data(using: .utf8)!
+            let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? NSDictionary
+            
+            if let kidID = jsonObject?["child_id"] as? String{
+                defaults.set(kidID, forKey: "kidID")
+            }
+            if let parentID = jsonObject?["parent_id"] as? String {
+                defaults.set(parentID, forKey: "parentID")
+            }
+            performSegue(withIdentifier: "ChildMenuVCSegue", sender: self)
+            
+            
+        } catch let error as NSError {
+            print("MSG: json error \(error)")
+        }
+
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
@@ -133,7 +152,6 @@ extension SelectedChildVC {
                 break
             case fourthTF:
                 fourthTF.resignFirstResponder()
-                self.nextPage()
                 highlighTextField(fourthTF, false)
                 sendCode()
                 break

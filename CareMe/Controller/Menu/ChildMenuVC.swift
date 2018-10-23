@@ -40,10 +40,6 @@ class ChildMenuVC: UIViewController, CLLocationManagerDelegate, WebSocketDelegat
         socket.delegate = self
         socket.connect()
         
-//        sendJson(jsonKidId) {
-//            print("Got KidID")
-//        }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

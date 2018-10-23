@@ -15,23 +15,27 @@ class RegisterVC: UIViewController, UITextFieldDelegate, WebSocketDelegate {
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var repeatPasswordTF: UITextField!
     @IBOutlet weak var errorLbl: UILabel!
+    @IBOutlet weak var roleLbl: UILabel!
     
     var socket: WebSocket! = nil
     
     var jsonObject: Any  = []
     
-    var action: String {
-        if defaults.string(forKey: "role") == "parent" {
-            return "reg"
-        } else {
-            return "reg_kid"
-        }
-    }
+    var parentOrChild: Bool?
         
     override func viewDidLoad() {
         super.viewDidLoad()
         uiStuffs()
+        roleLbl.text = "\(String(describing: parentOrChild))"
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
+        let url = URL(string: "ws://195.93.152.96:11210")!
+        socket = WebSocket(url: url)
+        socket.delegate = self
+        socket.connect()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,17 +47,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate, WebSocketDelegate {
         super.viewWillDisappear(animated)
         emailTF.text = ""
         passwordTF.text = ""
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        let url = URL(string: "ws://195.93.152.96:11210")!
-        
-        socket = WebSocket(url: url)
-        socket.delegate = self
-        socket.connect()
-        
+        repeatPasswordTF.text = ""
     }
 
 }
@@ -99,18 +93,23 @@ extension RegisterVC {
         }
     }
     
-    func nextPage() {
-        // cod for checking correctness of email and password
-        performSegue(withIdentifier: "ChildOrParentVCSegue", sender: self)
-    }
     //Setting all info from tf to JSON format
     func getData() -> Bool {
         if pwdSame() {
+            var actionReg: String {
+                if parentOrChild! {
+                    return "reg"
+                } else {
+                    return "reg_kid"
+                }
+            }
+            
             jsonObject = [
-                "action": action,
+                "action": actionReg,
                 "email": "\((emailTF.text)!)",
                 "password": "\((passwordTF.text)!)"
             ]
+            print("MSG:\(actionReg)")
             return true
         }
         return false
@@ -142,6 +141,7 @@ extension RegisterVC {
         errorLbl.isHidden = false
     }
     
+    
 }
 
 // Delegations
@@ -162,11 +162,30 @@ extension RegisterVC {
             
             if let sid = jsonObject?["sid"] as? String {
                 defaults.set(sid, forKey: "sid")
-                self.nextPage()
+                performSegue(withIdentifier: "NewChildVCSegue", sender: self)
             }
             
             if let err = jsonObject?["error"] as? String {
                 self.errorWithText(err)
+            }
+            
+            if let userID = jsonObject?["user_id"] as? Int {
+                print("MSG: UserId")
+                if parentOrChild! {
+                    print("MSG: Auth")
+                    let jsonAuth = [
+                        "action": "auth",
+                        "email": "\((emailTF.text)!)",
+                        "password": "\((passwordTF.text)!)"
+                    ]
+                    sendJson(jsonAuth) {
+                    }
+                } else {
+                    print("MSG: AuthNew")
+                    defaults.set(userID, forKey: "kidID")
+                    performSegue(withIdentifier: "ParentGenerateCodeVC", sender: self)
+                    
+                }
             }
             
         } catch let error as NSError {

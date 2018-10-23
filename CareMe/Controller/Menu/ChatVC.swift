@@ -25,6 +25,7 @@ class ChatVC: UIViewController, WebSocketDelegate {
         socket = WebSocket(url: url)
         socket.delegate = self
         socket.connect()
+        
 
         
     }
@@ -33,7 +34,7 @@ class ChatVC: UIViewController, WebSocketDelegate {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarStyle = .lightContent
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         UIApplication.shared.statusBarStyle = .default

@@ -32,10 +32,6 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
     @IBOutlet weak var moreBtn: UIButton!
     @IBOutlet weak var settingsBtn: UIButton!
     
-    @IBOutlet weak var stack1row: UIStackView!
-    @IBOutlet weak var stack2row: UIStackView!
-    @IBOutlet weak var stack3rowExit: UIStackView!
-    
     var bottomController:CTBottomSlideController?;
     
     var homeBtnSelected: Bool = true
@@ -47,9 +43,15 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
     var socket: WebSocket! = nil
     
     var jsonObject: Any  = []
+    var jsonGetGeo: Any = [
+        "action": "get_geo",
+        "session_id": defaults.string(forKey: "sid")!,
+        "kid_id": defaults.integer(forKey: "kidID")
+        
+    ]
     
-    let kids: [Kid] = [Kid.init("Адлет", "Касымхан", "Данные получены 3 мин назад ", "Oval1"),
-                         Kid.init("Саяна", "Касымхан", "Данные получены 5 мин назад ", "Oval2")]
+    let kids: [Kid] = [Kid.init("1", "Адлет", "Касымхан", "Данные получены 3 мин назад ", "Oval1"),
+                         Kid.init("2", "Саяна", "Касымхан", "Данные получены 5 мин назад ", "Oval2")]
     var tabBarIndex = 0
     
     //Map stuffs
@@ -78,6 +80,11 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
         tableView.delegate = self
         tableView.dataSource = self
         bottomController?.delegate = self
+        
+        sendJson(jsonObject) {
+            print("MSG: Successfully sended")
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -282,7 +289,8 @@ extension HomeVC {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if tabBarIndex == 0 {
+        if tabBarIndex == 0 &&
+            ((tableView.indexPathForSelectedRow?.row)! > 0 && (tableView.indexPathForSelectedRow?.row)! <= kids.count ) {
             let destination = segue.destination as! ChildVC
             destination.kid = kids[(tableView.indexPathForSelectedRow?.row)!-1]
         }
@@ -341,7 +349,7 @@ extension HomeVC {
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "kidCell", for: indexPath) as! kidCell
                 let kid = kids[indexPath.row-1]
-                cell.setKid(kid.nameAndSurname, kid.desc, kid.imgName)
+                cell.setKid(kid.nameAndSurname, kid.desc, kid.imgUrlString)
                 return cell
             }
         } else if tabBarIndex == 3 && indexPath.row == 1 {
@@ -372,6 +380,7 @@ extension HomeVC {
             if indexPath.row > 0 && indexPath.row <= kids.count {
                 performSegue(withIdentifier: "ChildVCSegue", sender: self)
             } else if indexPath.row == kids.count+1 {
+                performSegue(withIdentifier: "NewChildVCSegue", sender: self)
                 print("MSG: Adding child")
             }
         } else if tabBarIndex == 3 {
