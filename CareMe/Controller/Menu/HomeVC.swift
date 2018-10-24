@@ -81,10 +81,6 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
         tableView.dataSource = self
         bottomController?.delegate = self
         
-        sendJson(jsonObject) {
-            print("MSG: Successfully sended")
-        }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -107,6 +103,10 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
         socket = WebSocket(url: url)
         socket.delegate = self
         socket.connect()
+        
+        sendJson(jsonObject) {
+            print("MSG: Successfully sended")
+        }
     }
 
 }

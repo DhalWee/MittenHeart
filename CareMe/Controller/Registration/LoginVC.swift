@@ -151,7 +151,6 @@ extension LoginVC {
             }
             
             if let role = jsonObject?["role"] as? Int {
-                print(role)
                 if role == 0 {
                     let jsonKidsList = [
                         "action": "kids_list",
@@ -164,21 +163,26 @@ extension LoginVC {
             
             let jsonObjectKidList = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? [NSDictionary]
             
-            if role == "parent" {
-                if let count = jsonObjectKidList?[0].count {
-                    print("MSG: Count of kids_list\(count)")
-                    performSegue(withIdentifier: "MenuVCSegue", sender: self)
+            if jsonObject?["sid"] == nil {
+                if role == "parent" {
+                    if let count = jsonObjectKidList?[0].count {
+                        print("MSG: Count of kids_list\(count)")
+                        performSegue(withIdentifier: "MenuVCSegue", sender: self)
+                    } else {
+                        performSegue(withIdentifier: "NewChildVCSegue", sender: self)
+                    }
                 } else {
-                    performSegue(withIdentifier: "NewChildVCSegue", sender: self)
+                    //TODO : Check if kid is active
+                    performSegue(withIdentifier: "ChildActivateVCSegue", sender: self)
                 }
-            } else {
-                //TODO : Check if kid is active
-                performSegue(withIdentifier: "ChildActivateVCSegue", sender: self)
+                
+                if let err = jsonObject?["error"] as? String {
+                    self.errorWithText(err)
+                }
             }
             
-            if let err = jsonObject?["error"] as? String {
-                self.errorWithText(err)
-            }
+            
+            
             
         } catch let error as NSError {
             print("MSG: json error \(error)")

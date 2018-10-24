@@ -15,7 +15,6 @@ class RegisterVC: UIViewController, UITextFieldDelegate, WebSocketDelegate {
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var repeatPasswordTF: UITextField!
     @IBOutlet weak var errorLbl: UILabel!
-    @IBOutlet weak var roleLbl: UILabel!
     
     var socket: WebSocket! = nil
     
@@ -26,7 +25,6 @@ class RegisterVC: UIViewController, UITextFieldDelegate, WebSocketDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         uiStuffs()
-        roleLbl.text = "\(String(describing: parentOrChild))"
     }
     
     override func viewDidAppear(_ animated: Bool) {
