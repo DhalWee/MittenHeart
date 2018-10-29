@@ -42,6 +42,7 @@ class NewChildVC: UIViewController {
     }
     
     @IBAction func skipBtnPressed(_ sender: UIButton) {
+        boolRegister = false
         performSegue(withIdentifier: "MainVCSegue", sender: self)
     }
     

@@ -28,13 +28,13 @@ class LoginOrRegisterVC: UIViewController {
         super.viewWillDisappear(animated)
     }
     
-    
     func uiStuffs() {
         loginBtn.layer.cornerRadius = 5
         registerBtn.layer.cornerRadius = 5
     }
     
     @IBAction func loginBtnPressed(_ sender: UIButton) {
+        register = false
         performSegue(withIdentifier: "LoginVCSegue", sender: self)
     }
     

@@ -70,6 +70,7 @@ extension RegisterVC {
         do {
             let data = try JSONSerialization.data(withJSONObject: value, options: [])
             if socket.isConnected {
+                errorWithText("nil")
                 socket.write(data: data) {
                     print("MSG: Successfully sended")
                     onSuccess()
@@ -135,10 +136,43 @@ extension RegisterVC {
     }
     
     func errorWithText(_ err: String) {
-        errorLbl.text = err
-        errorLbl.isHidden = false
+        if err == "nil" {
+            errorLbl.isHidden = true
+        } else {
+            errorLbl.text = err
+            errorLbl.isHidden = false
+        }
     }
     
+    func regParse(_ jsonObject: NSDictionary) {
+        if let userID = jsonObject["user_id"] as? Int {
+            if parentOrChild! {
+                let jsonAuth = [
+                    "action": "auth",
+                    "email": "\((emailTF.text)!)",
+                    "password": "\((passwordTF.text)!)"
+                ]
+                defaults.set(userID, forKey: "parentID")
+                sendJson(jsonAuth) {}
+            }
+        }
+    }
+    
+    func regKidParse(_ jsonObject: NSDictionary) {
+        if let userID = jsonObject["user_id"] as? Int {
+            if !parentOrChild! {
+                defaults.set(userID, forKey: "kidID")
+                performSegue(withIdentifier: "ParentGenerateCodeVC", sender: self)
+            }
+        }
+    }
+    
+    func authParse(_ jsonObject: NSDictionary) {
+        if let sid = jsonObject["sid"] as? String {
+            defaults.set(sid, forKey: "sid")
+            performSegue(withIdentifier: "NewChildVCSegue", sender: self)
+        }
+    }
     
 }
 
@@ -158,31 +192,18 @@ extension RegisterVC {
             let data = text.data(using: .utf8)!
             let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? NSDictionary
             
-            if let sid = jsonObject?["sid"] as? String {
-                defaults.set(sid, forKey: "sid")
-                performSegue(withIdentifier: "NewChildVCSegue", sender: self)
-            }
-            
             if let err = jsonObject?["error"] as? String {
                 self.errorWithText(err)
             }
             
-            if let userID = jsonObject?["user_id"] as? Int {
-                print("MSG: UserId")
-                if parentOrChild! {
-                    print("MSG: Auth")
-                    let jsonAuth = [
-                        "action": "auth",
-                        "email": "\((emailTF.text)!)",
-                        "password": "\((passwordTF.text)!)"
-                    ]
-                    sendJson(jsonAuth) {
-                    }
-                } else {
-                    print("MSG: AuthNew")
-                    defaults.set(userID, forKey: "kidID")
-                    performSegue(withIdentifier: "ParentGenerateCodeVC", sender: self)
-                    
+            if let action = jsonObject?["action"] as? String {
+                print(action)
+                if action == "reg" {
+                    regParse(jsonObject!)
+                } else if action == "reg_kid" {
+                    regKidParse(jsonObject!)
+                } else if action == "auth" {
+                    authParse(jsonObject!)
                 }
             }
             

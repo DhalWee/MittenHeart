@@ -76,6 +76,7 @@ extension LoginVC {
         do {
             let data = try JSONSerialization.data(withJSONObject: value, options: [])
             if socket.isConnected {
+                errorWithText("nil")
                 socket.write(data: data) {
                     print("MSG: Successfully sended")
                     onSuccess()
@@ -120,9 +121,68 @@ extension LoginVC {
     }
     
     func errorWithText(_ err: String) {
-        errorLbl.text = err
-        errorLbl.isHidden = false
+        
+        if err == "nil" {
+            errorLbl.isHidden = true
+        } else {
+            errorLbl.text = err
+            errorLbl.isHidden = false
+        }
     }
+    
+    func authParse(_ jsonObject: NSDictionary) {
+        if let sid = jsonObject["sid"] as? String {
+            defaults.set(sid, forKey: "sid")
+            let saveSuccessful: Bool = KeychainWrapper.standard.set(sid, forKey: keyUID)
+            if saveSuccessful {
+                print("MSG: Data saved to keychain")
+            }
+        }
+        
+        if let role = jsonObject["role"] as? Int {
+            if role == 0 {
+                let kids_list = [
+                    "action": "kids_list",
+                    "session_id": defaults.string(forKey: "sid")!
+                ]
+                sendJson(kids_list) {}
+            }
+        }
+    }
+    
+    func authKidParse(_ jsonObject: NSDictionary) {
+        if let sid = jsonObject["sid"] as? String {
+            defaults.set(sid, forKey: "sid")
+            let saveSuccessful: Bool = KeychainWrapper.standard.set(sid, forKey: keyUID)
+            if saveSuccessful {
+                print("MSG: Data saved to keychain")
+            }
+        }
+        if let role = jsonObject["role"] as? Int {
+            if role == 1 {
+                let check_code_kid = [
+                    "action": "check_code_kid",
+                    "session_id": defaults.string(forKey: "sid")!
+                ]
+                sendJson(check_code_kid) {}
+            }
+        }
+    }
+    
+    func kidsListParse(_ jsonObject: NSDictionary) {
+        let count = jsonObject.count-1
+        if count == 0 {
+            performSegue(withIdentifier: "NewChildVCSegue", sender: self)
+        } else {
+            performSegue(withIdentifier: "MenuVCSegue", sender: self)
+        }
+    }
+//    Todo
+    func checkCodeKid(_ jsonObject: NSDictionary) {
+//        check_code_kid
+        print(jsonObject)
+    }
+    
 }
 
 //Delegations
@@ -141,47 +201,22 @@ extension LoginVC {
             let data = text.data(using: .utf8)!
             let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? NSDictionary
             
-            if let sid = jsonObject?["sid"] as? String {
-                defaults.set(sid, forKey: "sid")
-                let saveSuccessful: Bool = KeychainWrapper.standard.set(sid, forKey: keyUID)
-                if saveSuccessful {
-                    print("MSG: Data saved to keychain")
-                }
-//                self.nextPage()
+            if let err = jsonObject?["error"] as? String {
+                self.errorWithText(err)
             }
             
-            if let role = jsonObject?["role"] as? Int {
-                if role == 0 {
-                    let jsonKidsList = [
-                        "action": "kids_list",
-                        "session_id": defaults.string(forKey: "sid")!
-                    ]
-                    sendJson(jsonKidsList) {
-                    }
+            if let action = jsonObject?["action"] as? String {
+                print(action)
+                if action == "auth" {
+                    authParse(jsonObject!)
+                } else if action == "auth_kid" {
+                    authKidParse(jsonObject!)
+                } else if action == "kids_list" {
+                    kidsListParse(jsonObject!)
+                } else if action == "check_code_kid" {
+                    checkCodeKid(jsonObject!)
                 }
             }
-            
-            let jsonObjectKidList = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? [NSDictionary]
-            
-            if jsonObject?["sid"] == nil {
-                if role == "parent" {
-                    if let count = jsonObjectKidList?[0].count {
-                        print("MSG: Count of kids_list\(count)")
-                        performSegue(withIdentifier: "MenuVCSegue", sender: self)
-                    } else {
-                        performSegue(withIdentifier: "NewChildVCSegue", sender: self)
-                    }
-                } else {
-                    //TODO : Check if kid is active
-                    performSegue(withIdentifier: "ChildActivateVCSegue", sender: self)
-                }
-                
-                if let err = jsonObject?["error"] as? String {
-                    self.errorWithText(err)
-                }
-            }
-            
-            
             
             
         } catch let error as NSError {

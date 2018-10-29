@@ -22,6 +22,8 @@ class ChildOrParentVC: UIViewController {
         super.viewWillAppear(animated)
         defaults.removeObject(forKey: "role")
         defaults.removeObject(forKey: "sid")
+        defaults.removeObject(forKey: "kidID")
+        defaults.removeObject(forKey: "parentID")
         UIApplication.shared.statusBarStyle = .default
         self.navigationController?.isNavigationBarHidden = true
     }

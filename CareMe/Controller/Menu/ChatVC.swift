@@ -11,11 +11,15 @@ import Starscream
 
 class ChatVC: UIViewController, WebSocketDelegate {
     
+    @IBOutlet weak var barBtn: UIBarButtonItem!
+    
     var socket: WebSocket! = nil
     
     let jsonObject: Any  = [
         "action": "test"
     ]
+    
+    let role = defaults.string(forKey: "role")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,13 +30,19 @@ class ChatVC: UIViewController, WebSocketDelegate {
         socket.delegate = self
         socket.connect()
         
-
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarStyle = .lightContent
+        if role == "parent" {
+            barBtn.isEnabled = true
+            barBtn.tintColor = nil
+        } else {
+            barBtn.isEnabled = false
+            barBtn.tintColor = UIColor.clear
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -60,6 +70,10 @@ extension ChatVC {
         } catch let error {
             print("[WEBSOCKET] Error serializing JSON:\n\(error)")
         }
+    }
+    
+    @IBAction func barBtnPressed(_ sender: Any) {
+    
     }
 
 }

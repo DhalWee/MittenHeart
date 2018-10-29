@@ -999,8 +999,15 @@
                     </view>
                     <navigationItem key="navigationItem" title="Адлет" id="VwW-lc-jgQ">
                         <barButtonItem key="backBarButtonItem" title=" " id="05h-zc-9W0"/>
-                        <barButtonItem key="rightBarButtonItem" image="3Inactive" id="uqT-6p-YVg"/>
+                        <barButtonItem key="rightBarButtonItem" image="3Inactive" id="uqT-6p-YVg">
+                            <connections>
+                                <action selector="barBtnPressed:" destination="3Rd-RS-oll" id="3Oa-Ct-htP"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="barBtn" destination="uqT-6p-YVg" id="YzZ-89-yt1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RJ7-Dq-4Ec" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1900,14 +1907,14 @@
         <image name="repair" width="200" height="198"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xIf-Rn-WJY"/>
-        <segue reference="0Lk-gz-uGu"/>
+        <segue reference="y6j-TK-0dP"/>
+        <segue reference="z0y-U4-Dlh"/>
         <segue reference="o7R-ob-bwK"/>
         <segue reference="hGc-Au-ORX"/>
         <segue reference="COl-yJ-ogo"/>
         <segue reference="wAB-iC-deZ"/>
         <segue reference="SbE-kE-y4d"/>
-        <segue reference="RX5-Ry-Mlo"/>
+        <segue reference="spD-rW-Pko"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.19215686269999999" green="0.75686274509999996" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

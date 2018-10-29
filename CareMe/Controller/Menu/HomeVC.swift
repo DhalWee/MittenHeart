@@ -42,26 +42,34 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
     
     var socket: WebSocket! = nil
     
+    var gameTimer: Timer!
+    
     var jsonObject: Any  = []
     var jsonGetGeo: Any = [
         "action": "get_geo",
         "session_id": defaults.string(forKey: "sid")!,
         "kid_id": defaults.integer(forKey: "kidID")
-        
+    ]
+    var jsonKidsList: Any = [
+        "action": "kids_list",
+        "session_id": defaults.string(forKey: "sid")!
     ]
     
-    let kids: [Kid] = [Kid.init("1", "Адлет", "Касымхан", "Данные получены 3 мин назад ", "Oval1"),
-                         Kid.init("2", "Саяна", "Касымхан", "Данные получены 5 мин назад ", "Oval2")]
+    let kids: [Kid] = [Kid.init("1", "Адлет", "Касымхан", "Данные получены 3 мин назад ", "Oval1")/*,
+                         Kid.init("2", "Саяна", "Касымхан", "Данные получены 5 мин назад ", "Oval2")*/]
     var tabBarIndex = 0
     
     //Map stuffs
     var mapView: GMSMapView!
+    let marker = GMSMarker()
+    var camera = GMSCameraPosition()
     var placesClient: GMSPlacesClient!
     var zoomLevel: Float = 15
     
-    var lastLoc = CLLocation()
-    let lastCoordinate = CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(exactly: 43.243703)!,
+    var defaultCoordinate = CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(exactly: 43.243703)!,
                                                      longitude: CLLocationDegrees.init(exactly: 76.918052)!)
+    
+    var currentCoordinate = CLLocationCoordinate2D.init()
     
     // An array to hold the list of likely places.
     var likelyPlaces: [GMSPlace] = []
@@ -74,7 +82,8 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
         super.viewDidLoad()
         
         uiSettings()
-        mapFunction()
+        mapFunction(defaultCoordinate, isFirst: true)
+        currentCoordinate = defaultCoordinate
         
         tabBarBtnPressed(homeBtn)
         tableView.delegate = self
@@ -85,6 +94,7 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        gameTimer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(updateInformation), userInfo: nil, repeats: true)
         UIApplication.shared.statusBarStyle = .default
         tabBarBtnPressed(homeBtn)
         chatBtn.imageView?.image = UIImage(named: "\(chatBtn.tag)Inactive")
@@ -92,21 +102,21 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        gameTimer.invalidate()
         UIApplication.shared.statusBarStyle = .lightContent
         self.navigationController?.isNavigationBarHidden = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setMap()
+        setMarker(defaultCoordinate)
         let url = URL(string: "ws://195.93.152.96:11210")!
         socket = WebSocket(url: url)
         socket.delegate = self
         socket.connect()
         
-        sendJson(jsonObject) {
-            print("MSG: Successfully sended")
-        }
+        
+        
     }
 
 }
@@ -190,11 +200,15 @@ extension HomeVC {
     }
     
     @IBAction func movementBtnPressed(_ sender: Any) {
-        performSegue(withIdentifier: "MovementVCSegue", sender: self)
+//        performSegue(withIdentifier: "MovementVCSegue", sender: self)
+        
     }
     
     @IBAction func soundAroundBtnPressed (_ sender: Any) {
-        performSegue(withIdentifier: "SoundAroundVCSegue", sender: self)
+//        performSegue(withIdentifier: "SoundAroundVCSegue", sender: self)
+//        sendJson(jsonGetGeo) {
+//            print("MSG: Successfully sended")
+//        }
     }
     
     @IBAction func sendSignalBtnPressed (_ sender: Any) {
@@ -215,20 +229,37 @@ extension HomeVC {
     }
     
     @IBAction func centerMap(_ sender: Any) {
-        let coordinate = lastCoordinate
-        let update = GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: coordinate.latitude,
-                                                                      longitude: coordinate.longitude))
+        let update = GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: currentCoordinate.latitude,
+                                                                      longitude: currentCoordinate.longitude))
         mapView.animate(with: update)
         
     }
+    
+    @objc func updateInformation() {
+        if socket.isConnected {
+            if defaults.string(forKey: "kidID") != nil {
+                sendJson(jsonKidsList) {
+                    print("MSG: Successfully sended")
+                }
+            }
+        }
+    }
 
-    func mapFunction() {
+    func mapFunction(_ location: CLLocationCoordinate2D, isFirst: Bool) {
+        
+        var zoom: Float {
+            if isFirst {
+                return zoomLevel
+            } else {
+                return mapView.camera.zoom
+            }
+        }
         
         placesClient = GMSPlacesClient.shared()
         
-        let camera = GMSCameraPosition.camera(withLatitude: lastCoordinate.latitude,
-                                              longitude: lastCoordinate.longitude,
-                                              zoom: zoomLevel)
+        camera = GMSCameraPosition.camera(withLatitude: location.latitude,
+                                              longitude: location.longitude,
+                                              zoom: zoom)
         
         mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
         mapView.settings.myLocationButton = true
@@ -244,17 +275,15 @@ extension HomeVC {
         mapView.isHidden = true
     }
     
-    func setMap() {
-        let camera = GMSCameraPosition.camera(withLatitude: lastCoordinate.latitude,
-                                              longitude: lastCoordinate.longitude,
-                                              zoom: zoomLevel)
+    func setMarker(_ location: CLLocationCoordinate2D) {
+//        camera = GMSCameraPosition.camera(withLatitude: location.latitude,
+//                                              longitude: location.longitude,
+//                                              zoom: zoomLevel)
         
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: lastCoordinate.latitude,
-                                                 longitude: lastCoordinate.longitude)
+        marker.position = CLLocationCoordinate2D(latitude: location.latitude,
+                                                 longitude: location.longitude)
         marker.iconView = mapMarker
         marker.map = mapView
-        
         if mapView.isHidden {
             mapView.isHidden = false
             mapView.camera = camera
@@ -398,6 +427,11 @@ extension HomeVC {
 extension HomeVC {
     func websocketDidConnect(socket: WebSocketClient) {
         print("connected")
+        if defaults.string(forKey: "kidID") != nil {
+            sendJson(jsonKidsList) {
+                print("MSG: Successfully sended")
+            }
+        }
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
@@ -406,13 +440,34 @@ extension HomeVC {
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         print("MSG:\(text)")
-//        do {
-//            let data = text.data(using: .utf8)!
-//            let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? NSDictionary
-//
-//        } catch let error as NSError {
-//            print("MSG: json error \(error)")
-//        }
+        do {
+            let data = text.data(using: .utf8)!
+            let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? [NSDictionary]
+
+            var latitude: String = ""
+            var longitude: String = ""
+            
+            if let latitudeJSON = jsonObject?[0]["crd_x"] as? String {
+                latitude = latitudeJSON
+            }
+            
+            if let longitudeJSON = jsonObject?[0]["crd_y"] as? String {
+                longitude = longitudeJSON
+            }
+            
+//            currentCoordinate = CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(exactly: Double(latitude)!)!,
+//                                                            longitude: CLLocationDegrees.init(exactly: Double(longitude)!)!)
+//            
+//            let coordinateUpdate = GMSCameraUpdate.setCamera(GMSCameraPosition.init(target: currentCoordinate, zoom: mapView.camera.zoom, bearing: CLLocationDirection.init(), viewingAngle: 0))
+//            mapFunction(currentCoordinate, isFirst: false)
+//            mapView.moveCamera(coordinateUpdate)
+//            mapView.animate(with: coordinateUpdate)
+//            setMarker(currentCoordinate)
+            
+            
+        } catch let error as NSError {
+            print("MSG: json error \(error)")
+        }
         
     }
     
