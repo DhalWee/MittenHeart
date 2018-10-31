@@ -180,10 +180,12 @@ extension RegisterVC {
 extension RegisterVC {
     func websocketDidConnect(socket: WebSocketClient) {
         print("connected")
+        errorWithText("nil")
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         print("disconnected")
+        errorWithText("Unable to connect to server")
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {

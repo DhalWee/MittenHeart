@@ -7,10 +7,19 @@
 //
 
 import UIKit
+import Starscream
 
-class SendSignalVC: UIViewController {
+class SendSignalVC: UIViewController, WebSocketDelegate {
 
     @IBOutlet weak var btn: UIButton!
+    
+    var socket: WebSocket! = nil
+    
+    let jsonObject: Any  = [
+        "action": "send_signal",
+        "session_id": defaults.string(forKey: "sid")
+        
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,14 +39,46 @@ class SendSignalVC: UIViewController {
         UIApplication.shared.statusBarStyle = .default
     }
 
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+// Functions
+extension SendSignalVC {
+    func sendJson(_ value: Any, onSuccess: @escaping ()-> Void) {
+        guard JSONSerialization.isValidJSONObject(value) else {
+            print("[WEBSOCKET] Value is not a valid JSON object.\n \(value)")
+            return
+        }
+        do {
+            let data = try JSONSerialization.data(withJSONObject: value, options: [])
+            if socket.isConnected {
+                socket.write(data: data) {
+                    print("MSG: Successfully sended")
+                    onSuccess()
+                }
+            }
+        } catch let error {
+            print("[WEBSOCKET] Error serializing JSON:\n\(error)")
+        }
     }
-    */
+    
+    
+}
 
+// Delegations
+extension SendSignalVC {
+    func websocketDidConnect(socket: WebSocketClient) {
+        print("connected")
+    }
+    
+    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        print("disconnected")
+    }
+    
+    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        print("MSG: \(text)")
+    }
+    
+    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+        
+    }
 }

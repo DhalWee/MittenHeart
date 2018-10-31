@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import Starscream
+import AVFoundation
 
 class ChildMenuVC: UIViewController, CLLocationManagerDelegate, WebSocketDelegate {
     
@@ -22,6 +23,8 @@ class ChildMenuVC: UIViewController, CLLocationManagerDelegate, WebSocketDelegat
     var jsonObject: Any  = []
     
     var lastLoc = CLLocation()
+    
+    var loudSound: AVAudioPlayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +42,15 @@ class ChildMenuVC: UIViewController, CLLocationManagerDelegate, WebSocketDelegat
         socket = WebSocket(url: url)
         socket.delegate = self
         socket.connect()
+        
+        let path = Bundle.main.path(forResource: "alert", ofType: "wav")
+        let soundURL = URL(fileURLWithPath: path!)
+        do{
+            try loudSound = AVAudioPlayer(contentsOf: soundURL)
+            loudSound.prepareToPlay()
+        } catch let err as NSError{
+            print(err.debugDescription)
+        }
         
     }
     
@@ -72,7 +84,12 @@ extension ChildMenuVC {
     }
     
     @IBAction func sosBtnPressed(_ sender: Any) {
-        alert(title: "SOS", message: "Подтвердите действие")
+//        alert(title: "SOS", message: "Подтвердите действие")
+        loudSignal()
+    }
+    
+    func loudSignal() {
+        loudSound.play()
     }
     
     func alert(title: String, message: String) {
@@ -164,6 +181,13 @@ extension ChildMenuVC {
             }
         } catch let error {
             print("[WEBSOCKET] Error serializing JSON:\n\(error)")
+        }
+    }
+    
+    func kidStatusCheck(_ jsonObject: NSDictionary) {
+        let childId = jsonObject["child_id"]
+        if childId == nil {
+            signOutBtnPressed()
         }
     }
     

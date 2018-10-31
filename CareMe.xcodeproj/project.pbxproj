@@ -11,6 +11,7 @@
 		19A9985991C4FE84A5DC3446 /* Pods_CareMeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 237ABC90F0906D11303C358B /* Pods_CareMeTests.framework */; };
 		50134DEA215E2D05004A3946 /* repairCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50134DE9215E2D05004A3946 /* repairCell.swift */; };
 		501E67A72151A16C00E879D6 /* Kid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501E67A62151A16C00E879D6 /* Kid.swift */; };
+		502934A721882AE40060CE0A /* alert.wav in Resources */ = {isa = PBXBuildFile; fileRef = 502934A621882AE40060CE0A /* alert.wav */; };
 		504C5AE8214C2F2200831F95 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C5AE7214C2F2200831F95 /* LoginVC.swift */; };
 		504C5AEC214C5B9D00831F95 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C5AEB214C5B9D00831F95 /* HomeVC.swift */; };
 		5055E866214B37E5001138AD /* ParentGenerateCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5055E865214B37E5001138AD /* ParentGenerateCodeVC.swift */; };
@@ -85,6 +86,7 @@
 		36B665079D7D6EE8B14255DE /* Pods-CareMeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CareMeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CareMeUITests/Pods-CareMeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		50134DE9215E2D05004A3946 /* repairCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = repairCell.swift; sourceTree = "<group>"; };
 		501E67A62151A16C00E879D6 /* Kid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kid.swift; sourceTree = "<group>"; };
+		502934A621882AE40060CE0A /* alert.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = alert.wav; sourceTree = "<group>"; };
 		50357F442147C14C00710306 /* Montserrat-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.otf"; sourceTree = "<group>"; };
 		50357F452147C14C00710306 /* Montserrat-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-BlackItalic.otf"; sourceTree = "<group>"; };
 		50357F462147C14C00710306 /* Montserrat-SemiBoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBoldItalic.otf"; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				50DF58F62147B03500B76BE6 /* AppDelegate.swift */,
+				502934A621882AE40060CE0A /* alert.wav */,
 				50DF592A2147B3E100B76BE6 /* Resources */,
 				50DF59282147B3D200B76BE6 /* Model */,
 				50DF59292147B3D700B76BE6 /* View */,
@@ -475,6 +478,7 @@
 				50FEEE702148066F00E8EAF5 /* Montserrat-Black.otf in Resources */,
 				50DF58FC2147B03500B76BE6 /* Main.storyboard in Resources */,
 				50FEEE802148066F00E8EAF5 /* Montserrat-Thin.otf in Resources */,
+				502934A721882AE40060CE0A /* alert.wav in Resources */,
 				50FEEE712148066F00E8EAF5 /* Montserrat-BlackItalic.otf in Resources */,
 				50FEEE722148066F00E8EAF5 /* Montserrat-Bold.otf in Resources */,
 			);

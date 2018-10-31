@@ -200,6 +200,9 @@ extension HomeVC {
     }
     
     @IBAction func movementBtnPressed(_ sender: Any) {
+        signOut()
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "InitialPage")
+        self.show(vc!, sender: self)
 //        performSegue(withIdentifier: "MovementVCSegue", sender: self)
         
     }
@@ -212,10 +215,11 @@ extension HomeVC {
     }
     
     @IBAction func sendSignalBtnPressed (_ sender: Any) {
-        signOut()
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "InitialPage")
-        self.show(vc!, sender: self)
-//        performSegue(withIdentifier: "SendSignalVCSegue", sender: self)
+        performSegue(withIdentifier: "SendSignalVCSegue", sender: self)
+    }
+    
+    @IBAction func reloadBtnPressed() {
+        updateInformation()
     }
     
     @IBAction func zoomIn(_ sender: Any) {

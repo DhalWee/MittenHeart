@@ -152,6 +152,7 @@ extension LoginVC {
     
     func authKidParse(_ jsonObject: NSDictionary) {
         if let sid = jsonObject["sid"] as? String {
+            print(sid)
             defaults.set(sid, forKey: "sid")
             let saveSuccessful: Bool = KeychainWrapper.standard.set(sid, forKey: keyUID)
             if saveSuccessful {
@@ -160,9 +161,10 @@ extension LoginVC {
         }
         if let role = jsonObject["role"] as? Int {
             if role == 1 {
+                print(role)
                 let check_code_kid = [
                     "action": "check_code_kid",
-                    "session_id": defaults.string(forKey: "sid")!
+                    "kid_session_id": defaults.string(forKey: "sid")!
                 ]
                 sendJson(check_code_kid) {}
             }
@@ -177,10 +179,14 @@ extension LoginVC {
             performSegue(withIdentifier: "MenuVCSegue", sender: self)
         }
     }
-//    Todo
-    func checkCodeKid(_ jsonObject: NSDictionary) {
-//        check_code_kid
-        print(jsonObject)
+    
+    func kidStatusCheck(_ jsonObject: NSDictionary) {
+        let childId = jsonObject["child_id"]
+        if childId != nil {
+            performSegue(withIdentifier: "ChildMenuVCSegue", sender: self)
+        } else {
+            performSegue(withIdentifier: "ChildActivateVCSegue", sender: self)
+        }
     }
     
 }
@@ -189,10 +195,12 @@ extension LoginVC {
 extension LoginVC {
     func websocketDidConnect(socket: WebSocketClient) {
         print("connected")
+        errorWithText("nil")
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         print("disconnected")
+        errorWithText("Unable to connect to server")
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
@@ -206,7 +214,7 @@ extension LoginVC {
             }
             
             if let action = jsonObject?["action"] as? String {
-                print(action)
+//                print(action)
                 if action == "auth" {
                     authParse(jsonObject!)
                 } else if action == "auth_kid" {
@@ -214,7 +222,7 @@ extension LoginVC {
                 } else if action == "kids_list" {
                     kidsListParse(jsonObject!)
                 } else if action == "check_code_kid" {
-                    checkCodeKid(jsonObject!)
+                    kidStatusCheck(jsonObject!)
                 }
             }
             
