@@ -21,6 +21,8 @@ class RegisterVC: UIViewController, UITextFieldDelegate, WebSocketDelegate {
     var jsonObject: Any  = []
     
     var parentOrChild: Bool?
+    
+    var kidCount = defaults.integer(forKey: "kidCount")
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -160,8 +162,11 @@ extension RegisterVC {
     
     func regKidParse(_ jsonObject: NSDictionary) {
         if let userID = jsonObject["user_id"] as? Int {
+            //Todo set counter to kidID
+            kidCount = kidCount + 1
+            defaults.set(kidCount, forKey: "kidCount")
             if !parentOrChild! {
-                defaults.set(userID, forKey: "kidID")
+                defaults.set(userID, forKey: "kidID\(kidCount)")
                 performSegue(withIdentifier: "ParentGenerateCodeVC", sender: self)
             }
         }

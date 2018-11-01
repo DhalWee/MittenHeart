@@ -20,10 +20,21 @@ class ChildOrParentVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        //Todo remove all count kidID
         defaults.removeObject(forKey: "role")
         defaults.removeObject(forKey: "sid")
         defaults.removeObject(forKey: "kidID")
         defaults.removeObject(forKey: "parentID")
+        let count = defaults.integer(forKey: "kidCount")
+        
+        for i in 0..<count {
+            defaults.removeObject(forKey: "kidID\(i)")
+        }
+        defaults.removeObject(forKey: "kidCount")
+        
+        defaults.set(-1, forKey: "kidCount")
+        
         UIApplication.shared.statusBarStyle = .default
         self.navigationController?.isNavigationBarHidden = true
     }

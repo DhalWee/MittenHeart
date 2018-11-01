@@ -12,18 +12,27 @@ struct Kid {
     var kidID: String
     var name: String
     var surname: String
-    var desc: String
     var imgUrlString: String
+    var kidInfo: KidInfo
     
     var nameAndSurname: String
     
-    init(_ kidID: String, _ name: String,_ surname: String,_ desc: String,_ imgUrlString: String) {
+    init(_ kidID: String, _ name: String,_ surname: String,_ imgUrlString: String,_ kidInfo: KidInfo) {
         self.name = name
         self.surname = surname
-        self.desc = desc
         self.imgUrlString = imgUrlString
         self.nameAndSurname = "\(name) \(surname)"
         self.kidID = kidID
+        self.kidInfo = kidInfo
     }
     
+    init(_ kidID: String, _ name: String,_ surname: String,_ imgUrlString: String) {
+        self.name = name
+        self.surname = surname
+        self.imgUrlString = imgUrlString
+        self.nameAndSurname = "\(name) \(surname)"
+        self.kidID = kidID
+        self.kidInfo = KidInfo()
+    }
+
 }

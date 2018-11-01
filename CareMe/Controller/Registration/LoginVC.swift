@@ -172,7 +172,20 @@ extension LoginVC {
     }
     
     func kidsListParse(_ jsonObject: NSDictionary) {
+        //Todo
+        
         let count = jsonObject.count-1
+        print("Kid count: \(count)")
+        defaults.set(count, forKey: "kidCount")
+        
+        for i in 0..<count {
+            let kid = jsonObject["\(i)"] as? NSDictionary
+            let kidID = kid!["id"]
+            defaults.set(kidID, forKey: "kidID\(i)")
+            print("Kid id: \(kidID!)")
+        }
+        
+        
         if count == 0 {
             performSegue(withIdentifier: "NewChildVCSegue", sender: self)
         } else {

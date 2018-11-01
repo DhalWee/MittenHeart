@@ -42,21 +42,16 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
     
     var socket: WebSocket! = nil
     
-    var gameTimer: Timer!
+    var updateTimer: Timer!
     
     var jsonObject: Any  = []
-    var jsonGetGeo: Any = [
-        "action": "get_geo",
-        "session_id": defaults.string(forKey: "sid")!,
-        "kid_id": defaults.integer(forKey: "kidID")
-    ]
     var jsonKidsList: Any = [
         "action": "kids_list",
         "session_id": defaults.string(forKey: "sid")!
     ]
     
-    let kids: [Kid] = [Kid.init("1", "Адлет", "Касымхан", "Данные получены 3 мин назад ", "Oval1")/*,
-                         Kid.init("2", "Саяна", "Касымхан", "Данные получены 5 мин назад ", "Oval2")*/]
+    var kids: [Kid] = []
+    
     var tabBarIndex = 0
     
     //Map stuffs
@@ -94,7 +89,7 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        gameTimer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(updateInformation), userInfo: nil, repeats: true)
+        updateTimer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(updateInformation), userInfo: nil, repeats: true)
         UIApplication.shared.statusBarStyle = .default
         tabBarBtnPressed(homeBtn)
         chatBtn.imageView?.image = UIImage(named: "\(chatBtn.tag)Inactive")
@@ -102,7 +97,7 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        gameTimer.invalidate()
+        updateTimer.invalidate()
         UIApplication.shared.statusBarStyle = .lightContent
         self.navigationController?.isNavigationBarHidden = false
     }
@@ -208,10 +203,7 @@ extension HomeVC {
     }
     
     @IBAction func soundAroundBtnPressed (_ sender: Any) {
-//        performSegue(withIdentifier: "SoundAroundVCSegue", sender: self)
-//        sendJson(jsonGetGeo) {
-//            print("MSG: Successfully sended")
-//        }
+        performSegue(withIdentifier: "SoundAroundVCSegue", sender: self)
     }
     
     @IBAction func sendSignalBtnPressed (_ sender: Any) {
@@ -241,11 +233,11 @@ extension HomeVC {
     
     @objc func updateInformation() {
         if socket.isConnected {
-            if defaults.string(forKey: "kidID") != nil {
-                sendJson(jsonKidsList) {
-                    print("MSG: Successfully sended")
-                }
+            if defaults.string(forKey: "kidID0") != nil {
+                sendJson(jsonKidsList) {}
             }
+        } else {
+            socket.connect()
         }
     }
 
@@ -280,9 +272,6 @@ extension HomeVC {
     }
     
     func setMarker(_ location: CLLocationCoordinate2D) {
-//        camera = GMSCameraPosition.camera(withLatitude: location.latitude,
-//                                              longitude: location.longitude,
-//                                              zoom: zoomLevel)
         
         marker.position = CLLocationCoordinate2D(latitude: location.latitude,
                                                  longitude: location.longitude)
@@ -294,9 +283,7 @@ extension HomeVC {
         } else {
             mapView.animate(to: camera)
         }
-        
         listLikelyPlaces()
-
     }
     
     func listLikelyPlaces() {
@@ -347,7 +334,102 @@ extension HomeVC {
         }
     }
     
+    func putKidsToMap() {
+        for kid in kids {
+            
+            let latitude: Double = Double(kid.kidInfo.latitude)!
+            let longitude: Double = Double(kid.kidInfo.longitude)!
+            
+            currentCoordinate = CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(latitude),
+                                                            longitude: CLLocationDegrees.init(longitude))
+
+//            let coordinateUpdate = GMSCameraUpdate.setCamera(GMSCameraPosition.init(target: currentCoordinate, zoom: mapView.camera.zoom, bearing: CLLocationDirection.init(), viewingAngle: mapView.camera.viewingAngle))
+//            mapFunction(currentCoordinate, isFirst: false)
+//            mapView.moveCamera(coordinateUpdate)
+//            mapView.animate(with: coordinateUpdate)
+            setMarker(currentCoordinate)
+            
+        }
+    }
+    
+    func kidsListParse(_ jsonObject: NSDictionary) {
+
+        let count = jsonObject.count-1
+        print("Kid count: \(count)")
+        defaults.set(count, forKey: "kidCount")
+
+        kids.removeAll()
+        for i in 0..<count {
+            let kid = jsonObject["\(i)"] as? NSDictionary
+            let kidID = kid!["id"] as? String
+            defaults.set(kidID, forKey: "kidID\(i)")
+
+            let name = kid!["name"] as? String
+            let surname = kid!["lastname"] as? String
+            
+            print("Kid id: \(kidID!)")
+            
+            let date = kid!["date"] as? String
+            let latitude = kid!["latitude"] as? String
+            let longitude = kid!["longitude"] as? String
+            let batteryState = kid!["batteryState"] as? String
+            let batteryLevel = kid!["batteryLevel"] as? String
+            let course = kid!["course"] as? String
+            let accuracy = kid!["accuracy"] as? String
+            
+            let newKidInfo = KidInfo(kidID!, batteryLevel!, batteryState!, longitude! , latitude!, course!, date!, accuracy!)
+            
+            let newKid = Kid(kidID!, name!, surname!, "Oval1", newKidInfo)
+            kids.append(newKid)
+        }
+        putKidsToMap()
+        tableView.reloadData()
+        
+
+    }
+    
 }
+
+//Websocket Delegate 
+extension HomeVC {
+    func websocketDidConnect(socket: WebSocketClient) {
+        print("connected")
+        if defaults.string(forKey: "kidID0") != nil {
+            sendJson(jsonKidsList) {
+                print("MSG: Successfully sended")
+                print(self.jsonKidsList)
+            }
+        }
+    }
+    
+    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        print("disconnected")
+    }
+    
+    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        print("MSG:\(text)")
+        do {
+            let data = text.data(using: .utf8)!
+            let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? NSDictionary
+
+            if let action = jsonObject?["action"] as? String {
+                if action == "kids_list" {
+                    kidsListParse(jsonObject!)
+                }
+            }
+            
+            
+        } catch let error as NSError {
+            print("MSG: json error \(error)")
+        }
+        
+    }
+    
+    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+        
+    }
+}
+
 
 //Table View Delegates and DataSources
 extension HomeVC {
@@ -355,7 +437,7 @@ extension HomeVC {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tabBarIndex == 0 {
             return kids.count+2
-        //HTC Else if tabBarIndex others must be here
+            //HTC Else if tabBarIndex others must be here
         } else if tabBarIndex == 3 {
             //More functions
             return 2
@@ -382,13 +464,13 @@ extension HomeVC {
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "kidCell", for: indexPath) as! kidCell
                 let kid = kids[indexPath.row-1]
-                cell.setKid(kid.nameAndSurname, kid.desc, kid.imgUrlString)
+                cell.setKid(kid.nameAndSurname, "Данные получены 3 минуты назад", kid.imgUrlString)
                 return cell
             }
         } else if tabBarIndex == 3 && indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "moreFunctionsCell", for: indexPath) as! moreFunctionsCell
             return cell
-        //HTC Else if tabBarIndex others must be here
+            //HTC Else if tabBarIndex others must be here
         } else {
             return UITableViewCell()
         }
@@ -398,7 +480,7 @@ extension HomeVC {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
             return 50
-        //HTC Else if tabBarIndex others must be here
+            //HTC Else if tabBarIndex others must be here
         } else if tabBarIndex == 3 && indexPath.row == 1 {
             return 140
         } else if tabBarIndex == 1 || tabBarIndex == 3 || tabBarIndex == 4 {
@@ -427,107 +509,3 @@ extension HomeVC {
     func didPanelMove(panelOffset: CGFloat) {}
     
 }
-//Websocket Delegate 
-extension HomeVC {
-    func websocketDidConnect(socket: WebSocketClient) {
-        print("connected")
-        if defaults.string(forKey: "kidID") != nil {
-            sendJson(jsonKidsList) {
-                print("MSG: Successfully sended")
-            }
-        }
-    }
-    
-    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        print("disconnected")
-    }
-    
-    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        print("MSG:\(text)")
-        do {
-            let data = text.data(using: .utf8)!
-            let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? [NSDictionary]
-
-            var latitude: String = ""
-            var longitude: String = ""
-            
-            if let latitudeJSON = jsonObject?[0]["crd_x"] as? String {
-                latitude = latitudeJSON
-            }
-            
-            if let longitudeJSON = jsonObject?[0]["crd_y"] as? String {
-                longitude = longitudeJSON
-            }
-            
-//            currentCoordinate = CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(exactly: Double(latitude)!)!,
-//                                                            longitude: CLLocationDegrees.init(exactly: Double(longitude)!)!)
-//            
-//            let coordinateUpdate = GMSCameraUpdate.setCamera(GMSCameraPosition.init(target: currentCoordinate, zoom: mapView.camera.zoom, bearing: CLLocationDirection.init(), viewingAngle: 0))
-//            mapFunction(currentCoordinate, isFirst: false)
-//            mapView.moveCamera(coordinateUpdate)
-//            mapView.animate(with: coordinateUpdate)
-//            setMarker(currentCoordinate)
-            
-            
-        } catch let error as NSError {
-            print("MSG: json error \(error)")
-        }
-        
-    }
-    
-    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-        
-    }
-}
-
-
-////Map delegates
-//extension HomeVC {
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        let location: CLLocation = locations.last!
-//        lastLoc = location
-//        print("MSG Location: \(location)")
-//
-//        let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
-//                                              longitude: location.coordinate.longitude,
-//                                              zoom: zoomLevel)
-//
-//        let marker = GMSMarker()
-//        marker.position = CLLocationCoordinate2D(latitude: location.coordinate.latitude,
-//                                                 longitude: location.coordinate.longitude)
-//        marker.iconView = mapMarker
-//        marker.map = mapView
-//
-//        if mapView.isHidden {
-//            mapView.isHidden = false
-//            mapView.camera = camera
-//        } else {
-//            mapView.animate(to: camera)
-//        }
-//
-//        listLikelyPlaces()
-//    }
-//
-//    // Handle authorization for the location manager.
-//    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-//        switch status {
-//        case .restricted:
-//            print("Location access was restricted.")
-//        case .denied:
-//            print("User denied access to location.")
-//            // Display the map using the default location.
-//            mapView.isHidden = false
-//        case .notDetermined:
-//            print("Location status not determined.")
-//        case .authorizedAlways: fallthrough
-//        case .authorizedWhenInUse:
-//            print("Location status is OK.")
-//        }
-//    }
-//
-//    // Handle location manager errors.
-//    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-//        locationManager.stopUpdatingLocation()
-//        print("Error: \(error)")
-//    }
-//}

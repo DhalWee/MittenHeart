@@ -30,4 +30,15 @@ struct KidInfo {
         self.accuracy = accuracy
     }
     
+    init() {
+        self.kidID = "2"
+        self.batteryLevel = "0.95"
+        self.batteryState = "batteryState"
+        self.longitude = "32"
+        self.latitude = "17"
+        self.course = "0"
+        self.time = "time"
+        self.accuracy = "5"
+    }
+    
 }

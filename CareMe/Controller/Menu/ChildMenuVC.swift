@@ -14,6 +14,7 @@ import AVFoundation
 class ChildMenuVC: UIViewController, CLLocationManagerDelegate, WebSocketDelegate {
     
     @IBOutlet weak var lbl: UILabel!
+    @IBOutlet weak var signOutBtn: UIButton!
     
     var locationManager = CLLocationManager()
     var currentLocation: CLLocation?
@@ -51,6 +52,8 @@ class ChildMenuVC: UIViewController, CLLocationManagerDelegate, WebSocketDelegat
         } catch let err as NSError{
             print(err.debugDescription)
         }
+        //Todo
+//        signOutBtn.isHidden = true
         
     }
     
