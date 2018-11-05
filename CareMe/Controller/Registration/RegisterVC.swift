@@ -23,6 +23,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate, WebSocketDelegate {
     var parentOrChild: Bool?
     
     var kidCount = defaults.integer(forKey: "kidCount")
+    var kidID: Int?
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,9 +56,9 @@ class RegisterVC: UIViewController, UITextFieldDelegate, WebSocketDelegate {
 //Function
 extension RegisterVC {
     func uiStuffs() {
-        addLineToView(view: emailTF, position: LINE_POSITION.LINE_POSITION_BOTTOM, color: UIColor.init(hex: navy), width: 1)
-        addLineToView(view: passwordTF, position: LINE_POSITION.LINE_POSITION_BOTTOM, color: UIColor.init(hex: navy), width: 1)
-        addLineToView(view: repeatPasswordTF, position: LINE_POSITION.LINE_POSITION_BOTTOM, color: UIColor.init(hex: navy), width: 1)
+        addLineToView(view: emailTF, position: .bottom, color: UIColor.init(hex: navy), width: 1)
+        addLineToView(view: passwordTF, position: .bottom, color: UIColor.init(hex: navy), width: 1)
+        addLineToView(view: repeatPasswordTF, position: .bottom, color: UIColor.init(hex: navy), width: 1)
         
         emailTF.delegate = self
         passwordTF.delegate = self
@@ -117,14 +118,14 @@ extension RegisterVC {
     }
     //Checking if passwords are same 
     func pwdSame() -> Bool {
-        if isEmptyTF() && (passwordTF.text == repeatPasswordTF.text) {
+        if isNotEmptyTF() && (passwordTF.text == repeatPasswordTF.text) {
             return true
         } else {
             return false
         }
     }
     //Checking if all textfield are filled
-    func isEmptyTF() -> Bool {
+    func isNotEmptyTF() -> Bool {
         if emailTF.text == nil {
             return false
         }
@@ -165,8 +166,11 @@ extension RegisterVC {
             //Todo set counter to kidID
             kidCount = kidCount + 1
             defaults.set(kidCount, forKey: "kidCount")
+            print("MSG kidcount in defaults\(defaults.integer(forKey: "kidCount"))")
             if !parentOrChild! {
+                print("MSG user id \(userID)")
                 defaults.set(userID, forKey: "kidID\(kidCount)")
+                print("MSG userID in defaults \(defaults.integer(forKey: "kidID\(kidCount)"))")
                 performSegue(withIdentifier: "ParentGenerateCodeVC", sender: self)
             }
         }
@@ -178,6 +182,13 @@ extension RegisterVC {
             performSegue(withIdentifier: "NewChildVCSegue", sender: self)
         }
     }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        let destination = segue.destination as! ParentGenerateCodeVC
+//        let kidCount = defaults.integer(forKey: "kidCount")
+//        destination.newKidID = defaults.integer(forKey: "kid\(kidCount)")
+//
+//    }
     
 }
 

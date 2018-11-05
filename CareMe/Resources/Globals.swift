@@ -27,12 +27,12 @@ let darkGray = 0x979797
 
 let mapApi = "AIzaSyBlrYJ3j9_BsUDRv4yp25PeazJx9I0Q3g0"
 
-enum LINE_POSITION {
-    case LINE_POSITION_TOP
-    case LINE_POSITION_BOTTOM
+enum linePosition {
+    case top
+    case bottom
 }
 
-func addLineToView(view : UIView, position : LINE_POSITION, color: UIColor, width: Double) {
+func addLineToView(view : UIView, position : linePosition, color: UIColor, width: Double) {
     let lineView = UIView()
     lineView.backgroundColor = color
     lineView.translatesAutoresizingMaskIntoConstraints = false // This is important!
@@ -43,10 +43,10 @@ func addLineToView(view : UIView, position : LINE_POSITION, color: UIColor, widt
     view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[lineView]|", options:NSLayoutConstraint.FormatOptions(rawValue: 0), metrics:metrics, views:views))
     
     switch position {
-    case .LINE_POSITION_TOP:
+    case .top:
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[lineView(width)]", options:NSLayoutConstraint.FormatOptions(rawValue: 0), metrics:metrics, views:views))
         break
-    case .LINE_POSITION_BOTTOM:
+    case .bottom:
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[lineView(width)]|", options:NSLayoutConstraint.FormatOptions(rawValue: 0), metrics:metrics, views:views))
         break
     }

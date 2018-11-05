@@ -18,14 +18,14 @@ class headerCell: UITableViewCell {
     var title: [[String]] = [["Мой ребёнок", "Мои дети"],
                            ["Подписка"],
                            ["Чат"],
-                           ["Еще"],
+                           ["Дополнительно"],
                            ["Настройки"]]
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         lightImg.layer.cornerRadius = lightImg.bounds.height/2
-        addLineToView(view: self.contentView, position: .LINE_POSITION_BOTTOM, color: UIColor.init(hex: lightGray), width: 0.5)
+        addLineToView(view: self.contentView, position: .bottom, color: UIColor.init(hex: lightGray), width: 0.5)
     }
     
     func setHeader(_ index: Int) {

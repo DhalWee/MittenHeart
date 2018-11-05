@@ -502,7 +502,7 @@
  Pins the given edge of the view to the corresponding margin of its superview with an inset.
  
  @param edge The edge of this view to pin to the corresponding margin of its superview.
- @param inset The amount to inset this view's edge from the corresponding margin of its superview edge.
+ @param @param inset The amount to inset this view's edge from the corresponding margin of its superview edge.
  @return The constraint added.
  */
 - (NSLayoutConstraint *)autoPinEdgeToSuperviewMargin:(ALEdge)edge withInset:(CGFloat)inset
@@ -549,7 +549,7 @@
  */
 - (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewMargins
 {
-    return [self autoPinEdgesToSuperviewMarginsWithInsets:(ALEdgeInsetsZero)];
+    return [self autoPinEdgesToSuperviewMarginsWithInsets:ALEdgeInsetsZero];
 }
 
 /**

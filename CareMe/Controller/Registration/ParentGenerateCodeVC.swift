@@ -18,10 +18,12 @@ class ParentGenerateCodeVC: UIViewController, WebSocketDelegate {
     
     var socket: WebSocket! = nil
     
-    var jsonObject: Any  = [
+//    var newKidID: Int?
+    
+    let jsonObject: Any  = [
         "action": "generate_code",
         "session_id": defaults.string(forKey: "sid")!,
-        "kid_id": defaults.integer(forKey: "kidID")
+        "kid_id": defaults.integer(forKey: "kidID\(defaults.integer(forKey: "kidCount"))")
     ]
     
     override func viewDidLoad() {
@@ -32,7 +34,7 @@ class ParentGenerateCodeVC: UIViewController, WebSocketDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        print(jsonObject)
         let url = URL(string: "ws://195.93.152.96:11210")!
         socket = WebSocket(url: url)
         socket.delegate = self
@@ -48,10 +50,10 @@ class ParentGenerateCodeVC: UIViewController, WebSocketDelegate {
     
     func uiStuffs() {
         
-        addLineToView(view: firstLbl, position: LINE_POSITION.LINE_POSITION_BOTTOM, color: UIColor.init(hex: navy), width: 2)
-        addLineToView(view: secondLbl, position: LINE_POSITION.LINE_POSITION_BOTTOM, color: UIColor.init(hex: navy), width: 2)
-        addLineToView(view: thirdLbl, position: LINE_POSITION.LINE_POSITION_BOTTOM, color: UIColor.init(hex: navy), width: 2)
-        addLineToView(view: fourthLbl, position: LINE_POSITION.LINE_POSITION_BOTTOM, color: UIColor.init(hex: navy), width: 2)
+        addLineToView(view: firstLbl, position: .bottom, color: UIColor.init(hex: navy), width: 2)
+        addLineToView(view: secondLbl, position: .bottom, color: UIColor.init(hex: navy), width: 2)
+        addLineToView(view: thirdLbl, position: .bottom, color: UIColor.init(hex: navy), width: 2)
+        addLineToView(view: fourthLbl, position: .bottom, color: UIColor.init(hex: navy), width: 2)
         
     }
     

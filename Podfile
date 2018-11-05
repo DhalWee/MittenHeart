@@ -6,7 +6,7 @@ target 'CareMe' do
   use_frameworks!
 
   # Pods for CareMe
-  pod "CTSlidingUpPanel"
+  pod 'CTSlidingUpPanel'
   pod 'GoogleMaps'
   pod 'GooglePlaces'
   pod 'Starscream', '~> 3.0.2'

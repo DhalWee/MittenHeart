@@ -48,16 +48,16 @@ class ChildActivateVC: UIViewController, UITextFieldDelegate, WebSocketDelegate 
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        addLineToView(view: textField, position: LINE_POSITION.LINE_POSITION_BOTTOM, color: UIColor.init(hex: green), width: 2)
+        addLineToView(view: textField, position: .bottom, color: UIColor.init(hex: green), width: 2)
     }
     
     func highlighTextField(_ textField: UITextField, _ highlight: Bool) {
-        addLineToView(view: firstTF, position: LINE_POSITION.LINE_POSITION_BOTTOM, color: UIColor.init(hex: navy), width: 2)
-        addLineToView(view: secondTF, position: LINE_POSITION.LINE_POSITION_BOTTOM, color: UIColor.init(hex: navy), width: 2)
-        addLineToView(view: thirdTF, position: LINE_POSITION.LINE_POSITION_BOTTOM, color: UIColor.init(hex: navy), width: 2)
-        addLineToView(view: fourthTF, position: LINE_POSITION.LINE_POSITION_BOTTOM, color: UIColor.init(hex: navy), width: 2)
+        addLineToView(view: firstTF, position: .bottom, color: UIColor.init(hex: navy), width: 2)
+        addLineToView(view: secondTF, position: .bottom, color: UIColor.init(hex: navy), width: 2)
+        addLineToView(view: thirdTF, position: .bottom, color: UIColor.init(hex: navy), width: 2)
+        addLineToView(view: fourthTF, position: .bottom, color: UIColor.init(hex: navy), width: 2)
         if highlight {
-            addLineToView(view: textField, position: LINE_POSITION.LINE_POSITION_BOTTOM, color: UIColor.init(hex: green), width: 2)
+            addLineToView(view: textField, position: .bottom, color: UIColor.init(hex: green), width: 2)
         }
     }
 

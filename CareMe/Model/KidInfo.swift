@@ -31,7 +31,7 @@ struct KidInfo {
     }
     
     init() {
-        self.kidID = "2"
+        self.kidID = "0"
         self.batteryLevel = "0.95"
         self.batteryState = "batteryState"
         self.longitude = "32"

@@ -23,6 +23,10 @@ class ChildMenuVC: UIViewController, CLLocationManagerDelegate, WebSocketDelegat
     
     var jsonObject: Any  = []
     
+    var jsonCheckKid: Any  = [
+        "action": "check_kid",
+        "kid_session_id": defaults.string(forKey: "sid")!]
+    
     var lastLoc = CLLocation()
     
     var loudSound: AVAudioPlayer!
@@ -234,9 +238,14 @@ extension ChildMenuVC {
     
     func websocketDidConnect(socket: WebSocketClient) {
         print("connected")
-        if locationAuthStatus() {
-            getData(locationManager.location!) {}
+        sendJson(jsonCheckKid) {
+            print(self.jsonCheckKid)
+            if self.locationAuthStatus() {
+                self.getData(self.locationManager.location!) {}
+            }
         }
+        
+        
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {

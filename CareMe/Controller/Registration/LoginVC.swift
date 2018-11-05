@@ -61,8 +61,8 @@ class LoginVC: UIViewController, UITextFieldDelegate, WebSocketDelegate {
 //Functions
 extension LoginVC {
     func uiStuffs() {
-        addLineToView(view: emailTF, position: LINE_POSITION.LINE_POSITION_BOTTOM, color: UIColor.init(hex: navy), width: 1)
-        addLineToView(view: passwordTF, position: LINE_POSITION.LINE_POSITION_BOTTOM, color: UIColor.init(hex: navy), width: 1)
+        addLineToView(view: emailTF, position: .bottom, color: UIColor.init(hex: navy), width: 1)
+        addLineToView(view: passwordTF, position: .bottom, color: UIColor.init(hex: navy), width: 1)
         
         emailTF.delegate = self
         passwordTF.delegate = self
@@ -99,7 +99,7 @@ extension LoginVC {
     }
     //Setting all info from tf to JSON format
     func getData() -> Bool {
-        if isEmptyTF() {
+        if isNotEmptyTF() {
             jsonObject = [
                 "action": action,
                 "email": "\((emailTF.text)!)",
@@ -110,7 +110,7 @@ extension LoginVC {
         return false
     }
     //Checking if all textfield are filled
-    func isEmptyTF() -> Bool {
+    func isNotEmptyTF() -> Bool {
         if emailTF.text == nil {
             return false
         }

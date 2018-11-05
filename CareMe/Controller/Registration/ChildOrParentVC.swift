@@ -28,10 +28,13 @@ class ChildOrParentVC: UIViewController {
         defaults.removeObject(forKey: "parentID")
         let count = defaults.integer(forKey: "kidCount")
         
-        for i in 0..<count {
-            defaults.removeObject(forKey: "kidID\(i)")
+        if count > 0 {
+            for i in 0..<count {
+                defaults.removeObject(forKey: "kidID\(i)")
+            }
+            defaults.removeObject(forKey: "kidCount")
+            
         }
-        defaults.removeObject(forKey: "kidCount")
         
         defaults.set(-1, forKey: "kidCount")
         

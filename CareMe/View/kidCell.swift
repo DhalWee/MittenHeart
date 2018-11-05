@@ -19,7 +19,7 @@ class kidCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         img.layer.cornerRadius = img.bounds.height/2
-        addLineToView(view: lineView, position: .LINE_POSITION_BOTTOM, color: UIColor.init(hex: lightGray), width: 0.5)
+        addLineToView(view: lineView, position: .bottom, color: UIColor.init(hex: lightGray), width: 0.5)
     }
     
     func setKid(_ nameAndSurname: String,_ desc: String,_ imgName: String) {

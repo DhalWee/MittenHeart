@@ -44,6 +44,8 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
     
     var updateTimer: Timer!
     
+    var isFirst: Bool = true
+    
     var jsonObject: Any  = []
     var jsonKidsList: Any = [
         "action": "kids_list",
@@ -61,10 +63,8 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
     var placesClient: GMSPlacesClient!
     var zoomLevel: Float = 15
     
-    var defaultCoordinate = CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(exactly: 43.243703)!,
-                                                     longitude: CLLocationDegrees.init(exactly: 76.918052)!)
-    
-    var currentCoordinate = CLLocationCoordinate2D.init()
+    var currentCoordinate = CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(exactly: 43.243713)!,
+                                                        longitude: CLLocationDegrees.init(exactly: 76.918042)!)
     
     // An array to hold the list of likely places.
     var likelyPlaces: [GMSPlace] = []
@@ -77,8 +77,6 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
         super.viewDidLoad()
         
         uiSettings()
-        mapFunction(defaultCoordinate, isFirst: true)
-        currentCoordinate = defaultCoordinate
         
         tabBarBtnPressed(homeBtn)
         tableView.delegate = self
@@ -95,6 +93,7 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
         chatBtn.imageView?.image = UIImage(named: "\(chatBtn.tag)Inactive")
         self.navigationController?.isNavigationBarHidden = true
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         updateTimer.invalidate()
@@ -104,13 +103,13 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setMarker(defaultCoordinate)
+        
         let url = URL(string: "ws://195.93.152.96:11210")!
         socket = WebSocket(url: url)
         socket.delegate = self
         socket.connect()
         
-        
+        mapFunction(currentCoordinate, isFirst)
         
     }
 
@@ -132,7 +131,7 @@ extension HomeVC {
         bottomView.roundCorners([.topLeft, .topRight], radius: 20)
         tableView.roundCorners([.topLeft, .topRight], radius: 20)
         
-        addLineToView(view: tabBarView, position: .LINE_POSITION_TOP, color: UIColor(hex: lightGray), width: 0.5)
+        addLineToView(view: tabBarView, position: .top, color: UIColor(hex: lightGray), width: 0.5)
         
         tableView.autoPinEdge(.leading, to: .leading, of: bottomView)
         tableView.autoPinEdge(.trailing, to: .trailing, of: bottomView)
@@ -195,11 +194,7 @@ extension HomeVC {
     }
     
     @IBAction func movementBtnPressed(_ sender: Any) {
-        signOut()
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "InitialPage")
-        self.show(vc!, sender: self)
-//        performSegue(withIdentifier: "MovementVCSegue", sender: self)
-        
+        performSegue(withIdentifier: "MovementVCSegue", sender: self)
     }
     
     @IBAction func soundAroundBtnPressed (_ sender: Any) {
@@ -212,6 +207,12 @@ extension HomeVC {
     
     @IBAction func reloadBtnPressed() {
         updateInformation()
+    }
+    
+    @IBAction func signOutBtnPressed() {
+        signOut()
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "InitialPage")
+        self.show(vc!, sender: self)
     }
     
     @IBAction func zoomIn(_ sender: Any) {
@@ -241,21 +242,33 @@ extension HomeVC {
         }
     }
 
-    func mapFunction(_ location: CLLocationCoordinate2D, isFirst: Bool) {
+    func mapFunction(_ location: CLLocationCoordinate2D,_ isfirst: Bool) {
+     
+        var zoom:Float = zoomLevel
+        var viewingAngle:Double = 0
+        var bearing:CLLocationDirection = CLLocationDirection(exactly: 0)!
         
-        var zoom: Float {
-            if isFirst {
-                return zoomLevel
-            } else {
-                return mapView.camera.zoom
-            }
+        if isFirst {
+            isFirst = false
+            zoom = 15
+            viewingAngle = 0
+            bearing = 0
+        } else {
+            zoom = mapView.camera.zoom
+            viewingAngle = mapView.camera.viewingAngle
+            bearing = mapView.camera.bearing
         }
         
         placesClient = GMSPlacesClient.shared()
-        
+//
+//        camera = GMSCameraPosition.camera(withLatitude: location.latitude,
+//                                              longitude: location.longitude,
+//                                              zoom: zoom)
         camera = GMSCameraPosition.camera(withLatitude: location.latitude,
-                                              longitude: location.longitude,
-                                              zoom: zoom)
+                                          longitude: location.longitude,
+                                          zoom: zoom,
+                                          bearing: bearing,
+                                          viewingAngle: viewingAngle)
         
         mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
         mapView.settings.myLocationButton = true
@@ -268,7 +281,7 @@ extension HomeVC {
         mapView.autoPinEdge(.top, to: .top, of: mapViewer)
         mapView.autoPinEdge(.right, to: .right, of: mapViewer)
         mapView.autoPinEdge(.left, to: .left, of: mapViewer)
-        mapView.isHidden = true
+        mapView.isHidden = false
     }
     
     func setMarker(_ location: CLLocationCoordinate2D) {
@@ -343,10 +356,10 @@ extension HomeVC {
             currentCoordinate = CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(latitude),
                                                             longitude: CLLocationDegrees.init(longitude))
 
-//            let coordinateUpdate = GMSCameraUpdate.setCamera(GMSCameraPosition.init(target: currentCoordinate, zoom: mapView.camera.zoom, bearing: CLLocationDirection.init(), viewingAngle: mapView.camera.viewingAngle))
-//            mapFunction(currentCoordinate, isFirst: false)
-//            mapView.moveCamera(coordinateUpdate)
-//            mapView.animate(with: coordinateUpdate)
+            let coordinateUpdate = GMSCameraUpdate.setCamera(GMSCameraPosition.init(target: currentCoordinate, zoom: mapView.camera.zoom, bearing: CLLocationDirection.init(), viewingAngle: mapView.camera.viewingAngle))
+            mapFunction(currentCoordinate, isFirst)
+            mapView.moveCamera(coordinateUpdate)
+            mapView.animate(with: coordinateUpdate)
             setMarker(currentCoordinate)
             
         }
@@ -438,12 +451,14 @@ extension HomeVC {
         if tabBarIndex == 0 {
             return kids.count+2
             //HTC Else if tabBarIndex others must be here
+        } else if tabBarIndex == 1 {
+            //Settings
+            return 2
         } else if tabBarIndex == 3 {
             //More functions
             return 2
-        } else if tabBarIndex == 1 || tabBarIndex == 4 {
-            //Settings
-            return 1
+        } else if tabBarIndex == 4 {
+            return 2
         } else {
             return 1
         }
@@ -467,10 +482,16 @@ extension HomeVC {
                 cell.setKid(kid.nameAndSurname, "Данные получены 3 минуты назад", kid.imgUrlString)
                 return cell
             }
+        } else if tabBarIndex == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "repairCell", for: indexPath) as! repairCell
+            return cell
         } else if tabBarIndex == 3 && indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "moreFunctionsCell", for: indexPath) as! moreFunctionsCell
             return cell
             //HTC Else if tabBarIndex others must be here
+        } else if tabBarIndex == 4 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell", for: indexPath) as! settingsCell
+            return cell
         } else {
             return UITableViewCell()
         }
@@ -483,8 +504,10 @@ extension HomeVC {
             //HTC Else if tabBarIndex others must be here
         } else if tabBarIndex == 3 && indexPath.row == 1 {
             return 140
-        } else if tabBarIndex == 1 || tabBarIndex == 3 || tabBarIndex == 4 {
-            return 320
+        } else if tabBarIndex == 3 {
+            return 100
+        } else if tabBarIndex == 1 || tabBarIndex == 4 {
+            return CGFloat(self.view.bounds.height-180)
         } else {
             return 70
         }
