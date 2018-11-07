@@ -61,7 +61,7 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
     let marker = GMSMarker()
     var camera = GMSCameraPosition()
     var placesClient: GMSPlacesClient!
-    var zoomLevel: Float = 15
+    var zoomLevel: Float = 11
     
     var currentCoordinate = CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(exactly: 43.243713)!,
                                                         longitude: CLLocationDegrees.init(exactly: 76.918042)!)
@@ -113,6 +113,176 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
         
     }
 
+}
+
+//Map functions
+extension HomeVC {
+    @IBAction func zoomIn(_ sender: Any) {
+        let update = GMSCameraUpdate.zoomIn()
+        mapView.animate(with: update)
+    }
+    
+    @IBAction func zoomOut(_ sender: Any) {
+        let update = GMSCameraUpdate.zoomOut()
+        mapView.animate(with: update)
+    }
+    
+    @IBAction func centerMap(_ sender: Any) {
+        let update = GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: currentCoordinate.latitude,
+                                                                      longitude: currentCoordinate.longitude))
+        mapView.animate(with: update)
+    }
+    
+    func newChildMarkerView(_ kid: Kid) -> UIView {
+        
+        let backView: UIView = {
+            let bv = UIView()
+            bv.layer.masksToBounds = true
+            bv.autoSetDimensions(to: CGSize(width: 36, height: 45))
+            bv.backgroundColor = UIColor.clear
+            return bv
+        }()
+        
+        let markerImg: UIImageView = {
+            let img = UIImage(named: "mapMarker")
+            let imgView = UIImageView(image: img)
+            imgView.clipsToBounds = true
+            imgView.autoSetDimensions(to: CGSize(width: 36, height: 45))
+            imgView.backgroundColor = UIColor.clear
+            return imgView
+        }()
+        
+        let childImgView: UIImageView = {
+            let imgView = UIImageView(image: UIImage(named: "\(kid.imgUrlString)"))
+            imgView.clipsToBounds = true
+            imgView.backgroundColor = UIColor.clear
+            imgView.autoSetDimensions(to: CGSize(width: 28, height: 28))
+            return imgView
+        }()
+        
+//        let lettersView: UIView = {
+//            let bv = UIView()
+//            bv.clipsToBounds = true
+//            bv.backgroundColor = UIColor(hex: 0xfcfcfc)
+//            bv.layer.cornerRadius = 14
+//            bv.autoSetDimensions(to: CGSize(width: 28, height: 28))
+//            return bv
+//        }()
+//
+//        let lettersLbl: UILabel = {
+//            let lbl = UILabel()
+//            lbl.text = kid.name
+//            return lbl
+//        }()
+        
+        backView.addSubview(markerImg)
+        backView.addSubview(childImgView)
+        childImgView.autoPinEdge(.top, to: .top, of: backView, withOffset: 4)
+        childImgView.autoAlignAxis(.vertical, toSameAxisOf: backView)
+        return backView
+    }
+    
+    func listLikelyPlaces() {
+        // Clean up from previous sessions.
+        likelyPlaces.removeAll()
+        
+        placesClient.currentPlace(callback: { (placeLikelihoods, error) -> Void in
+            if let error = error {
+                // TODO: Handle the error.
+                print("Current Place error: \(error.localizedDescription)")
+                return
+            }
+            
+            // Get likely places and add to the list.
+            if let likelihoodList = placeLikelihoods {
+                for likelihood in likelihoodList.likelihoods {
+                    let place = likelihood.place
+                    self.likelyPlaces.append(place)
+                }
+            }
+        })
+        print(likelyPlaces)
+    }
+    
+//    ========================= Map repairing
+    
+    func setChildMarker(_ kid: Kid) {
+        let marker = GMSMarker()
+        let latitude: Double = Double(kid.kidInfo.latitude)!
+        let longitude: Double = Double(kid.kidInfo.longitude)!
+        print("Latitude: \(latitude) and longitude: \(longitude)")
+        
+        let location = CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(latitude),
+                                                        longitude: CLLocationDegrees.init(longitude))
+        //Set child's photo
+        let newMarker = newChildMarkerView(kid)
+        marker.iconView = newMarker
+        marker.position = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+        marker.map = mapView
+    }
+    
+    func putKidsToMap() {
+        for kid in kids {
+            
+            let latitude: Double = Double(kid.kidInfo.latitude)!
+            let longitude: Double = Double(kid.kidInfo.longitude)!
+            
+            currentCoordinate = CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(latitude),
+                                                            longitude: CLLocationDegrees.init(longitude))
+            
+
+            setChildMarker(kid)
+            
+        }
+    }
+    
+    func mapFunction(_ location: CLLocationCoordinate2D,_ isfirst: Bool) {
+        
+        var zoom:Float = zoomLevel
+        var viewingAngle:Double = 0
+        var bearing:CLLocationDirection = CLLocationDirection(exactly: 0)!
+        
+        if isFirst {
+            isFirst = false
+            zoom = zoomLevel
+            viewingAngle = 0
+            bearing = 0
+        } else {
+            zoom = mapView.camera.zoom
+            viewingAngle = mapView.camera.viewingAngle
+            bearing = mapView.camera.bearing
+        }
+        
+        placesClient = GMSPlacesClient.shared()
+        
+        camera = GMSCameraPosition.camera(withLatitude: location.latitude,
+                                          longitude: location.longitude,
+                                          zoom: zoom,
+                                          bearing: bearing,
+                                          viewingAngle: viewingAngle)
+        
+        mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
+        mapView.settings.myLocationButton = true
+        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        //mapView.isMyLocationEnabled = true
+        
+        // Add the map to the view, hide it until we've got a location update.
+        mapViewer.addSubview(mapView)
+        mapView.autoPinEdge(.bottom, to: .bottom, of: mapViewer)
+        mapView.autoPinEdge(.top, to: .top, of: mapViewer)
+        mapView.autoPinEdge(.right, to: .right, of: mapViewer)
+        mapView.autoPinEdge(.left, to: .left, of: mapViewer)
+        
+        if mapView.isHidden {
+            mapView.isHidden = false
+            mapView.camera = camera
+        } else {
+            mapView.animate(to: camera)
+        }
+        listLikelyPlaces()
+        
+    }
+    
 }
 
 //Functions
@@ -215,22 +385,7 @@ extension HomeVC {
         self.show(vc!, sender: self)
     }
     
-    @IBAction func zoomIn(_ sender: Any) {
-        let update = GMSCameraUpdate.zoomIn()
-        mapView.animate(with: update)
-    }
     
-    @IBAction func zoomOut(_ sender: Any) {
-        let update = GMSCameraUpdate.zoomOut()
-        mapView.animate(with: update)
-    }
-    
-    @IBAction func centerMap(_ sender: Any) {
-        let update = GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: currentCoordinate.latitude,
-                                                                      longitude: currentCoordinate.longitude))
-        mapView.animate(with: update)
-        
-    }
     
     @objc func updateInformation() {
         if socket.isConnected {
@@ -242,84 +397,7 @@ extension HomeVC {
         }
     }
 
-    func mapFunction(_ location: CLLocationCoordinate2D,_ isfirst: Bool) {
-     
-        var zoom:Float = zoomLevel
-        var viewingAngle:Double = 0
-        var bearing:CLLocationDirection = CLLocationDirection(exactly: 0)!
-        
-        if isFirst {
-            isFirst = false
-            zoom = 15
-            viewingAngle = 0
-            bearing = 0
-        } else {
-            zoom = mapView.camera.zoom
-            viewingAngle = mapView.camera.viewingAngle
-            bearing = mapView.camera.bearing
-        }
-        
-        placesClient = GMSPlacesClient.shared()
-//
-//        camera = GMSCameraPosition.camera(withLatitude: location.latitude,
-//                                              longitude: location.longitude,
-//                                              zoom: zoom)
-        camera = GMSCameraPosition.camera(withLatitude: location.latitude,
-                                          longitude: location.longitude,
-                                          zoom: zoom,
-                                          bearing: bearing,
-                                          viewingAngle: viewingAngle)
-        
-        mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
-        mapView.settings.myLocationButton = true
-        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        //mapView.isMyLocationEnabled = true
-        
-        // Add the map to the view, hide it until we've got a location update.
-        mapViewer.addSubview(mapView)
-        mapView.autoPinEdge(.bottom, to: .bottom, of: mapViewer)
-        mapView.autoPinEdge(.top, to: .top, of: mapViewer)
-        mapView.autoPinEdge(.right, to: .right, of: mapViewer)
-        mapView.autoPinEdge(.left, to: .left, of: mapViewer)
-        mapView.isHidden = false
-    }
     
-    func setMarker(_ location: CLLocationCoordinate2D) {
-        
-        marker.position = CLLocationCoordinate2D(latitude: location.latitude,
-                                                 longitude: location.longitude)
-        marker.iconView = mapMarker
-        marker.map = mapView
-        if mapView.isHidden {
-            mapView.isHidden = false
-            mapView.camera = camera
-        } else {
-            mapView.animate(to: camera)
-        }
-        listLikelyPlaces()
-    }
-    
-    func listLikelyPlaces() {
-        // Clean up from previous sessions.
-        likelyPlaces.removeAll()
-        
-        placesClient.currentPlace(callback: { (placeLikelihoods, error) -> Void in
-            if let error = error {
-                // TODO: Handle the error.
-                print("Current Place error: \(error.localizedDescription)")
-                return
-            }
-            
-            // Get likely places and add to the list.
-            if let likelihoodList = placeLikelihoods {
-                for likelihood in likelihoodList.likelihoods {
-                    let place = likelihood.place
-                    self.likelyPlaces.append(place)
-                }
-            }
-        })
-        print(likelyPlaces)
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if tabBarIndex == 0 &&
@@ -344,24 +422,6 @@ extension HomeVC {
             }
         } catch let error {
             print("[WEBSOCKET] Error serializing JSON:\n\(error)")
-        }
-    }
-    
-    func putKidsToMap() {
-        for kid in kids {
-            
-            let latitude: Double = Double(kid.kidInfo.latitude)!
-            let longitude: Double = Double(kid.kidInfo.longitude)!
-            
-            currentCoordinate = CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(latitude),
-                                                            longitude: CLLocationDegrees.init(longitude))
-
-            let coordinateUpdate = GMSCameraUpdate.setCamera(GMSCameraPosition.init(target: currentCoordinate, zoom: mapView.camera.zoom, bearing: CLLocationDirection.init(), viewingAngle: mapView.camera.viewingAngle))
-            mapFunction(currentCoordinate, isFirst)
-            mapView.moveCamera(coordinateUpdate)
-            mapView.animate(with: coordinateUpdate)
-            setMarker(currentCoordinate)
-            
         }
     }
     
@@ -395,6 +455,9 @@ extension HomeVC {
             let newKid = Kid(kidID!, name!, surname!, "Oval1", newKidInfo)
             kids.append(newKid)
         }
+        let kidInfo1 = KidInfo("3", "53", "Charging", "76.86022583395243", "43.20581023751256", "1", "afa", "30")
+        let kid1 = Kid("3", "Testing", "kid", "OvalMini", kidInfo1)
+        kids.append(kid1)
         putKidsToMap()
         tableView.reloadData()
         
@@ -479,7 +542,7 @@ extension HomeVC {
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "kidCell", for: indexPath) as! kidCell
                 let kid = kids[indexPath.row-1]
-                cell.setKid(kid.nameAndSurname, "Данные получены 3 минуты назад", kid.imgUrlString)
+                cell.setKid(kid.nameAndSurname, "Данные получены 3 минуты назад", kid.imgUrlString, kid.kidInfo.batteryLevel)
                 return cell
             }
         } else if tabBarIndex == 1 {

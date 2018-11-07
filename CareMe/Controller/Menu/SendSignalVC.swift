@@ -17,7 +17,8 @@ class SendSignalVC: UIViewController, WebSocketDelegate {
     
     let jsonObject: Any  = [
         "action": "send_signal",
-        "session_id": defaults.string(forKey: "sid")
+        "session_id": defaults.string(forKey: "sid"),
+        "kid_id": defaults.integer(forKey: "kidID0")
         
     ]
     
@@ -37,6 +38,14 @@ class SendSignalVC: UIViewController, WebSocketDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         UIApplication.shared.statusBarStyle = .default
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let url = URL(string: "ws://195.93.152.96:11210")!
+        socket = WebSocket(url: url)
+        socket.delegate = self
+        socket.connect()
     }
 
 }
@@ -61,6 +70,9 @@ extension SendSignalVC {
         }
     }
     
+    @IBAction func sendSignalBtnPressed() {
+        sendJson(jsonObject) {}
+    }
     
 }
 

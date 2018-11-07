@@ -92,7 +92,7 @@ extension ChildMenuVC {
     
     @IBAction func sosBtnPressed(_ sender: Any) {
 //        alert(title: "SOS", message: "Подтвердите действие")
-        loudSignal()
+//        loudSignal()
     }
     
     func loudSignal() {
@@ -192,9 +192,20 @@ extension ChildMenuVC {
     }
     
     func kidStatusCheck(_ jsonObject: NSDictionary) {
-        let childId = jsonObject["child_id"]
-        if childId == nil {
+        let msg = jsonObject["msg"] as? String
+        if msg == "No kid" {
             signOutBtnPressed()
+        } else {
+            if self.locationAuthStatus() {
+                self.getData(self.locationManager.location!) {}
+            }
+        }
+    }
+    
+    func sendSignalHandler(_ jsonObject: NSDictionary) {
+        let kidIDFromJson = (jsonObject["kid_id"])! as? Int
+        if kidIDFromJson == defaults.integer(forKey: "uid") {
+            loudSignal()
         }
     }
     
@@ -240,9 +251,6 @@ extension ChildMenuVC {
         print("connected")
         sendJson(jsonCheckKid) {
             print(self.jsonCheckKid)
-            if self.locationAuthStatus() {
-                self.getData(self.locationManager.location!) {}
-            }
         }
         
         
@@ -254,6 +262,22 @@ extension ChildMenuVC {
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         print(text)
+        do {
+            let data = text.data(using: .utf8)!
+            let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? NSDictionary
+            
+            if let action = jsonObject?["action"] as? String {
+                if action == "check_kid" {
+                    kidStatusCheck(jsonObject!)
+                } else if action == "send_signal" {
+                    print(action)
+                    sendSignalHandler(jsonObject!)
+                }
+            }
+            
+        } catch let error as NSError {
+            print("MSG: json error \(error)")
+        }
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {

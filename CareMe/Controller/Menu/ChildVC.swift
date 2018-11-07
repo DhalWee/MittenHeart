@@ -109,7 +109,9 @@ extension ChildVC {
             surnameTF.isEnabled = true
             nameTF.borderStyle = .line
             surnameTF.borderStyle = .line
+            removeChildBtn.isHidden = false
         } else {
+            removeChildBtn.isHidden = true
             barBtn.title = "Edit"
             nameTF.isEnabled = false
             surnameTF.isEnabled = false

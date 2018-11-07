@@ -138,7 +138,9 @@ extension LoginVC {
                 print("MSG: Data saved to keychain")
             }
         }
-        
+        if let userID = jsonObject["id"] as? String {
+            defaults.set(Int(userID), forKey: "uid")
+        }
         if let role = jsonObject["role"] as? Int {
             if role == 0 {
                 let kids_list = [
@@ -158,6 +160,9 @@ extension LoginVC {
             if saveSuccessful {
                 print("MSG: Data saved to keychain")
             }
+        }
+        if let userID = jsonObject["id"] as? String {
+            defaults.set(Int(userID), forKey: "uid")
         }
         if let role = jsonObject["role"] as? Int {
             if role == 1 {
