@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import PureLayout
 
 class kidCell: UITableViewCell {
     
     @IBOutlet weak var lineView: UIView!
-    @IBOutlet weak var img: UIImageView!
+    @IBOutlet weak var imgView: UIImageView!
+    @IBOutlet weak var noImgView: UIView!
+    @IBOutlet weak var noImgLbl: UILabel!
     @IBOutlet weak var nameAndSurname: UILabel!
     @IBOutlet weak var desc: UILabel!
     @IBOutlet weak var batteryImg: UIImageView!
@@ -20,14 +23,18 @@ class kidCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        img.layer.cornerRadius = img.bounds.height/2
+        imgView.layer.cornerRadius = imgView.bounds.height/2
         addLineToView(view: lineView, position: .bottom, color: UIColor.init(hex: lightGray), width: 0.5)
+        imgView.backgroundColor = UIColor.clear
+        noImgView.layer.cornerRadius = noImgView.bounds.height/2
+        noImgView.layer.borderColor = UIColor(hex: navy).cgColor
+        noImgView.layer.borderWidth = 1.5
+        
     }
     
-    func setKid(_ nameAndSurname: String,_ desc: String,_ imgName: String,_ batteryPercentage: String ) {
-        self.nameAndSurname.text = nameAndSurname
+    func setKid(_ name: String,_ surname: String,_ desc: String,_ imgName: String,_ batteryPercentage: String ) {
+        self.nameAndSurname.text = "\(name) \(surname)"
         self.desc.text = desc
-        self.img.image = UIImage(named: imgName)
         self.batteryPercentage.text = "\(batteryPercentage) %"
         if let percentage = Int(batteryPercentage) {
             if percentage > 80 {
@@ -44,7 +51,11 @@ class kidCell: UITableViewCell {
                 self.batteryImg.image = UIImage(named: "Battery5")
             }
         }
+        
+        self.imgView.image = UIImage(named: imgName)
+        self.noImgLbl.text = name[0..<2]
     }
+    
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

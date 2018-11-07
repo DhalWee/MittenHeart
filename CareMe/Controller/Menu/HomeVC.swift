@@ -160,25 +160,44 @@ extension HomeVC {
             return imgView
         }()
         
-//        let lettersView: UIView = {
-//            let bv = UIView()
-//            bv.clipsToBounds = true
-//            bv.backgroundColor = UIColor(hex: 0xfcfcfc)
-//            bv.layer.cornerRadius = 14
-//            bv.autoSetDimensions(to: CGSize(width: 28, height: 28))
-//            return bv
-//        }()
-//
-//        let lettersLbl: UILabel = {
-//            let lbl = UILabel()
-//            lbl.text = kid.name
-//            return lbl
-//        }()
+        let lettersView: UIView = {
+            let bv = UIView()
+            bv.clipsToBounds = true
+            bv.backgroundColor = UIColor(hex: 0xfcfcfc)
+            bv.layer.cornerRadius = 14
+            bv.autoSetDimensions(to: CGSize(width: 28, height: 28))
+            return bv
+        }()
+
+        let lettersLbl: UILabel = {
+            let lbl = UILabel()
+            lbl.text = kid.name[0..<2]
+            lbl.font = UIFont(name: "Montserrat-Medium", size: 12)
+            return lbl
+        }()
         
+        lettersView.addSubview(lettersLbl)
         backView.addSubview(markerImg)
+        backView.addSubview(lettersView)
         backView.addSubview(childImgView)
+        
+        lettersLbl.autoAlignAxis(.vertical, toSameAxisOf: lettersView)
+        lettersLbl.autoAlignAxis(.horizontal, toSameAxisOf: lettersView)
+        
+        lettersView.autoPinEdge(.top, to: .top, of: backView, withOffset: 4)
+        lettersView.autoAlignAxis(.vertical, toSameAxisOf: backView)
+        
         childImgView.autoPinEdge(.top, to: .top, of: backView, withOffset: 4)
         childImgView.autoAlignAxis(.vertical, toSameAxisOf: backView)
+        
+        if kid.imgUrlString == "" {
+            childImgView.isHidden = true
+            lettersView.isHidden = false
+        } else {
+            childImgView.isHidden = false
+            lettersView.isHidden = true
+        }
+        
         return backView
     }
     
@@ -210,7 +229,6 @@ extension HomeVC {
         let marker = GMSMarker()
         let latitude: Double = Double(kid.kidInfo.latitude)!
         let longitude: Double = Double(kid.kidInfo.longitude)!
-        print("Latitude: \(latitude) and longitude: \(longitude)")
         
         let location = CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(latitude),
                                                         longitude: CLLocationDegrees.init(longitude))
@@ -223,16 +241,13 @@ extension HomeVC {
     
     func putKidsToMap() {
         for kid in kids {
-            
             let latitude: Double = Double(kid.kidInfo.latitude)!
             let longitude: Double = Double(kid.kidInfo.longitude)!
             
             currentCoordinate = CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(latitude),
                                                             longitude: CLLocationDegrees.init(longitude))
             
-
             setChildMarker(kid)
-            
         }
     }
     
@@ -449,10 +464,11 @@ extension HomeVC {
             let batteryLevel = kid!["batteryLevel"] as? String
             let course = kid!["course"] as? String
             let accuracy = kid!["accuracy"] as? String
+            let avatar = kid!["avatar"] as? String
             
             let newKidInfo = KidInfo(kidID!, batteryLevel!, batteryState!, longitude! , latitude!, course!, date!, accuracy!)
             
-            let newKid = Kid(kidID!, name!, surname!, "Oval1", newKidInfo)
+            let newKid = Kid(kidID!, name!, surname!, avatar!, newKidInfo)
             kids.append(newKid)
         }
         let kidInfo1 = KidInfo("3", "53", "Charging", "76.86022583395243", "43.20581023751256", "1", "afa", "30")
@@ -506,7 +522,6 @@ extension HomeVC {
     }
 }
 
-
 //Table View Delegates and DataSources
 extension HomeVC {
     
@@ -542,7 +557,7 @@ extension HomeVC {
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "kidCell", for: indexPath) as! kidCell
                 let kid = kids[indexPath.row-1]
-                cell.setKid(kid.nameAndSurname, "Данные получены 3 минуты назад", kid.imgUrlString, kid.kidInfo.batteryLevel)
+                cell.setKid(kid.name, kid.surname, "Данные получены 3 минуты назад", kid.imgUrlString, kid.kidInfo.batteryLevel)
                 return cell
             }
         } else if tabBarIndex == 1 {
