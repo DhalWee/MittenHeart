@@ -10,7 +10,6 @@
 
 import UIKit
 import CTSlidingUpPanel
-import MapKit
 import GoogleMaps
 import GooglePlaces
 import PureLayout
@@ -225,18 +224,27 @@ extension HomeVC {
     
 //    ========================= Map repairing
     
+    func setRadius(_ coordinate: CLLocationCoordinate2D,_ accuracy: Double,_ color: UIColor) {
+        let circ = GMSCircle(position: coordinate, radius: CLLocationDistance(accuracy))
+        circ.fillColor = color
+        circ.strokeColor = UIColor.clear
+        circ.strokeWidth = 0
+        circ.map = mapView
+    }
+    
     func setChildMarker(_ kid: Kid) {
         let marker = GMSMarker()
         let latitude: Double = Double(kid.kidInfo.latitude)!
         let longitude: Double = Double(kid.kidInfo.longitude)!
         
-        let location = CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(latitude),
+        let coordinate = CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(latitude),
                                                         longitude: CLLocationDegrees.init(longitude))
         //Set child's photo
         let newMarker = newChildMarkerView(kid)
         marker.iconView = newMarker
-        marker.position = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+        marker.position = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
         marker.map = mapView
+//        setRadius(coordinate, Double(kid.kidInfo.accuracy)!, UIColor(hex: green, alpha: 0.2))
     }
     
     func putKidsToMap() {
@@ -334,7 +342,7 @@ extension HomeVC {
         settingsBtn.imageView?.image = UIImage(named: "\(settingsBtn.tag)Inactive")
         if tag == 5 {
             moreBtn.imageView?.image = UIImage(named: "\(moreBtn.tag)Active")
-        } else {
+        } else if tag != 2 {
             btn.imageView?.image = UIImage(named: "\(tag)Active")
         }
     }

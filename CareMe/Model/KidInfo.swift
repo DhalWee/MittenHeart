@@ -38,7 +38,7 @@ struct KidInfo {
         self.latitude = "17"
         self.course = "0"
         self.time = "time"
-        self.accuracy = "5"
+        self.accuracy = "150"
     }
     
 }

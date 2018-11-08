@@ -1094,13 +1094,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Подать сигнал тревоги" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Dg-fG-cYP">
-                                <rect key="frame" x="106" y="321.5" width="163" height="17.5"/>
+                                <rect key="frame" x="96" y="321.5" width="183.5" height="18.5"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="15"/>
                                 <color key="textColor" red="0.20784313730000001" green="0.28235294119999998" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="нажми эту кнопку, если ты в опасности" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NPD-DZ-VQl">
-                                <rect key="frame" x="75.5" y="344" width="224" height="14"/>
+                                <rect key="frame" x="65" y="345" width="245" height="15"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
                                 <color key="textColor" red="0.20784313730000001" green="0.28235294119999998" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1117,7 +1117,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EMg-LG-RqP">
-                                <rect key="frame" x="173" y="398" width="29.5" height="14"/>
+                                <rect key="frame" x="171" y="400" width="33" height="15"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
                                 <color key="textColor" red="0.20784313725490194" green="0.28235294117647058" blue="0.36470588235294116" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1627,7 +1627,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Записать звук вокруг телефона" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tqn-gs-GYe">
-                                <rect key="frame" x="60.5" y="83" width="254.5" height="18.5"/>
+                                <rect key="frame" x="75" y="85" width="225.5" height="17.5"/>
                                 <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="15"/>
                                 <color key="textColor" red="0.20784313730000001" green="0.28235294119999998" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1644,7 +1644,7 @@
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Контролируйте окружение вашего ребенка" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9K-QH-CY9">
-                                <rect key="frame" x="48" y="106.5" width="279.5" height="15"/>
+                                <rect key="frame" x="64.5" y="107.5" width="246" height="14"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="12"/>
                                 <color key="textColor" red="0.20784313730000001" green="0.28235294119999998" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1682,6 +1682,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="00R-Rh-h3G">
+                                <rect key="frame" x="0.0" y="90" width="375" height="513"/>
+                                <color key="backgroundColor" red="1" green="0.22915736610000001" blue="0.49545200890000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sNw-5S-mzS">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                                 <subviews>
@@ -1689,7 +1693,7 @@
                                         <rect key="frame" x="15" y="0.0" width="360" height="45"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F5n-vG-jsJ">
-                                                <rect key="frame" x="0.0" y="15" width="100" height="15"/>
+                                                <rect key="frame" x="0.0" y="15.5" width="100" height="14"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
                                                 <color key="textColor" red="0.6588235294" green="0.6705882353" blue="0.68235294120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1731,7 +1735,7 @@
                                         <rect key="frame" x="15" y="0.0" width="360" height="45"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Адрес" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wct-3c-HMV">
-                                                <rect key="frame" x="0.0" y="15" width="100" height="15"/>
+                                                <rect key="frame" x="0.0" y="15.5" width="100" height="14"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
                                                 <color key="textColor" red="0.6588235294" green="0.6705882353" blue="0.68235294120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1770,10 +1774,13 @@
                                 <rect key="frame" x="0.0" y="523" width="375" height="80"/>
                                 <subviews>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="nja-8M-6WI">
-                                        <rect key="frame" x="8" y="40" width="359" height="31"/>
+                                        <rect key="frame" x="38" y="40" width="299" height="31"/>
+                                        <connections>
+                                            <action selector="sliderMoveWithSender:" destination="TQN-IA-QKG" eventType="valueChanged" id="L94-e7-VoR"/>
+                                        </connections>
                                     </slider>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VXp-tp-sfV">
-                                        <rect key="frame" x="10" y="11" width="355" height="19"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VXp-tp-sfV">
+                                        <rect key="frame" x="10" y="30" width="355" height="0.0"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="15"/>
                                         <color key="textColor" red="0.20784313730000001" green="0.28235294119999998" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1783,16 +1790,12 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="VXp-tp-sfV" secondAttribute="trailing" constant="10" id="AZ2-6L-qJP"/>
                                     <constraint firstAttribute="bottom" secondItem="nja-8M-6WI" secondAttribute="bottom" constant="10" id="BYM-YZ-DUm"/>
-                                    <constraint firstAttribute="trailing" secondItem="nja-8M-6WI" secondAttribute="trailing" constant="10" id="GOX-AG-KlT"/>
+                                    <constraint firstAttribute="trailing" secondItem="nja-8M-6WI" secondAttribute="trailing" constant="40" id="GOX-AG-KlT"/>
                                     <constraint firstItem="VXp-tp-sfV" firstAttribute="leading" secondItem="Wai-nq-lln" secondAttribute="leading" constant="10" id="HC8-Ff-d2b"/>
-                                    <constraint firstItem="nja-8M-6WI" firstAttribute="leading" secondItem="Wai-nq-lln" secondAttribute="leading" constant="10" id="HvG-hL-An3"/>
+                                    <constraint firstItem="nja-8M-6WI" firstAttribute="leading" secondItem="Wai-nq-lln" secondAttribute="leading" constant="40" id="HvG-hL-An3"/>
                                     <constraint firstItem="nja-8M-6WI" firstAttribute="top" secondItem="VXp-tp-sfV" secondAttribute="bottom" constant="10" id="L62-66-IM9"/>
                                     <constraint firstAttribute="height" constant="80" id="bad-3p-OS0"/>
                                 </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="00R-Rh-h3G">
-                                <rect key="frame" x="0.0" y="90" width="375" height="433"/>
-                                <color key="backgroundColor" red="1" green="0.22915736610000001" blue="0.49545200890000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1800,11 +1803,11 @@
                             <constraint firstItem="Wai-nq-lln" firstAttribute="trailing" secondItem="0Qa-bJ-vLl" secondAttribute="trailing" id="D04-TE-E7t"/>
                             <constraint firstItem="XpM-id-0Aw" firstAttribute="trailing" secondItem="0Qa-bJ-vLl" secondAttribute="trailing" id="HCb-nc-pED"/>
                             <constraint firstItem="0Qa-bJ-vLl" firstAttribute="trailing" secondItem="00R-Rh-h3G" secondAttribute="trailing" id="HMm-Pe-xUK"/>
-                            <constraint firstItem="Wai-nq-lln" firstAttribute="top" secondItem="00R-Rh-h3G" secondAttribute="bottom" id="Hin-51-exB"/>
                             <constraint firstItem="sNw-5S-mzS" firstAttribute="trailing" secondItem="0Qa-bJ-vLl" secondAttribute="trailing" id="N49-CJ-54D"/>
                             <constraint firstItem="Wai-nq-lln" firstAttribute="leading" secondItem="0Qa-bJ-vLl" secondAttribute="leading" id="VRV-XV-tdc"/>
                             <constraint firstItem="sNw-5S-mzS" firstAttribute="top" secondItem="0Qa-bJ-vLl" secondAttribute="top" id="XEZ-QF-uJf"/>
                             <constraint firstItem="XpM-id-0Aw" firstAttribute="leading" secondItem="0Qa-bJ-vLl" secondAttribute="leading" id="cxA-1f-SUD"/>
+                            <constraint firstItem="00R-Rh-h3G" firstAttribute="bottom" secondItem="0Qa-bJ-vLl" secondAttribute="bottom" id="fJf-qe-CM0"/>
                             <constraint firstItem="XpM-id-0Aw" firstAttribute="top" secondItem="sNw-5S-mzS" secondAttribute="bottom" id="mPC-AU-bVE"/>
                             <constraint firstItem="sNw-5S-mzS" firstAttribute="leading" secondItem="0Qa-bJ-vLl" secondAttribute="leading" id="oWo-Rp-RMZ"/>
                             <constraint firstItem="00R-Rh-h3G" firstAttribute="top" secondItem="XpM-id-0Aw" secondAttribute="bottom" id="r2u-CD-DSD"/>
@@ -1818,10 +1821,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addressTF" destination="KoM-ix-kXl" id="U39-za-Oap"/>
+                        <outlet property="mapViewer" destination="00R-Rh-h3G" id="15i-e8-RWm"/>
                         <outlet property="nameTF" destination="tJY-ty-KYr" id="erC-zW-5LC"/>
                         <outlet property="radiusLbl" destination="VXp-tp-sfV" id="lc6-eZ-Oko"/>
                         <outlet property="radiusSlider" destination="nja-8M-6WI" id="bLr-wa-0oP"/>
-                        <outlet property="viewForMap" destination="00R-Rh-h3G" id="AED-Ge-Mki"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fVw-my-fCX" userLabel="First Responder" sceneMemberID="firstResponder"/>
