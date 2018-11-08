@@ -15,9 +15,13 @@ class moreFunctionsCell: UITableViewCell {
     @IBOutlet weak var soundAroundBtn: UIButton!
     @IBOutlet weak var sendSignalBtn: UIButton!
     
+    @IBOutlet weak var stack1: UIStackView!
+    @IBOutlet weak var stack2: UIStackView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        stack2.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

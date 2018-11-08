@@ -323,16 +323,20 @@ extension HomeVC {
         tableView.autoPinEdge(.top, to: .top, of: bottomView)
         tableView.autoPinEdge(.bottom, to: .bottom, of: bottomView)
         
-        
     }
     
     func tabBarColor(_ btn: UIButton) {
+        let tag = btn.tag
         homeBtn.imageView?.image = UIImage(named: "\(homeBtn.tag)Inactive")
         subscribeBtn.imageView?.image = UIImage(named: "\(subscribeBtn.tag)Inactive")
         chatBtn.imageView?.image = UIImage(named: "\(chatBtn.tag)Inactive")
         moreBtn.imageView?.image = UIImage(named: "\(moreBtn.tag)Inactive")
         settingsBtn.imageView?.image = UIImage(named: "\(settingsBtn.tag)Inactive")
-        btn.imageView?.image = UIImage(named: "\(btn.tag)Active")
+        if tag == 5 {
+            moreBtn.imageView?.image = UIImage(named: "\(moreBtn.tag)Active")
+        } else {
+            btn.imageView?.image = UIImage(named: "\(tag)Active")
+        }
     }
     
     @IBAction func tabBarBtnPressed(_ sender: UIButton) {
@@ -360,6 +364,7 @@ extension HomeVC {
             chatBtnPressed(sender)
             
         } else if tabBarIndex == 3 {
+            //Change the height of more functions 140/250 ToChange
             bottomController?.setAnchorPoint(anchor: CGFloat(99+140)/self.view.bounds.height)
             bottomController?.closePanel()
             bottomController?.anchorPanel()
@@ -369,12 +374,23 @@ extension HomeVC {
             bottomController?.setAnchorPoint(anchor: CGFloat(99)/self.view.bounds.height)
             bottomController?.closePanel()
             bottomController?.anchorPanel()
+        } else if tabBarIndex == 5 {
+            //Settings of places instead of kids ToChange
+            var anchor: Int {
+                if kids.count > 0 {
+                    return 99 + kids.count * 70
+                } else {
+                    return 99 + 70
+                }
+            }
+            bottomController?.setAnchorPoint(anchor: CGFloat(anchor)/self.view.bounds.height)
+            bottomController?.anchorPanel()
         }
         
         tableView.reloadData()
     }
     
-    @IBAction func chatBtnPressed(_ sender: Any) {
+    func chatBtnPressed(_ sender: Any) {
         performSegue(withIdentifier: "ChatVCSegue", sender: self)
     }
     
@@ -390,8 +406,14 @@ extension HomeVC {
         performSegue(withIdentifier: "SendSignalVCSegue", sender: self)
     }
     
-    @IBAction func reloadBtnPressed() {
-        updateInformation()
+    @IBAction func headerBtnPressed() {
+        if tabBarIndex == 0 {
+            updateInformation()
+        } else if tabBarIndex == 5 {
+            print("MSG Adding ")
+            performSegue(withIdentifier: "PlaceInMapViewSegue", sender: self)
+        }
+        
     }
     
     @IBAction func signOutBtnPressed() {
@@ -570,6 +592,8 @@ extension HomeVC {
         } else if tabBarIndex == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell", for: indexPath) as! settingsCell
             return cell
+        } else if tabBarIndex == 5 {
+            return UITableViewCell()
         } else {
             return UITableViewCell()
         }
@@ -581,9 +605,8 @@ extension HomeVC {
             return 50
             //HTC Else if tabBarIndex others must be here
         } else if tabBarIndex == 3 && indexPath.row == 1 {
+            //Change the height of more functions 140/240 ToChange
             return 140
-        } else if tabBarIndex == 3 {
-            return 100
         } else if tabBarIndex == 1 || tabBarIndex == 4 {
             return CGFloat(self.view.bounds.height-180)
         } else {

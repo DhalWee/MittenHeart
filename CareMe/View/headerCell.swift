@@ -19,7 +19,8 @@ class headerCell: UITableViewCell {
                            ["Подписка"],
                            ["Чат"],
                            ["Дополнительно"],
-                           ["Настройки"]]
+                           ["Настройки"],
+                           ["Места"]]
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,8 +30,13 @@ class headerCell: UITableViewCell {
     }
     
     func setHeader(_ index: Int) {
+        self.index = index
         if index == 0 {
             actionBtn.isHidden = false
+            actionBtn.setImage(UIImage(named: "Reload"), for: .normal)
+        } else if index == 5 {
+            actionBtn.isHidden = false
+            actionBtn.setImage(UIImage(named: "addBtn"), for: .normal)
         } else {
             actionBtn.isHidden = true
         }
@@ -39,7 +45,10 @@ class headerCell: UITableViewCell {
     }
     
     @IBAction func actionBtnPressed(_ sender: UIButton) {
-        actionBtn.rotate360Degrees()
+        if index == 0 {
+            actionBtn.rotate360Degrees()
+        }
+
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

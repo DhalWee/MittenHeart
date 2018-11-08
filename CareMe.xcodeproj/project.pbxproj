@@ -28,6 +28,7 @@
 		50A185B42159337C00000DD1 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A185B32159337C00000DD1 /* ChatVC.swift */; };
 		50CB0FC821481690003771C4 /* ChildOrParentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CB0FC721481690003771C4 /* ChildOrParentVC.swift */; };
 		50CB0FCA21481B30003771C4 /* ChildActivateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CB0FC921481B30003771C4 /* ChildActivateVC.swift */; };
+		50CEC4842193B3540054B540 /* PlaceInMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CEC4832193B3540054B540 /* PlaceInMapView.swift */; };
 		50DF58F72147B03500B76BE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DF58F62147B03500B76BE6 /* AppDelegate.swift */; };
 		50DF58F92147B03500B76BE6 /* LoginOrRegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DF58F82147B03500B76BE6 /* LoginOrRegisterVC.swift */; };
 		50DF58FC2147B03500B76BE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50DF58FA2147B03500B76BE6 /* Main.storyboard */; };
@@ -122,6 +123,7 @@
 		50A185B32159337C00000DD1 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		50CB0FC721481690003771C4 /* ChildOrParentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildOrParentVC.swift; sourceTree = "<group>"; };
 		50CB0FC921481B30003771C4 /* ChildActivateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildActivateVC.swift; sourceTree = "<group>"; };
+		50CEC4832193B3540054B540 /* PlaceInMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceInMapView.swift; sourceTree = "<group>"; };
 		50DF58F32147B03500B76BE6 /* CareMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CareMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50DF58F62147B03500B76BE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50DF58F82147B03500B76BE6 /* LoginOrRegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginOrRegisterVC.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 				50A185AF2159333B00000DD1 /* SoundAroundVC.swift */,
 				50A185B12159335700000DD1 /* SendSignalVC.swift */,
 				50872889216E15B100A2C04F /* ChildMenuVC.swift */,
+				50CEC4832193B3540054B540 /* PlaceInMapView.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -622,6 +625,7 @@
 				50134DEA215E2D05004A3946 /* repairCell.swift in Sources */,
 				50CB0FC821481690003771C4 /* ChildOrParentVC.swift in Sources */,
 				5055E866214B37E5001138AD /* ParentGenerateCodeVC.swift in Sources */,
+				50CEC4842193B3540054B540 /* PlaceInMapView.swift in Sources */,
 				50A185A82159231B00000DD1 /* RegisterVC.swift in Sources */,
 				50E58E00217EF8CB00E62D46 /* KidInfo.swift in Sources */,
 				504C5AE8214C2F2200831F95 /* LoginVC.swift in Sources */,
