@@ -224,9 +224,9 @@ extension HomeVC {
     
 //    ========================= Map repairing
     
-    func setRadius(_ coordinate: CLLocationCoordinate2D,_ accuracy: Double,_ color: UIColor) {
+    func setRadius(_ coordinate: CLLocationCoordinate2D,_ accuracy: Double) {
         let circ = GMSCircle(position: coordinate, radius: CLLocationDistance(accuracy))
-        circ.fillColor = color
+        circ.fillColor = UIColor(red: 34/255, green: 193/255, blue: 195/255, alpha: 0.2)
         circ.strokeColor = UIColor.clear
         circ.strokeWidth = 0
         circ.map = mapView
@@ -244,7 +244,7 @@ extension HomeVC {
         marker.iconView = newMarker
         marker.position = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
         marker.map = mapView
-//        setRadius(coordinate, Double(kid.kidInfo.accuracy)!, UIColor(hex: green, alpha: 0.2))
+//        setRadius(coordinate, Double(kid.kidInfo.accuracy)!)
     }
     
     func putKidsToMap() {
@@ -402,8 +402,8 @@ extension HomeVC {
         performSegue(withIdentifier: "ChatVCSegue", sender: self)
     }
     
-    @IBAction func movementBtnPressed(_ sender: Any) {
-        performSegue(withIdentifier: "MovementVCSegue", sender: self)
+    @IBAction func callCenterBtnPressed(_ sender: Any) {
+        performSegue(withIdentifier: "CallCenterVCSegue", sender: self)
     }
     
     @IBAction func soundAroundBtnPressed (_ sender: Any) {
@@ -419,7 +419,7 @@ extension HomeVC {
             updateInformation()
         } else if tabBarIndex == 5 {
             print("MSG Adding ")
-            performSegue(withIdentifier: "PlaceInMapViewSegue", sender: self)
+            performSegue(withIdentifier: "PlaceInMapVCSegue", sender: self)
         }
         
     }

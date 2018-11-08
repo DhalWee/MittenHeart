@@ -20,6 +20,8 @@ class ChildVC: UIViewController, WebSocketDelegate {
     @IBOutlet weak var nameView: UIView!
     @IBOutlet weak var surnameView: UIView!
     @IBOutlet weak var removeChildBtn: UIButton!
+    @IBOutlet weak var noImgView: UIView!
+    @IBOutlet weak var noImgLbl: UILabel!
     
     var socket: WebSocket! = nil
 
@@ -38,6 +40,16 @@ class ChildVC: UIViewController, WebSocketDelegate {
             nameTF.text = kid!.name
             surnameTF.text = kid!.surname
             imgView.image = UIImage(named: kid!.imgUrlString)
+            noImgLbl.text = kid?.name[0..<2]
+            
+            if kid?.imgUrlString == "" {
+                imgView.isHidden = true
+                noImgView.isHidden = false
+            } else {
+                imgView.isHidden = false
+                noImgView.isHidden = true
+            }
+            
         }
         
         
@@ -73,14 +85,17 @@ extension ChildVC {
         setEditingMode()
         nameTF.layer.borderColor = UIColor(hex: green).cgColor
         surnameTF.layer.borderColor = UIColor(hex: green).cgColor
+        noImgView.layer.cornerRadius = noImgView.bounds.height/2
+        noImgView.layer.borderColor = UIColor(hex: navy).cgColor
+        noImgView.layer.borderWidth = 1.5
     }
     
-    @IBAction func chatBtnPressed(_ sender: Any) {
-        performSegue(withIdentifier: "ChatVCSegue", sender: self)
+    @IBAction func addPlaceBtnPressed(_ sender: Any) {
+        performSegue(withIdentifier: "PlaceInMapVCSegue", sender: self)
     }
     
-    @IBAction func movementBtnPressed(_ sender: Any) {
-        performSegue(withIdentifier: "MovementVCSegue", sender: self)
+    @IBAction func callCenterBtnPressed(_ sender: Any) {
+        performSegue(withIdentifier: "CallCenterVCSegue", sender: self)
     }
     
     @IBAction func soundAroundBtnPressed (_ sender: Any) {

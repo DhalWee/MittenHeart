@@ -11,7 +11,7 @@ import GoogleMaps
 import GooglePlaces
 import Starscream
 
-class PlaceInMapView: UIViewController, WebSocketDelegate {
+class PlaceInMapVC: UIViewController, WebSocketDelegate {
 
     @IBOutlet weak var nameTF: UITextField!
     @IBOutlet weak var addressTF: UITextField!
@@ -27,8 +27,6 @@ class PlaceInMapView: UIViewController, WebSocketDelegate {
     var placesClient: GMSPlacesClient!
     var zoomLevel: Float = 11
     let geocoder = GMSGeocoder()
-    var marker = GMSMarker()
-    var circ = GMSCircle()
     
     var currentCoordinate = CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(exactly: 43.243713)!,
                                                         longitude: CLLocationDegrees.init(exactly: 76.918042)!)
@@ -56,27 +54,38 @@ class PlaceInMapView: UIViewController, WebSocketDelegate {
         socket.connect()
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.shared.statusBarStyle = .default
+    }
+
 
 }
 
 //Functions
-extension PlaceInMapView {
+extension PlaceInMapVC {
     
     func uiStuffs() {
         radiusSlider.minimumValue = 0.1
         radiusSlider.setValue(0.1, animated: false)
-        radiusLbl.text = "\(radius) m"
+        radiusLbl.text = "\(Int(radius)) m"
     }
     
     @IBAction func sliderMove(sender: UISlider) {
         radius = Double(sender.value * 1500)
         radiusLbl.text = "\(Int(radius)) m"
-        setRadius(currentCoordinate, radius)
+        setRadius()
     }
 }
 
 //Map functions
-extension PlaceInMapView {
+extension PlaceInMapVC {
     @IBAction func zoomIn(_ sender: Any) {
         let update = GMSCameraUpdate.zoomIn()
         mapView.animate(with: update)
@@ -140,22 +149,24 @@ extension PlaceInMapView {
     
 //    ========================= Map repairing
     
-    func setRadius(_ coordinate: CLLocationCoordinate2D,_ accuracy: Double) {
+    func setRadius() {
         self.mapView.clear()
-        circ = GMSCircle(position: coordinate, radius: CLLocationDistance(accuracy))
+        setMarker()
+        let circ = GMSCircle(position: currentCoordinate, radius: CLLocationDistance(radius))
         circ.fillColor = UIColor(red: 34/255, green: 193/255, blue: 195/255, alpha: 0.2)
         circ.strokeColor = UIColor.clear
         circ.strokeWidth = 0
-        setMarker(coordinate)
         circ.map = mapView
+        print("MSG Circle location \(currentCoordinate)")
     }
     
-    func setMarker(_ coordinate: CLLocationCoordinate2D) {
+    func setMarker() {
+        let marker = GMSMarker(position: currentCoordinate)
         //Set child's photo
         let newMarker = newMarkerView()
         marker.iconView = newMarker
-        marker.position = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
         marker.map = mapView
+        print("MSG Marker location \(currentCoordinate)")
     }
     
     func mapFunction(_ location: CLLocationCoordinate2D) {
@@ -193,7 +204,7 @@ extension PlaceInMapView {
 }
 
 // Delegations
-extension PlaceInMapView: GMSMapViewDelegate {
+extension PlaceInMapVC: GMSMapViewDelegate {
     func websocketDidConnect(socket: WebSocketClient) {
         print("connected")
     }
@@ -221,7 +232,7 @@ extension PlaceInMapView: GMSMapViewDelegate {
                 let address = fullAddress?[0]
                 self.addressTF.text = address
                 self.currentCoordinate = coordinate
-                self.setRadius(coordinate, self.radius)
+                self.setRadius()
             }
         }
     }
