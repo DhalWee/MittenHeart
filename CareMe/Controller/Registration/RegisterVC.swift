@@ -121,6 +121,7 @@ extension RegisterVC {
         if isNotEmptyTF() && (passwordTF.text == repeatPasswordTF.text) {
             return true
         } else {
+            errorWithText("Пароли не совпадают")
             return false
         }
     }
@@ -205,7 +206,7 @@ extension RegisterVC {
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        print(text)
+        print("Answer from websocket\(text)")
         do {
             let data = text.data(using: .utf8)!
             let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? NSDictionary

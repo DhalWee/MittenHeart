@@ -95,7 +95,7 @@ extension ParentGenerateCodeVC {
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        print("MSG: \(text)")
+        print("Answer from websocket\(text)")
         do {
             let data = text.data(using: .utf8)!
             let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? NSDictionary

@@ -26,6 +26,8 @@ class ChildOrParentVC: UIViewController {
         defaults.removeObject(forKey: "sid")
         defaults.removeObject(forKey: "kidID")
         defaults.removeObject(forKey: "parentID")
+        defaults.removeObject(forKey: "email")
+        defaults.removeObject(forKey: "pwd")
         let count = defaults.integer(forKey: "kidCount")
         
         if count > 0 {

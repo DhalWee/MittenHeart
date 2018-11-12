@@ -23,9 +23,11 @@ class ChildMenuVC: UIViewController, CLLocationManagerDelegate, WebSocketDelegat
     
     var jsonObject: Any  = []
     
-    var jsonCheckKid: Any  = [
-        "action": "check_kid",
-        "kid_session_id": defaults.string(forKey: "sid")!]
+    let autoAuth: Any = [
+        "action": "auth_kid",
+        "email": defaults.string(forKey: "email"),
+        "password": defaults.string(forKey: "pwd")
+    ]
     
     var lastLoc = CLLocation()
     
@@ -215,6 +217,35 @@ extension ChildMenuVC {
         self.show(vc!, sender: self)
     }
     
+    func kidsListRequest () {
+        if defaults.string(forKey: "kidID0") != nil {
+            let jsonKidsList: Any = [
+                "action": "kids_list",
+                "session_id": defaults.string(forKey: "sid")!
+            ]
+            sendJson(jsonKidsList) {
+                print("MSG: Successfully sended")
+                print(jsonKidsList)
+            }
+        }
+    }
+    
+    func authParse(_ jsonObject: NSDictionary) {
+        if let sid = jsonObject["sid"] as? String {
+            defaults.set(sid, forKey: "sid")
+        }
+    }
+    
+    func checkKidRequest() {
+        let jsonCheckKid: Any = [
+            "action": "check_kid",
+            "kid_session_id": defaults.string(forKey: "sid")!
+        ]
+        sendJson(jsonCheckKid) {
+            print(jsonCheckKid)
+        }
+    }
+    
 }
 
 // Delegates
@@ -249,10 +280,7 @@ extension ChildMenuVC {
     
     func websocketDidConnect(socket: WebSocketClient) {
         print("connected")
-        sendJson(jsonCheckKid) {
-            print(self.jsonCheckKid)
-        }
-        
+        sendJson(autoAuth) {}
         
     }
     
@@ -261,7 +289,7 @@ extension ChildMenuVC {
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        print(text)
+        print("Answer from websocket\(text)")
         do {
             let data = text.data(using: .utf8)!
             let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? NSDictionary
@@ -272,6 +300,9 @@ extension ChildMenuVC {
                 } else if action == "send_signal" {
                     print(action)
                     sendSignalHandler(jsonObject!)
+                } else if action == "auth_kid" {
+                    authParse(jsonObject!)
+                    checkKidRequest()
                 }
             }
             

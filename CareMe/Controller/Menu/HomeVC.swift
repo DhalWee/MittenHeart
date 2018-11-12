@@ -44,14 +44,17 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
     var updateTimer: Timer!
     
     var isFirst: Bool = true
+    var isFirstCentering: Bool = true
     
     var jsonObject: Any  = []
-    var jsonKidsList: Any = [
-        "action": "kids_list",
-        "session_id": defaults.string(forKey: "sid")!
+    var autoAuth: Any = [
+        "action": "auth",
+        "email": defaults.string(forKey: "email"),
+        "password": defaults.string(forKey: "pwd")
     ]
     
     var kids: [Kid] = []
+    var selectedKidIndex: Int = -1
     
     var tabBarIndex = 0
     
@@ -60,7 +63,7 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
     let marker = GMSMarker()
     var camera = GMSCameraPosition()
     var placesClient: GMSPlacesClient!
-    var zoomLevel: Float = 11
+    var zoomLevel: Float = 15
     
     var currentCoordinate = CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(exactly: 43.243713)!,
                                                         longitude: CLLocationDegrees.init(exactly: 76.918042)!)
@@ -86,7 +89,7 @@ class HomeVC: UIViewController, CTBottomSlideDelegate, UITableViewDelegate, UITa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateTimer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(updateInformation), userInfo: nil, repeats: true)
+        updateTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(updateInformation), userInfo: nil, repeats: true)
         UIApplication.shared.statusBarStyle = .default
         tabBarBtnPressed(homeBtn)
         chatBtn.imageView?.image = UIImage(named: "\(chatBtn.tag)Inactive")
@@ -127,9 +130,21 @@ extension HomeVC {
     }
     
     @IBAction func centerMap(_ sender: Any) {
-        let update = GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: currentCoordinate.latitude,
-                                                                      longitude: currentCoordinate.longitude))
-        mapView.animate(with: update)
+        if kids.count > 0 {
+            
+            selectedKidIndex = selectedKidIndex + 1
+            if selectedKidIndex>=kids.count {
+                selectedKidIndex = 0
+            }
+            if let latitude: Double = Double(kids[selectedKidIndex].kidInfo.latitude), let longitude: Double = Double(kids[selectedKidIndex].kidInfo.longitude) {
+                currentCoordinate = CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(latitude),
+                                                                longitude: CLLocationDegrees.init(longitude))
+                let update = GMSCameraUpdate.setTarget(CLLocationCoordinate2D(latitude: currentCoordinate.latitude,
+                                                                              longitude: currentCoordinate.longitude))
+                mapView.animate(with: update)
+            }
+            
+        }
     }
     
     func newChildMarkerView(_ kid: Kid) -> UIView {
@@ -249,13 +264,11 @@ extension HomeVC {
     
     func putKidsToMap() {
         for kid in kids {
-            let latitude: Double = Double(kid.kidInfo.latitude)!
-            let longitude: Double = Double(kid.kidInfo.longitude)!
-            
-            currentCoordinate = CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(latitude),
-                                                            longitude: CLLocationDegrees.init(longitude))
-            
-            setChildMarker(kid)
+            if let _: Double = Double(kid.kidInfo.latitude), let _: Double = Double(kid.kidInfo.longitude) {
+//                currentCoordinate = CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(latitude),
+//                                                                longitude: CLLocationDegrees.init(longitude))
+                setChildMarker(kid)
+            }
         }
     }
     
@@ -430,20 +443,16 @@ extension HomeVC {
         self.show(vc!, sender: self)
     }
     
-    
-    
     @objc func updateInformation() {
         if socket.isConnected {
             if defaults.string(forKey: "kidID0") != nil {
-                sendJson(jsonKidsList) {}
+                kidsListRequest()
             }
         } else {
             socket.connect()
         }
     }
 
-    
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if tabBarIndex == 0 &&
             ((tableView.indexPathForSelectedRow?.row)! > 0 && (tableView.indexPathForSelectedRow?.row)! <= kids.count ) {
@@ -487,27 +496,51 @@ extension HomeVC {
             
             print("Kid id: \(kidID!)")
             
-            let date = kid!["date"] as? String
+            var time = kid!["date"] as? String
             let latitude = kid!["latitude"] as? String
             let longitude = kid!["longitude"] as? String
             let batteryState = kid!["batteryState"] as? String
             let batteryLevel = kid!["batteryLevel"] as? String
             let course = kid!["course"] as? String
             let accuracy = kid!["accuracy"] as? String
-            let avatar = kid!["avatar"] as? String
+//            let avatar = kid!["avatar"] as? String
             
-            let newKidInfo = KidInfo(kidID!, batteryLevel!, batteryState!, longitude! , latitude!, course!, date!, accuracy!)
+            if latitude == "" {
+                time = "Данные не доступны"
+            } else {
+                time = "Данные получены 3 минуты назад"
+            }
             
-            let newKid = Kid(kidID!, name!, surname!, avatar!, newKidInfo)
+            let newKidInfo = KidInfo(kidID!, batteryLevel!, batteryState!, longitude! , latitude!, course!, time!, accuracy!)
+            
+            let newKid = Kid(kidID!, name!, surname!, "OvalMini", newKidInfo)
             kids.append(newKid)
         }
-        let kidInfo1 = KidInfo("3", "53", "Charging", "76.86022583395243", "43.20581023751256", "1", "afa", "30")
-        let kid1 = Kid("3", "Testing", "kid", "OvalMini", kidInfo1)
-        kids.append(kid1)
         putKidsToMap()
         tableView.reloadData()
-        
-
+        if isFirstCentering {
+            isFirstCentering = false
+            centerMap(self)
+        }
+    }
+    
+    func authParse(_ jsonObject: NSDictionary) {
+        if let sid = jsonObject["sid"] as? String {
+            defaults.set(sid, forKey: "sid")
+        }
+    }
+    
+    func kidsListRequest () {
+        if defaults.string(forKey: "kidID0") != nil {
+            let jsonKidsList: Any = [
+                "action": "kids_list",
+                "session_id": defaults.string(forKey: "sid")!
+            ]
+            sendJson(jsonKidsList) {
+                print("MSG: Successfully sended")
+                print(jsonKidsList)
+            }
+        }
     }
     
 }
@@ -516,11 +549,8 @@ extension HomeVC {
 extension HomeVC {
     func websocketDidConnect(socket: WebSocketClient) {
         print("connected")
-        if defaults.string(forKey: "kidID0") != nil {
-            sendJson(jsonKidsList) {
-                print("MSG: Successfully sended")
-                print(self.jsonKidsList)
-            }
+        sendJson(autoAuth) {
+            print(self.autoAuth)
         }
     }
     
@@ -529,7 +559,7 @@ extension HomeVC {
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        print("MSG:\(text)")
+        print("Answer from websocket\(text)")
         do {
             let data = text.data(using: .utf8)!
             let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? NSDictionary
@@ -537,6 +567,9 @@ extension HomeVC {
             if let action = jsonObject?["action"] as? String {
                 if action == "kids_list" {
                     kidsListParse(jsonObject!)
+                } else if action == "auth" {
+                    self.authParse(jsonObject!)
+                    kidsListRequest()
                 }
             }
             
@@ -587,7 +620,7 @@ extension HomeVC {
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "kidCell", for: indexPath) as! kidCell
                 let kid = kids[indexPath.row-1]
-                cell.setKid(kid.name, kid.surname, "Данные получены 3 минуты назад", kid.imgUrlString, kid.kidInfo.batteryLevel)
+                cell.setKid(kid.name, kid.surname, kid.kidInfo.time, kid.imgUrlString, kid.kidInfo.batteryLevel)
                 return cell
             }
         } else if tabBarIndex == 1 {

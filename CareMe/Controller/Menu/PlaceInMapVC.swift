@@ -214,7 +214,7 @@ extension PlaceInMapVC: GMSMapViewDelegate {
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        print("MSG: \(text)")
+        print("Answer from websocket\(text)")
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {

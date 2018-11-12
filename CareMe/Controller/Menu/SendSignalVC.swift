@@ -15,6 +15,8 @@ class SendSignalVC: UIViewController, WebSocketDelegate {
     
     var socket: WebSocket! = nil
     
+    var kidID: Int = 0
+    
     let jsonObject: Any  = [
         "action": "send_signal",
         "session_id": defaults.string(forKey: "sid"),
@@ -87,7 +89,7 @@ extension SendSignalVC {
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        print("MSG: \(text)")
+        print("Answer from websocket\(text)")
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {

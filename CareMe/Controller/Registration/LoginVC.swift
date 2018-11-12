@@ -105,6 +105,8 @@ extension LoginVC {
                 "email": "\((emailTF.text)!)",
                 "password": "\((passwordTF.text)!)"
             ]
+            defaults.set(emailTF.text, forKey: "email")
+            defaults.set(passwordTF.text, forKey: "pwd")
             return true
         }
         return false
@@ -222,7 +224,7 @@ extension LoginVC {
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        print("MSG:\(text)")
+        print("Answer from websocket\(text)")
         do {
             let data = text.data(using: .utf8)!
             let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? NSDictionary

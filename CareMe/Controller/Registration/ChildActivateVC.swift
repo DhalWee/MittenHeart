@@ -106,7 +106,7 @@ extension ChildActivateVC {
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        print(text)
+        print("Answer from websocket\(text)")
         guard text != "\"Code not found\"" else {
             print("MSG: error")
             return

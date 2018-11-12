@@ -29,11 +29,11 @@ class CallCenterVC: UIViewController {
     }
 
     @IBAction func callBtnPressed(_ sender: Any){
-        if let url = URL(string: "TEL://87072120008") {
+        if let url = URL(string: "TEL://87014557050") {
             if #available(iOS 10.0, *) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             } else {
-                let urlString = "telprompt:87072120008";
+                let urlString = "telprompt:87014557050";
                 let url = NSURL(fileURLWithPath: urlString);
                 if UIApplication.shared.canOpenURL(url as URL) {
                     UIApplication.shared.openURL(url as URL)
