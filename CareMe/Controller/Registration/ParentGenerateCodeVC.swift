@@ -41,13 +41,6 @@ class ParentGenerateCodeVC: UIViewController, WebSocketDelegate {
         socket.connect()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    
     func uiStuffs() {
         
         addLineToView(view: firstLbl, position: .bottom, color: UIColor.init(hex: navy), width: 2)

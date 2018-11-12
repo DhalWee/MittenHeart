@@ -13,6 +13,9 @@ import UIKit
 //import Starscream
 
 class MovementVC: UIViewController/*, WebSocketDelegate*/ {
+    
+    var kids: [Kid]?
+    var kid: Kid?
 
     @IBOutlet weak var mapMarker: UIView!
 //
@@ -38,17 +41,7 @@ class MovementVC: UIViewController/*, WebSocketDelegate*/ {
         super.viewDidLoad()
         
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        UIApplication.shared.statusBarStyle = .lightContent
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        UIApplication.shared.statusBarStyle = .default
-    }
-//
+
 //    override func viewDidAppear(_ animated: Bool) {
 //        super.viewDidAppear(animated)
 //        setMap()

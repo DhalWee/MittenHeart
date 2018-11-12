@@ -11,6 +11,9 @@ import Starscream
 
 class ChatVC: UIViewController, WebSocketDelegate {
     
+    var kids: [Kid]?
+    var kid: Kid?
+    
     @IBOutlet weak var barBtn: UIBarButtonItem!
     
     var socket: WebSocket! = nil
@@ -35,7 +38,6 @@ class ChatVC: UIViewController, WebSocketDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.statusBarStyle = .lightContent
         if role == "parent" {
             barBtn.isEnabled = true
             barBtn.tintColor = nil
@@ -47,7 +49,6 @@ class ChatVC: UIViewController, WebSocketDelegate {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        UIApplication.shared.statusBarStyle = .default
     }
     
 }

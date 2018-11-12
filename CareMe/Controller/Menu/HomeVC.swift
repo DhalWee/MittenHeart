@@ -265,8 +265,6 @@ extension HomeVC {
     func putKidsToMap() {
         for kid in kids {
             if let _: Double = Double(kid.kidInfo.latitude), let _: Double = Double(kid.kidInfo.longitude) {
-//                currentCoordinate = CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(latitude),
-//                                                                longitude: CLLocationDegrees.init(longitude))
                 setChildMarker(kid)
             }
         }

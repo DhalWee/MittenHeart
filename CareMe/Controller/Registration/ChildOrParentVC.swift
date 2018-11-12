@@ -35,9 +35,7 @@ class ChildOrParentVC: UIViewController {
                 defaults.removeObject(forKey: "kidID\(i)")
             }
             defaults.removeObject(forKey: "kidCount")
-            
         }
-        
         defaults.set(-1, forKey: "kidCount")
         
         UIApplication.shared.statusBarStyle = .default

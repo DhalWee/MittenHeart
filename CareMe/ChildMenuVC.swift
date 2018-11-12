@@ -13,7 +13,6 @@ import AVFoundation
 
 class ChildMenuVC: UIViewController, CLLocationManagerDelegate, WebSocketDelegate {
     
-    @IBOutlet weak var lbl: UILabel!
     @IBOutlet weak var signOutBtn: UIButton!
     
     var locationManager = CLLocationManager()
@@ -131,7 +130,6 @@ extension ChildMenuVC {
                 return ""
             }
         }
-        lbl.text = "Level: \(batteryLevel)\nState \(batteryState)"
         
         let longitude = location.coordinate.longitude
         let latitude = location.coordinate.latitude

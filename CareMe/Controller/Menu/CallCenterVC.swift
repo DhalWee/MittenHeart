@@ -17,16 +17,6 @@ class CallCenterVC: UIViewController {
 
         btn.layer.cornerRadius = 5
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        UIApplication.shared.statusBarStyle = .lightContent
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        UIApplication.shared.statusBarStyle = .default
-    }
 
     @IBAction func callBtnPressed(_ sender: Any){
         if let url = URL(string: "TEL://87014557050") {

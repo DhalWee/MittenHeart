@@ -19,6 +19,9 @@ class PlaceInMapVC: UIViewController, WebSocketDelegate {
     @IBOutlet weak var radiusSlider: UISlider!
     @IBOutlet weak var mapViewer: UIView!
     
+    var kids: [Kid]?
+    var kid: Kid?
+    
     var socket: WebSocket! = nil
     
     //Map stuffs
@@ -52,17 +55,6 @@ class PlaceInMapVC: UIViewController, WebSocketDelegate {
         socket = WebSocket(url: url)
         socket.delegate = self
         socket.connect()
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        UIApplication.shared.statusBarStyle = .lightContent
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        UIApplication.shared.statusBarStyle = .default
     }
 
 

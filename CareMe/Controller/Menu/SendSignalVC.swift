@@ -15,6 +15,9 @@ class SendSignalVC: UIViewController, WebSocketDelegate {
     
     var socket: WebSocket! = nil
     
+    var kids: [Kid]?
+    var kid: Kid?
+    
     var kidID: Int = 0
     
     let jsonObject: Any  = [
@@ -30,16 +33,6 @@ class SendSignalVC: UIViewController, WebSocketDelegate {
         btn.layer.cornerRadius = 5
 
         // Do any additional setup after loading the view.
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        UIApplication.shared.statusBarStyle = .lightContent
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        UIApplication.shared.statusBarStyle = .default
     }
     
     override func viewDidAppear(_ animated: Bool) {
