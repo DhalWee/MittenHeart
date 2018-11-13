@@ -17,7 +17,7 @@ class addKidCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         addImg.layer.cornerRadius = addImg.bounds.height/2
-        addLineToView(view: self.contentView, position: .bottom, color: UIColor.init(hex: lightGray), width: 0.5)
+        addLineToView(view: self.contentView, position: .bottom, color: UIColor.init(hex: lightGrey), width: 0.5)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

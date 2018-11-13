@@ -24,7 +24,7 @@ class kidCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         imgView.layer.cornerRadius = imgView.bounds.height/2
-        addLineToView(view: lineView, position: .bottom, color: UIColor.init(hex: lightGray), width: 0.5)
+        addLineToView(view: lineView, position: .bottom, color: UIColor.init(hex: lightGrey), width: 0.5)
         imgView.backgroundColor = UIColor.clear
         noImgView.layer.cornerRadius = noImgView.bounds.height/2
         noImgView.layer.borderColor = UIColor(hex: navy).cgColor

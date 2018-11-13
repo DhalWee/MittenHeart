@@ -24,6 +24,7 @@ class ChildOrParentVC: UIViewController {
         //Todo remove all count kidID
         defaults.removeObject(forKey: "role")
         defaults.removeObject(forKey: "sid")
+        defaults.removeObject(forKey: "uid")
         defaults.removeObject(forKey: "kidID")
         defaults.removeObject(forKey: "parentID")
         defaults.removeObject(forKey: "email")

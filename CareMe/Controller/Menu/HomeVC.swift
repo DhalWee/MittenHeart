@@ -335,7 +335,7 @@ extension HomeVC {
         bottomView.roundCorners([.topLeft, .topRight], radius: 20)
         tableView.roundCorners([.topLeft, .topRight], radius: 20)
         
-        addLineToView(view: tabBarView, position: .top, color: UIColor(hex: lightGray), width: 0.5)
+        addLineToView(view: tabBarView, position: .top, color: UIColor(hex: lightGrey), width: 0.5)
         
         tableView.autoPinEdge(.leading, to: .leading, of: bottomView)
         tableView.autoPinEdge(.trailing, to: .trailing, of: bottomView)

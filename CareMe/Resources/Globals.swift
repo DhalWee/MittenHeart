@@ -22,8 +22,9 @@ let green = 0x22C1C3
 let mapBlue = 0x2A8ECC
 let yellow = 0xFFC000
 let actionBlue = 0x007AFF
-let lightGray = 0xD8D8D8
-let darkGray = 0x979797
+let lightGrey = 0xD8D8D8
+let darkGrey = 0x979797
+let msgGrey = 0xE5E5EA
 
 let mapApi = "AIzaSyBlrYJ3j9_BsUDRv4yp25PeazJx9I0Q3g0"
 

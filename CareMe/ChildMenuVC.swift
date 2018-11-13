@@ -205,27 +205,17 @@ extension ChildMenuVC {
     func sendSignalHandler(_ jsonObject: NSDictionary) {
         let kidIDFromJson = (jsonObject["kid_id"])! as? Int
         if kidIDFromJson == defaults.integer(forKey: "uid") {
-            loudSignal()
+            
         }
+        print(kidIDFromJson)
+        print(defaults.integer(forKey: "uid"))
+        loudSignal()
     }
     
     @IBAction func signOutBtnPressed() {
         signOut()
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "InitialPage")
         self.show(vc!, sender: self)
-    }
-    
-    func kidsListRequest () {
-        if defaults.string(forKey: "kidID0") != nil {
-            let jsonKidsList: Any = [
-                "action": "kids_list",
-                "session_id": defaults.string(forKey: "sid")!
-            ]
-            sendJson(jsonKidsList) {
-                print("MSG: Successfully sended")
-                print(jsonKidsList)
-            }
-        }
     }
     
     func authParse(_ jsonObject: NSDictionary) {

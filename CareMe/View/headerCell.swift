@@ -26,7 +26,7 @@ class headerCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         lightImg.layer.cornerRadius = lightImg.bounds.height/2
-        addLineToView(view: self.contentView, position: .bottom, color: UIColor.init(hex: lightGray), width: 0.5)
+        addLineToView(view: self.contentView, position: .bottom, color: UIColor.init(hex: lightGrey), width: 0.5)
     }
     
     func setHeader(_ index: Int) {

@@ -30,6 +30,8 @@
 		50CB0FC821481690003771C4 /* ChildOrParentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CB0FC721481690003771C4 /* ChildOrParentVC.swift */; };
 		50CB0FCA21481B30003771C4 /* ChildActivateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CB0FC921481B30003771C4 /* ChildActivateVC.swift */; };
 		50CEC4842193B3540054B540 /* PlaceInMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CEC4832193B3540054B540 /* PlaceInMapVC.swift */; };
+		50D07ACD219AB64200DA917B /* MessageDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D07ACC219AB64200DA917B /* MessageDetailCell.swift */; };
+		50D07ACF219AB6CA00DA917B /* MessageDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D07ACE219AB6CA00DA917B /* MessageDetail.swift */; };
 		50DF58F72147B03500B76BE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DF58F62147B03500B76BE6 /* AppDelegate.swift */; };
 		50DF58F92147B03500B76BE6 /* LoginOrRegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DF58F82147B03500B76BE6 /* LoginOrRegisterVC.swift */; };
 		50DF58FC2147B03500B76BE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50DF58FA2147B03500B76BE6 /* Main.storyboard */; };
@@ -126,6 +128,8 @@
 		50CB0FC721481690003771C4 /* ChildOrParentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildOrParentVC.swift; sourceTree = "<group>"; };
 		50CB0FC921481B30003771C4 /* ChildActivateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildActivateVC.swift; sourceTree = "<group>"; };
 		50CEC4832193B3540054B540 /* PlaceInMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceInMapVC.swift; sourceTree = "<group>"; };
+		50D07ACC219AB64200DA917B /* MessageDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailCell.swift; sourceTree = "<group>"; };
+		50D07ACE219AB6CA00DA917B /* MessageDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetail.swift; sourceTree = "<group>"; };
 		50DF58F32147B03500B76BE6 /* CareMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CareMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50DF58F62147B03500B76BE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50DF58F82147B03500B76BE6 /* LoginOrRegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginOrRegisterVC.swift; sourceTree = "<group>"; };
@@ -319,6 +323,7 @@
 			children = (
 				501E67A62151A16C00E879D6 /* Kid.swift */,
 				50E58DFF217EF8CB00E62D46 /* KidInfo.swift */,
+				50D07ACE219AB6CA00DA917B /* MessageDetail.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -332,6 +337,7 @@
 				50A185AB2159266A00000DD1 /* moreFunctionsCell.swift */,
 				50134DE9215E2D05004A3946 /* repairCell.swift */,
 				50283F8E218CCE9500A07210 /* settingsCell.swift */,
+				50D07ACC219AB64200DA917B /* MessageDetailCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -615,6 +621,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50D07ACD219AB64200DA917B /* MessageDetailCell.swift in Sources */,
 				50E06E4D2153BEA9000A2AAE /* ChildVC.swift in Sources */,
 				50DF592F2147B42800B76BE6 /* Extensions.swift in Sources */,
 				504C5AEC214C5B9D00831F95 /* HomeVC.swift in Sources */,
@@ -624,6 +631,7 @@
 				506194CD2151819700A1702D /* headerCell.swift in Sources */,
 				5087288A216E15B100A2C04F /* ChildMenuVC.swift in Sources */,
 				50A185B02159333B00000DD1 /* SoundAroundVC.swift in Sources */,
+				50D07ACF219AB6CA00DA917B /* MessageDetail.swift in Sources */,
 				50CB0FCA21481B30003771C4 /* ChildActivateVC.swift in Sources */,
 				50134DEA215E2D05004A3946 /* repairCell.swift in Sources */,
 				503DE181219494CF00AD2CAC /* CallCenterVC.swift in Sources */,
