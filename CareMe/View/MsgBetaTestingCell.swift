@@ -9,18 +9,18 @@
 import UIKit
 import PureLayout
 
-class MessageDetailCell: UITableViewCell {
+class MsgBetaTestingCell: UITableViewCell {
     
     var messageDetail: MessageDetail!
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
@@ -41,22 +41,18 @@ class MessageDetailCell: UITableViewCell {
         let myID = defaults.string(forKey: "uid")
         
         var backgroundColor: UIColor {
-            
-            if role == Int(msg.type) {
+            if msg.senderID == myID {
                 return UIColor(hex: green)
             } else {
                 return UIColor(hex: msgGrey)
             }
         }
         
-        let height = estimateFrameForText(text: msg.message).height
-        let width = estimateFrameForText(text: msg.message).width
-        
         var textColor: UIColor {
-            if role == Int(msg.type) {
+            if msg.senderID == myID {
                 return UIColor(hex: preWhite)
             } else {
-                return UIColor(hex: preBlack)
+                return UIColor(hex: msgGrey)
             }
         }
         
@@ -64,19 +60,28 @@ class MessageDetailCell: UITableViewCell {
             let bv = UIView()
             bv.layer.masksToBounds = true
             bv.backgroundColor = backgroundColor
-            bv.autoSetDimensions(to: CGSize(width: width+25, height: height+20))
+            bv.autoSetDimensions(to: CGSize(width: 200, height: 45))
             bv.layer.cornerRadius = 15
             return bv
         }()
         
-        let msgLbl: UILabel = {
-            let lbl = UILabel()
-            lbl.text = msg.message
-            lbl.textColor = textColor
-            lbl.font = UIFont(name: "Montserrat-Medium", size: 14)
-//            lbl.autoresizingMask
-            lbl.numberOfLines = 0
-            return lbl
+//        let msgLbl: UILabel = {
+//            let lbl = UILabel()
+//            lbl.text = msg.message
+//            lbl.textColor = textColor
+//            lbl.font = UIFont(name: "Montserrat-Medium", size: 14)
+//            return lbl
+//        }()
+        
+        let textView: UITextView = {
+            let tv = UITextView()
+            tv.textColor = textColor
+            tv.text = msg.message
+            tv.font = UIFont.systemFont(ofSize: 14)
+            tv.isEditable = false
+            tv.backgroundColor = UIColor.clear
+            tv.translatesAutoresizingMaskIntoConstraints = false
+            return tv
         }()
         
         let dateLbl: UILabel = {
@@ -89,7 +94,7 @@ class MessageDetailCell: UITableViewCell {
         
         self.addSubview(bubbleView)
         self.addSubview(dateLbl)
-        bubbleView.addSubview(msgLbl)
+        bubbleView.addSubview(textView)
         
         bubbleView.autoPinEdge(.top, to: .top, of: self, withOffset: 8)
         
@@ -100,13 +105,10 @@ class MessageDetailCell: UITableViewCell {
             bubbleView.autoPinEdge(.right, to: .right, of: self, withOffset: -8)
             dateLbl.autoPinEdge(.trailing, to: .trailing, of: bubbleView, withOffset: -7)
         }
-        msgLbl.autoPinEdge(.leading, to: .leading, of: bubbleView, withOffset: 10)
-        msgLbl.autoPinEdge(.trailing, to: .trailing, of: bubbleView, withOffset: 10)
-        msgLbl.autoPinEdge(.top, to: .top, of: bubbleView)
-        msgLbl.autoPinEdge(.bottom, to: .bottom, of: bubbleView)
-        
+        textView.autoPinEdge(.left, to: .left, of: bubbleView, withOffset: 8)
+        textView.autoPinEdge(.top, to: .top, of: bubbleView, withOffset: 8)
         dateLbl.autoPinEdge(.top, to: .bottom, of: bubbleView, withOffset: 5)
         
     }
-
+    
 }

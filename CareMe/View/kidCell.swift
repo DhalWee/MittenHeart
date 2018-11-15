@@ -32,11 +32,11 @@ class kidCell: UITableViewCell {
         
     }
     
-    func setKid(_ name: String,_ surname: String,_ desc: String,_ imgName: String,_ batteryPercentage: String ) {
-        self.nameAndSurname.text = "\(name) \(surname)"
-        self.desc.text = desc
-        self.batteryPercentage.text = "\(batteryPercentage) %"
-        if let percentage = Int(batteryPercentage) {
+    func setKid(_ kid: Kid) {
+        self.nameAndSurname.text = "\(kid.name) \(kid.surname)"
+        self.desc.text = kid.kidInfo.time
+        self.batteryPercentage.text = "\(kid.kidInfo.batteryLevel) %"
+        if let percentage = Int(kid.kidInfo.batteryLevel) {
             if percentage > 80 {
                 self.batteryImg.image = UIImage(named: "Battery100")
             } else if percentage > 60 {
@@ -52,8 +52,8 @@ class kidCell: UITableViewCell {
             }
         }
         
-        self.imgView.image = UIImage(named: imgName)
-        self.noImgLbl.text = name[0..<2]
+        self.imgView.image = UIImage(named: kid.imgUrlString)
+        self.noImgLbl.text = kid.name[0..<2]
     }
     
     

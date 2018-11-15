@@ -8,6 +8,7 @@
 
 import UIKit
 import Starscream
+import PureLayout
 
 class ChatVC: UIViewController, WebSocketDelegate {
     
@@ -15,7 +16,6 @@ class ChatVC: UIViewController, WebSocketDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var textField: UITextField!
     
-    var kids: [Kid]?
     var kid: Kid?
     
     var bottomConstraints: NSLayoutConstraint?
@@ -25,6 +25,8 @@ class ChatVC: UIViewController, WebSocketDelegate {
     @IBOutlet weak var barBtn: UIBarButtonItem!
     
     var socket: WebSocket! = nil
+    
+    var previusMsgCount = 0
     
     var updateTimer: Timer!
     
@@ -36,11 +38,23 @@ class ChatVC: UIViewController, WebSocketDelegate {
         }
     }
     
-    let jsonObject: Any  = [
-        "action": "get_message",
-        "sender_id": "2",
-        "receiver_id": "2"
-    ]
+    var parentID: String {
+        if roleInt == 0 {
+            return defaults.string(forKey: "uid")!
+        } else {
+            return defaults.string(forKey: "parentID")!
+        }
+    }
+    
+    var kidID: String {
+        if roleInt == 0 {
+            return "\(kid!.kidID)"
+        } else {
+            return defaults.string(forKey: "uid")!
+        }
+    }
+    
+    var jsonGetMessage: Any  = []
     
     var jsonSendMessage: Any = []
     
@@ -57,13 +71,18 @@ class ChatVC: UIViewController, WebSocketDelegate {
         socket.delegate = self
         socket.connect()
         
-        updateTimer = Timer.scheduledTimer(timeInterval: 8, target: self, selector: #selector(updateInformation), userInfo: nil, repeats: true)
+        updateTimer = Timer.scheduledTimer(timeInterval: 7, target: self, selector: #selector(updateInformation), userInfo: nil, repeats: true)
         
         bottomConstraints = NSLayoutConstraint(item: bottomView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
+        
         view.addConstraint(bottomConstraints!)
+        updateTableViewConstraints()
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        
+        
         
     }
     
@@ -92,10 +111,12 @@ class ChatVC: UIViewController, WebSocketDelegate {
             } else {
                 bottomConstraints?.constant = +keyboardFrame!.height
             }
+            scrollToBottom()
             UIView.animate(withDuration: 0, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
                 self.view.layoutIfNeeded()
             }, completion: nil)
         }
+        updateTableViewConstraints()
     }
     
 }
@@ -124,6 +145,13 @@ extension ChatVC {
     
     }
     
+    func updateTableViewConstraints() {
+        tableView.autoPinEdge(.top, to: .top, of: view)
+        tableView.autoPinEdge(.left, to: .left, of: view)
+        tableView.autoPinEdge(.right, to: .right, of: view)
+        tableView.autoPinEdge(.bottom, to: .top, of: bottomView)
+    }
+    
     func messageParse(_ jsonObject: NSDictionary) {
         
         let count = jsonObject.count-1
@@ -134,8 +162,8 @@ extension ChatVC {
             
             let id = message!["id"] as? String
             let date = message!["date"] as? String
-            let sender_id = message!["sender_id"] as? String
-            let receiver_id = message!["receiver_id"] as? String
+            let sender_id = message!["parent_id"] as? String
+            let receiver_id = message!["kid_id"] as? String
             let msg = message!["message"] as? String
             let type = message!["type"] as? String
             
@@ -143,13 +171,16 @@ extension ChatVC {
             messages.append(newMsg)
         }
         messages.reverse()
-        tableView.reloadData()
-        scrollToBottom()
-        
+        if previusMsgCount != messages.count {
+            tableView.reloadData()
+            updateTableViewConstraints()
+            scrollToBottom()
+            previusMsgCount = messages.count
+        }
     }
     
     func scrollToBottom(){
-        DispatchQueue.main.async {
+        if self.messages.count > 0 {
             let indexPath = IndexPath(row: self.messages.count-1, section: 0)
             self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
@@ -157,25 +188,44 @@ extension ChatVC {
     
     @IBAction func sendBtnPressed() {
         self.view.endEditing(true)
-        jsonSendMessage = [
-            "action": "send_message",
-            "sender_id": "2",
-            "receiver_id": "2",
-            "message": textField.text!,
-            "type": "\(roleInt)"
-        ]
-        print(jsonSendMessage)
-        sendJson(jsonSendMessage) {
-            self.textField.text = ""
-//            self.updateInformation()
+        
+        if self.textField.text != "" {
+//            sendingProcess {
+                self.jsonSendMessage = [
+                    "action": "send_message",
+                    "parent_id": self.parentID,
+                    "kid_id": self.kidID,
+                    "message": self.textField.text!,
+                    "type": "\(self.roleInt)"
+                ]
+                print(self.jsonSendMessage)
+                self.sendJson(self.jsonSendMessage) {}
+                self.textField.text = ""
+//            }
         }
         
     }
     
+//    func sendingProcess(completionHandler: (() -> Void)!) {
+//        let tempMsg = MessageDetail("0", parentID, kidID, textField.text!, "\(roleInt)", "Отправляется...")
+//        messages.append(tempMsg)
+//        tableView.reloadData()
+//        updateTableViewConstraints()
+//        completionHandler()
+//    }
+    
+    
    @objc func updateInformation() {
-        sendJson(jsonObject) {}
+        jsonGetMessage = [
+            "action": "get_message",
+            "parent_id": parentID,
+            "kid_id": kidID
+        ]
+        sendJson(jsonGetMessage) {
+            print(self.jsonGetMessage)
+        }
     }
-
+    
 }
 
 //TableView delegates and datasource
@@ -197,7 +247,9 @@ extension ChatVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        let text = messages[indexPath.row].message
+        let height: CGFloat = estimateFrameForText(text: text).height + 45
+        return height
     }
     
     
@@ -207,7 +259,7 @@ extension ChatVC: UITableViewDelegate, UITableViewDataSource {
 extension ChatVC {
     func websocketDidConnect(socket: WebSocketClient) {
         print("connected")
-        sendJson(jsonObject) {}
+        updateInformation()
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
@@ -215,8 +267,7 @@ extension ChatVC {
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        print("Answer from websocket\(text)")
-        
+//        print("Answer from websocket\(text)")
         do {
             let data = text.data(using: .utf8)!
             let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? NSDictionary

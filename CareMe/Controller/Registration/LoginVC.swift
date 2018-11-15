@@ -201,11 +201,15 @@ extension LoginVC {
     }
     
     func kidStatusCheck(_ jsonObject: NSDictionary) {
-        let childId = jsonObject["child_id"]
-        if childId != nil {
-            performSegue(withIdentifier: "ChildMenuVCSegue", sender: self)
-        } else {
-            performSegue(withIdentifier: "ChildActivateVCSegue", sender: self)
+        if let active = jsonObject["active"] as? String{
+            if let parentID = jsonObject["parent_id"] as? String {
+                defaults.set(Int(parentID), forKey: "parentID")
+            }
+            if Int(active) == 1 {
+                performSegue(withIdentifier: "ChildMenuVCSegue", sender: self)
+            } else {
+                performSegue(withIdentifier: "ChildActivateVCSegue", sender: self)
+            }
         }
     }
     

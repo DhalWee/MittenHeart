@@ -25,12 +25,19 @@ let actionBlue = 0x007AFF
 let lightGrey = 0xD8D8D8
 let darkGrey = 0x979797
 let msgGrey = 0xE5E5EA
+let preBlack = 0x252525
 
 let mapApi = "AIzaSyBlrYJ3j9_BsUDRv4yp25PeazJx9I0Q3g0"
 
 enum linePosition {
     case top
     case bottom
+}
+
+func estimateFrameForText(text: String) -> CGRect {
+    let size = CGSize(width: 200, height: 1000)
+    let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+    return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)], context: nil)
 }
 
 func addLineToView(view : UIView, position : linePosition, color: UIColor, width: Double) {

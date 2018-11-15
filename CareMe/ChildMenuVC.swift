@@ -15,6 +15,8 @@ class ChildMenuVC: UIViewController, CLLocationManagerDelegate, WebSocketDelegat
     
     @IBOutlet weak var signOutBtn: UIButton!
     
+    let role = defaults.string(forKey: "role")
+    
     var locationManager = CLLocationManager()
     var currentLocation: CLLocation?
 
@@ -49,6 +51,8 @@ class ChildMenuVC: UIViewController, CLLocationManagerDelegate, WebSocketDelegat
         socket.delegate = self
         socket.connect()
         
+        print(role)
+        
         let path = Bundle.main.path(forResource: "alert", ofType: "wav")
         let soundURL = URL(fileURLWithPath: path!)
         do{
@@ -70,7 +74,7 @@ class ChildMenuVC: UIViewController, CLLocationManagerDelegate, WebSocketDelegat
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        UIApplication.shared.statusBarStyle = .default
+        UIApplication.shared.statusBarStyle = .lightContent
         self.navigationController?.isNavigationBarHidden = false
     }
     

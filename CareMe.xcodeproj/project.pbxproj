@@ -16,10 +16,14 @@
 		503DE181219494CF00AD2CAC /* CallCenterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503DE180219494CF00AD2CAC /* CallCenterVC.swift */; };
 		504C5AE8214C2F2200831F95 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C5AE7214C2F2200831F95 /* LoginVC.swift */; };
 		504C5AEC214C5B9D00831F95 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C5AEB214C5B9D00831F95 /* HomeVC.swift */; };
+		5054B4F1219D838600A1850D /* CustomFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5054B4EF219D838600A1850D /* CustomFooterView.xib */; };
+		5054B4F2219D838600A1850D /* CustomFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5054B4F0219D838600A1850D /* CustomFooterView.swift */; };
 		5055E866214B37E5001138AD /* ParentGenerateCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5055E865214B37E5001138AD /* ParentGenerateCodeVC.swift */; };
+		50594E94219ADD1500335A7C /* ListOfChatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50594E93219ADD1500335A7C /* ListOfChatsVC.swift */; };
 		506194CD2151819700A1702D /* headerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506194CB2151819700A1702D /* headerCell.swift */; };
 		506194D1215182CD00A1702D /* kidCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506194CF215182CD00A1702D /* kidCell.swift */; };
 		506194D42151915300A1702D /* addKidCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506194D32151915300A1702D /* addKidCell.swift */; };
+		508276B1219D461B009A276C /* MsgBetaTestingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508276B0219D461B009A276C /* MsgBetaTestingCell.swift */; };
 		5087288A216E15B100A2C04F /* ChildMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50872889216E15B100A2C04F /* ChildMenuVC.swift */; };
 		50A185A82159231B00000DD1 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A185A72159231B00000DD1 /* RegisterVC.swift */; };
 		50A185AC2159266A00000DD1 /* moreFunctionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A185AB2159266A00000DD1 /* moreFunctionsCell.swift */; };
@@ -114,10 +118,14 @@
 		503DE180219494CF00AD2CAC /* CallCenterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallCenterVC.swift; sourceTree = "<group>"; };
 		504C5AE7214C2F2200831F95 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		504C5AEB214C5B9D00831F95 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		5054B4EF219D838600A1850D /* CustomFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomFooterView.xib; sourceTree = "<group>"; };
+		5054B4F0219D838600A1850D /* CustomFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFooterView.swift; sourceTree = "<group>"; };
 		5055E865214B37E5001138AD /* ParentGenerateCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentGenerateCodeVC.swift; sourceTree = "<group>"; };
+		50594E93219ADD1500335A7C /* ListOfChatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfChatsVC.swift; sourceTree = "<group>"; };
 		506194CB2151819700A1702D /* headerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = headerCell.swift; sourceTree = "<group>"; };
 		506194CF215182CD00A1702D /* kidCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kidCell.swift; sourceTree = "<group>"; };
 		506194D32151915300A1702D /* addKidCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addKidCell.swift; sourceTree = "<group>"; };
+		508276B0219D461B009A276C /* MsgBetaTestingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MsgBetaTestingCell.swift; sourceTree = "<group>"; };
 		50872889216E15B100A2C04F /* ChildMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildMenuVC.swift; sourceTree = "<group>"; };
 		50A185A72159231B00000DD1 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		50A185AB2159266A00000DD1 /* moreFunctionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = moreFunctionsCell.swift; sourceTree = "<group>"; };
@@ -241,6 +249,7 @@
 				504C5AEB214C5B9D00831F95 /* HomeVC.swift */,
 				50E06E4C2153BEA9000A2AAE /* ChildVC.swift */,
 				50A185AD2159331300000DD1 /* MovementVC.swift */,
+				50594E93219ADD1500335A7C /* ListOfChatsVC.swift */,
 				50A185B32159337C00000DD1 /* ChatVC.swift */,
 				503DE180219494CF00AD2CAC /* CallCenterVC.swift */,
 				50A185AF2159333B00000DD1 /* SoundAroundVC.swift */,
@@ -321,6 +330,8 @@
 		50DF59282147B3D200B76BE6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5054B4F0219D838600A1850D /* CustomFooterView.swift */,
+				5054B4EF219D838600A1850D /* CustomFooterView.xib */,
 				501E67A62151A16C00E879D6 /* Kid.swift */,
 				50E58DFF217EF8CB00E62D46 /* KidInfo.swift */,
 				50D07ACE219AB6CA00DA917B /* MessageDetail.swift */,
@@ -338,6 +349,7 @@
 				50134DE9215E2D05004A3946 /* repairCell.swift */,
 				50283F8E218CCE9500A07210 /* settingsCell.swift */,
 				50D07ACC219AB64200DA917B /* MessageDetailCell.swift */,
+				508276B0219D461B009A276C /* MsgBetaTestingCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -480,6 +492,7 @@
 				50DF59012147B03700B76BE6 /* Assets.xcassets in Resources */,
 				50FEEE762148066F00E8EAF5 /* Montserrat-ExtraLight.otf in Resources */,
 				50FEEE792148066F00E8EAF5 /* Montserrat-Light.otf in Resources */,
+				5054B4F1219D838600A1850D /* CustomFooterView.xib in Resources */,
 				50FEEE752148066F00E8EAF5 /* Montserrat-ExtraBoldItalic.otf in Resources */,
 				50FEEE812148066F00E8EAF5 /* Montserrat-ThinItalic.otf in Resources */,
 				50FEEE7B2148066F00E8EAF5 /* Montserrat-Medium.otf in Resources */,
@@ -622,6 +635,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50D07ACD219AB64200DA917B /* MessageDetailCell.swift in Sources */,
+				50594E94219ADD1500335A7C /* ListOfChatsVC.swift in Sources */,
 				50E06E4D2153BEA9000A2AAE /* ChildVC.swift in Sources */,
 				50DF592F2147B42800B76BE6 /* Extensions.swift in Sources */,
 				504C5AEC214C5B9D00831F95 /* HomeVC.swift in Sources */,
@@ -640,6 +654,7 @@
 				50CEC4842193B3540054B540 /* PlaceInMapVC.swift in Sources */,
 				50A185A82159231B00000DD1 /* RegisterVC.swift in Sources */,
 				50E58E00217EF8CB00E62D46 /* KidInfo.swift in Sources */,
+				508276B1219D461B009A276C /* MsgBetaTestingCell.swift in Sources */,
 				504C5AE8214C2F2200831F95 /* LoginVC.swift in Sources */,
 				50E58E02217F278A00E62D46 /* NewChildVC.swift in Sources */,
 				501E67A72151A16C00E879D6 /* Kid.swift in Sources */,
@@ -649,6 +664,7 @@
 				506194D1215182CD00A1702D /* kidCell.swift in Sources */,
 				50A185AE2159331300000DD1 /* MovementVC.swift in Sources */,
 				50DF58F72147B03500B76BE6 /* AppDelegate.swift in Sources */,
+				5054B4F2219D838600A1850D /* CustomFooterView.swift in Sources */,
 				50A185B22159335700000DD1 /* SendSignalVC.swift in Sources */,
 				50A185AC2159266A00000DD1 /* moreFunctionsCell.swift in Sources */,
 			);

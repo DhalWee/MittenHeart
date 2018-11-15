@@ -410,7 +410,14 @@ extension HomeVC {
     }
     
     func chatBtnPressed(_ sender: Any) {
-        performSegue(withIdentifier: "ChatVCSegue", sender: self)
+        if kids.count > 1 {
+            performSegue(withIdentifier: "ListOfChatsVCSegue", sender: self)
+        } else if kids.count == 1 {
+            performSegue(withIdentifier: "ChatVCSegue", sender: self)
+        } else {
+            //trigger to wait or that he hasn't kid
+        }
+        
     }
     
     @IBAction func callCenterBtnPressed(_ sender: Any) {
@@ -456,6 +463,9 @@ extension HomeVC {
             ((tableView.indexPathForSelectedRow?.row)! > 0 && (tableView.indexPathForSelectedRow?.row)! <= kids.count ) {
             let destination = segue.destination as! ChildVC
             destination.kid = kids[(tableView.indexPathForSelectedRow?.row)!-1]
+        } else if tabBarIndex == 2 && kids.count > 1 {
+            let destination = segue.destination as! ListOfChatsVC
+            destination.kids = self.kids
         }
     }
     
@@ -618,7 +628,7 @@ extension HomeVC {
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "kidCell", for: indexPath) as! kidCell
                 let kid = kids[indexPath.row-1]
-                cell.setKid(kid.name, kid.surname, kid.kidInfo.time, kid.imgUrlString, kid.kidInfo.batteryLevel)
+                cell.setKid(kid)
                 return cell
             }
         } else if tabBarIndex == 1 {
