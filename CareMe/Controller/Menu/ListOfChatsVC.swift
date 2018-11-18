@@ -20,7 +20,6 @@ class ListOfChatsVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         tableView.dataSource = self
         if kids?.count != 0 {
             //Update the kid's list
-            print(kids)
             tableView.reloadData()
         }
         
@@ -38,7 +37,7 @@ class ListOfChatsVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "ChatVCSegue", sender: self)
+        performSegue(withIdentifier: "ChatControllerSegue", sender: self)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -46,7 +45,7 @@ class ListOfChatsVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destination = segue.destination as! ChatVC
+        let destination = segue.destination as! ChatController
         destination.kid = kids![tableView.indexPathForSelectedRow!.row]
     }
     

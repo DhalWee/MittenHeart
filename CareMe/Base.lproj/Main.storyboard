@@ -1234,6 +1234,31 @@
             </objects>
             <point key="canvasLocation" x="6301.6000000000004" y="1091.6041979010495"/>
         </scene>
+        <!--Chat Controller-->
+        <scene sceneID="K6e-rj-IFq">
+            <objects>
+                <collectionViewController id="dXw-TO-4vX" customClass="ChatController" customModule="CareMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="rBL-Mc-H2S">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="D0s-ZJ-rlI">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells/>
+                        <connections>
+                            <outlet property="dataSource" destination="dXw-TO-4vX" id="q3W-JI-NMt"/>
+                            <outlet property="delegate" destination="dXw-TO-4vX" id="YG6-7g-D2m"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XnA-Zw-OSM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8500" y="363"/>
+        </scene>
         <!-- -->
         <scene sceneID="uRF-oo-w9c">
             <objects>
@@ -2027,6 +2052,7 @@
                     <connections>
                         <outlet property="tableView" destination="fUi-aX-Mce" id="kOU-D0-Pgs"/>
                         <segue destination="3Rd-RS-oll" kind="show" identifier="ChatVCSegue" id="584-U0-Tva"/>
+                        <segue destination="dXw-TO-4vX" kind="show" identifier="ChatControllerSegue" id="BBp-Rp-8KM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Yu-ft-ZXb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2533,7 +2559,7 @@
         <segue reference="hXJ-W6-gQm"/>
         <segue reference="AFx-GM-VYB"/>
         <segue reference="eJp-xQ-XhP"/>
-        <segue reference="3w9-60-ix0"/>
+        <segue reference="584-U0-Tva"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.19215686269999999" green="0.75686274509999996" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

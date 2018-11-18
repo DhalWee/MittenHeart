@@ -22,7 +22,7 @@ class SendSignalVC: UIViewController, WebSocketDelegate {
     
     let jsonObject: Any  = [
         "action": "send_signal",
-        "session_id": defaults.string(forKey: "sid"),
+        "session_id": defaults.string(forKey: "sid") as Any,
         "kid_id": defaults.integer(forKey: "kidID0")
         
     ]

@@ -10,6 +10,7 @@
 		14E66E95DD8CE17171ED5E65 /* Pods_CareMeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBA04FB1C133F23CFACEEFE /* Pods_CareMeUITests.framework */; };
 		19A9985991C4FE84A5DC3446 /* Pods_CareMeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 237ABC90F0906D11303C358B /* Pods_CareMeTests.framework */; };
 		50134DEA215E2D05004A3946 /* repairCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50134DE9215E2D05004A3946 /* repairCell.swift */; };
+		501C5BDE21A0109E00FFD56E /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501C5BDD21A0109E00FFD56E /* ChatController.swift */; };
 		501E67A72151A16C00E879D6 /* Kid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501E67A62151A16C00E879D6 /* Kid.swift */; };
 		50283F8F218CCE9500A07210 /* settingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50283F8E218CCE9500A07210 /* settingsCell.swift */; };
 		502934A721882AE40060CE0A /* alert.wav in Resources */ = {isa = PBXBuildFile; fileRef = 502934A621882AE40060CE0A /* alert.wav */; };
@@ -23,7 +24,7 @@
 		506194CD2151819700A1702D /* headerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506194CB2151819700A1702D /* headerCell.swift */; };
 		506194D1215182CD00A1702D /* kidCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506194CF215182CD00A1702D /* kidCell.swift */; };
 		506194D42151915300A1702D /* addKidCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506194D32151915300A1702D /* addKidCell.swift */; };
-		508276B1219D461B009A276C /* MsgBetaTestingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508276B0219D461B009A276C /* MsgBetaTestingCell.swift */; };
+		506B859121A183B5003B0B51 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506B859021A183B5003B0B51 /* ChatMessageCell.swift */; };
 		5087288A216E15B100A2C04F /* ChildMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50872889216E15B100A2C04F /* ChildMenuVC.swift */; };
 		50A185A82159231B00000DD1 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A185A72159231B00000DD1 /* RegisterVC.swift */; };
 		50A185AC2159266A00000DD1 /* moreFunctionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A185AB2159266A00000DD1 /* moreFunctionsCell.swift */; };
@@ -94,6 +95,7 @@
 		237ABC90F0906D11303C358B /* Pods_CareMeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CareMeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		36B665079D7D6EE8B14255DE /* Pods-CareMeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CareMeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CareMeUITests/Pods-CareMeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		50134DE9215E2D05004A3946 /* repairCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = repairCell.swift; sourceTree = "<group>"; };
+		501C5BDD21A0109E00FFD56E /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		501E67A62151A16C00E879D6 /* Kid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kid.swift; sourceTree = "<group>"; };
 		50283F8E218CCE9500A07210 /* settingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsCell.swift; sourceTree = "<group>"; };
 		502934A621882AE40060CE0A /* alert.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = alert.wav; sourceTree = "<group>"; };
@@ -125,7 +127,7 @@
 		506194CB2151819700A1702D /* headerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = headerCell.swift; sourceTree = "<group>"; };
 		506194CF215182CD00A1702D /* kidCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kidCell.swift; sourceTree = "<group>"; };
 		506194D32151915300A1702D /* addKidCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addKidCell.swift; sourceTree = "<group>"; };
-		508276B0219D461B009A276C /* MsgBetaTestingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MsgBetaTestingCell.swift; sourceTree = "<group>"; };
+		506B859021A183B5003B0B51 /* ChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		50872889216E15B100A2C04F /* ChildMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildMenuVC.swift; sourceTree = "<group>"; };
 		50A185A72159231B00000DD1 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		50A185AB2159266A00000DD1 /* moreFunctionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = moreFunctionsCell.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				50A185AD2159331300000DD1 /* MovementVC.swift */,
 				50594E93219ADD1500335A7C /* ListOfChatsVC.swift */,
 				50A185B32159337C00000DD1 /* ChatVC.swift */,
+				501C5BDD21A0109E00FFD56E /* ChatController.swift */,
 				503DE180219494CF00AD2CAC /* CallCenterVC.swift */,
 				50A185AF2159333B00000DD1 /* SoundAroundVC.swift */,
 				50A185B12159335700000DD1 /* SendSignalVC.swift */,
@@ -349,7 +352,7 @@
 				50134DE9215E2D05004A3946 /* repairCell.swift */,
 				50283F8E218CCE9500A07210 /* settingsCell.swift */,
 				50D07ACC219AB64200DA917B /* MessageDetailCell.swift */,
-				508276B0219D461B009A276C /* MsgBetaTestingCell.swift */,
+				506B859021A183B5003B0B51 /* ChatMessageCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -653,8 +656,8 @@
 				5055E866214B37E5001138AD /* ParentGenerateCodeVC.swift in Sources */,
 				50CEC4842193B3540054B540 /* PlaceInMapVC.swift in Sources */,
 				50A185A82159231B00000DD1 /* RegisterVC.swift in Sources */,
+				506B859121A183B5003B0B51 /* ChatMessageCell.swift in Sources */,
 				50E58E00217EF8CB00E62D46 /* KidInfo.swift in Sources */,
-				508276B1219D461B009A276C /* MsgBetaTestingCell.swift in Sources */,
 				504C5AE8214C2F2200831F95 /* LoginVC.swift in Sources */,
 				50E58E02217F278A00E62D46 /* NewChildVC.swift in Sources */,
 				501E67A72151A16C00E879D6 /* Kid.swift in Sources */,
@@ -665,6 +668,7 @@
 				50A185AE2159331300000DD1 /* MovementVC.swift in Sources */,
 				50DF58F72147B03500B76BE6 /* AppDelegate.swift in Sources */,
 				5054B4F2219D838600A1850D /* CustomFooterView.swift in Sources */,
+				501C5BDE21A0109E00FFD56E /* ChatController.swift in Sources */,
 				50A185B22159335700000DD1 /* SendSignalVC.swift in Sources */,
 				50A185AC2159266A00000DD1 /* moreFunctionsCell.swift in Sources */,
 			);

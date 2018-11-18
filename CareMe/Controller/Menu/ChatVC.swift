@@ -19,6 +19,7 @@ class ChatVC: UIViewController, WebSocketDelegate {
     var kid: Kid?
     
     var bottomConstraints: NSLayoutConstraint?
+    var refreshControl: UIRefreshControl!
     
     var messages: [MessageDetail] = []
     
@@ -81,7 +82,11 @@ class ChatVC: UIViewController, WebSocketDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        
+        refreshControl = UIRefreshControl()
+        tableView.addSubview(refreshControl)
+        refreshControl.addTarget(self, action: #selector(updateInformation), for: UIControl.Event.valueChanged)
+        refreshControl.attributedTitle = NSAttributedString(string: "")
+        refreshControl.beginRefreshing()
         
         
     }
@@ -177,6 +182,7 @@ extension ChatVC {
             scrollToBottom()
             previusMsgCount = messages.count
         }
+        self.refreshControl.endRefreshing()
     }
     
     func scrollToBottom(){

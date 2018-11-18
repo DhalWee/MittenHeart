@@ -51,8 +51,6 @@ class ChildMenuVC: UIViewController, CLLocationManagerDelegate, WebSocketDelegat
         socket.delegate = self
         socket.connect()
         
-        print(role)
-        
         let path = Bundle.main.path(forResource: "alert", ofType: "wav")
         let soundURL = URL(fileURLWithPath: path!)
         do{
@@ -211,8 +209,6 @@ extension ChildMenuVC {
         if kidIDFromJson == defaults.integer(forKey: "uid") {
             
         }
-        print(kidIDFromJson)
-        print(defaults.integer(forKey: "uid"))
         loudSignal()
     }
     
